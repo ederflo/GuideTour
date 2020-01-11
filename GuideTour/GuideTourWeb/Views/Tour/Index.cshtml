@@ -1,11 +1,11 @@
-﻿
+﻿@model GuideTourWeb.Models.TourViewModels.IndexTourViewModel
 @{
     ViewData["Title"] = "Übersicht";
 }
 
     <div class="row">
         <div class="col-12 col-md-6 border-right">
-            <div class="row">
+            <div id="notStartedTours" class="row">
                 <div class="col-12 text-center text-white mb-4">
                     <a href="#" data-toggle="modal" data-target="#createTourModal">
                         <i class="fa fa-3x fa-plus-circle fa-pull-left text-white"></i>
@@ -13,128 +13,47 @@
                     <h3>Startende Führungen</h3>
                     <h6>Hier finden Sie zu startende Führungen, welche bestätigt werden müssen.</h6>
                 </div>
-                <div class="col-12 col-lg-6 mt-3">
+                @foreach (Tour item in Model.NotStarted)
+                {
+                <div id="@("tourNotStarted_" + item.Id)" class="col-12 col-lg-6 mt-3">
                     <div class="card">
-                        <div class="card-header bg-secondary-color h4">Daniel Tschlatscher</div>
+                        <div class="card-header bg-secondary-color h4">@item.GuideName</div>
                         <div class="card-body bg-ternary-color text-white">
                             <p>
-                                <strong>Team:</strong> Gurkensalat<br />
-                                <strong>Gast:</strong> Hubert Staller
+                                <strong>Team:</strong> @item.GuideTeam<br />
+                                <strong>Gast:</strong> @item.VisitorName
                             </p>
-                            <button type="button" class="btn bg-primary-color text-white w-100 font-weight-bold">Bestätigen</button>
+                            <button type="button" class="btn bg-primary-color text-white w-100 font-weight-bold" 
+                                    onclick="startTourAjax('@item.Id');">Bestätigen</button>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-12 col-lg-6 mt-3">
-                    <div class="card">
-                        <div class="card-header bg-secondary-color h4">Florian Eder</div>
-                        <div class="card-body bg-ternary-color text-white">
-                            <p>
-                                <strong>Team:</strong> Gurkensalat<br />
-                                <strong>Gast:</strong> Hubert Staller
-                            </p>
-                            <button type="button" class="btn bg-primary-color text-white w-100 font-weight-bold">Bestätigen</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-lg-6 mt-3">
-                    <div class="card">
-                        <div class="card-header bg-secondary-color h4">Florian Eder</div>
-                        <div class="card-body bg-ternary-color text-white">
-                            <p>
-                                <strong>Team:</strong> Gurkensalat<br />
-                                <strong>Gast:</strong> Hubert Staller
-                            </p>
-                            <button type="button" class="btn bg-primary-color text-white w-100 font-weight-bold">Bestätigen</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-lg-6 mt-3">
-                    <div class="card">
-                        <div class="card-header bg-secondary-color h4">Florian Eder</div>
-                        <div class="card-body bg-ternary-color text-white">
-                            <p>
-                                <strong>Team:</strong> Gurkensalat<br />
-                                <strong>Gast:</strong> Hubert Staller
-                            </p>
-                            <button type="button" class="btn bg-primary-color text-white w-100 font-weight-bold">Bestätigen</button>
-                        </div>
-                    </div>
-                </div>
+                }
             </div>
         </div>
         <div class="col-12 col-md-6 border-left">
-            <div class="row">
+            <div id="startedTours" class="row">
                 <div class="col-12 text-center text-white mb-4">
                     <h3>Laufende Führungen</h3>
                     <h6>Hier finden Sie laufende Führungen, welche beendet werden können.</h6>
                 </div>
-                <div class="col-12 col-lg-6 mt-3">
+                @foreach (Tour item in Model.Started)
+                {
+                <div id="@("tourStarted_" + item.Id)" class="col-12 col-lg-6 mt-3">
                     <div class="card">
-                        <div class="card-header bg-secondary-color h4">Florian Eder</div>
+                        <div class="card-header bg-secondary-color h4">@item.GuideName</div>
                         <div class="card-body bg-ternary-color text-white">
                             <p>
-                                <strong>Team:</strong> Gurkensalat<br />
-                                <strong>Führungsstart:</strong> 10:30<br />
-                                <strong>Gast:</strong> Hubert Staller
+                                <strong>Team:</strong> @item.GuideTeam<br />
+                                <strong>Führungsstart:</strong> @item.StartedTour.Value.ToString("HH:mm")<br />
+                                <strong>Gast:</strong> @item.VisitorName
                             </p>
-                            <button type="button" class="btn bg-primary-color text-white w-100 font-weight-bold">Beenden</button>
+                            <button type="button" class="btn bg-primary-color text-white w-100 font-weight-bold"
+                                    onclick="completeTourAjax('@item.Id');">Beenden</button>
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-lg-6 mt-3">
-                    <div class="card">
-                        <div class="card-header bg-secondary-color h4">Florian Eder</div>
-                        <div class="card-body bg-ternary-color text-white">
-                            <p>
-                                <strong>Team:</strong> Gurkensalat<br />
-                                <strong>Führungsstart:</strong> 11:00<br />
-                                <strong>Gast:</strong> Hubert Staller
-                            </p>
-                            <button type="button" class="btn bg-primary-color text-white w-100 font-weight-bold">Beenden</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-lg-6 mt-3">
-                    <div class="card">
-                        <div class="card-header bg-secondary-color h4">Florian Eder</div>
-                        <div class="card-body bg-ternary-color text-white">
-                            <p>
-                                <strong>Team:</strong> Gurkensalat<br />
-                                <strong>Führungsstart:</strong> 11:15<br />
-                                <strong>Gast:</strong> Hubert Staller
-                            </p>
-                            <button type="button" class="btn bg-primary-color text-white w-100 font-weight-bold">Beenden</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-lg-6 mt-3">
-                    <div class="card">
-                        <div class="card-header bg-secondary-color h4">Florian Eder</div>
-                        <div class="card-body bg-ternary-color text-white">
-                            <p>
-                                <strong>Team:</strong> Gurkensalat<br />
-                                <strong>Führungsstart:</strong> 12:30<br />
-                                <strong>Gast:</strong> Hubert Staller
-                            </p>
-                            <button type="button" class="btn bg-primary-color text-white w-100 font-weight-bold">Beenden</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-lg-6 mt-3">
-                    <div class="card">
-                        <div class="card-header bg-secondary-color h4">Florian Eder</div>
-                        <div class="card-body bg-ternary-color text-white">
-                            <p>
-                                <strong>Team:</strong> Gurkensalat<br />
-                                <strong>Führungsstart:</strong> 12:50<br />
-                                <strong>Gast:</strong> Hubert Staller
-                            </p>
-                            <button type="button" class="btn bg-primary-color text-white w-100 font-weight-bold">Beenden</button>
-                        </div>
-                    </div>
-                </div>  
+                }
             </div>
         </div>
     </div>
@@ -150,18 +69,33 @@
                     </button>
                 </div>
                 <div class="modal-body bg-ternary-color text-white">
-                    <form>
+                    <form method="post" asp-action="NewTour" asp-controller="Tour" data-ajax="true" data-ajax-success="success" data-ajax-method="post">
                         <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" class="form-control" id="name" placeholder="Name des Guides...">
+                            <label for="guideTeam">Team</label>
+                            <select class="form-control" asp-for="GuideTeam" id="guideTeam">
+                                <option selected disabled>Wähle ein Team aus...</option>
+                                @foreach (Team t in Model.Teams)
+                                {
+                                    <option>@t.Name</option>
+                                }
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label for="team">Team</label>
-                            <input type="text" class="form-control" id="team" placeholder="Name des Teams...">
+                            <label for="guideName">Name</label>
+                            <select class="form-control" asp-for="GuideName" id="guideName">
+                                <option selected disabled>Wähle einen Guide aus...</option>
+                                @foreach (Team t in Model.Teams)
+                                {
+                                    @foreach (Guide g in t.Guides)
+                                    {
+                                        <option name="@Html.Raw(t.Name)">@g.Name</option>
+                                    }
+                                }
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label for="visitor">Gast (optional)</label>
-                            <input type="text" class="form-control" id="visitor" placeholder="Name des Gastes...">
+                            <label for="visitorName">Gast (optional)</label>
+                            <input type="text" class="form-control" asp-for="VisitorName" id="visitorName" placeholder="Name des Gastes...">
                         </div>
                         <button type="submit" class="btn bg-primary-color text-white w-100 font-weight-bold">Erstellen</button>
                     </form>
@@ -169,3 +103,29 @@
             </div>
         </div>
     </div>
+
+@section Scripts {
+    <script src="~/js/Touren.js" asp-append-version="true"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#guideName').children().hide();
+        });
+
+        $("#guideTeam").change(function(){
+            var newSelectedTeam = $(this).children("option:selected").val();
+            fillOptionsOfSelect(newSelectedTeam);
+        });
+
+        function fillOptionsOfSelect(teamname) {
+            $('#guideName').children().hide();
+            $('#guideName').children('option[name="' + teamname + '"]').show();
+            $("#guideName").prop("selectedIndex", 0).val(); 
+        }
+
+        function success(data) {
+            $('#createTourModal').modal('hide');
+            addNotStartedTour(data);
+        }
+    </script>
+}

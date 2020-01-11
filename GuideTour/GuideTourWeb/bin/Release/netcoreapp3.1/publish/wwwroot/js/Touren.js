@@ -1,0 +1,90 @@
+﻿function startTourAjax(id) {
+    if (!id)
+        alert('Tour konnte nicht gestartet werden! Bitte wenden Sie sich an einen Administrator!');
+
+    $.ajax({
+        type: 'PATCH',
+        url: '/Tour/StartTour',
+        data: {
+            id: id
+        },
+        success: function (data) {
+            if (data) {
+                $('#tourNotStarted_' + data.id).remove();
+                addStartedTour(data);
+            } else {
+                console.log('Error! Bitte kontaktieren Sie einen Administrator!');
+            }
+        },
+        error: function () {
+            console.log('Error! Bitte kontaktieren Sie einen Administrator!');
+        }
+    });
+}
+
+function completeTourAjax(id) {
+    if (!id)
+        alert('Tour konnte nicht beendet werden! Bitte wenden Sie sich an einen Administrator!');
+
+    $.ajax({
+        type: 'PATCH',
+        url: '/Tour/CompleteTour',
+        data: {
+            id: id
+        },
+        success: function (data) {
+            if (data) {
+                $('#tourStarted_' + id).remove();
+            } else {
+                console.log('Error! Bitte kontaktieren Sie einen Administrator!');
+            }
+        },
+        error: function () {
+            console.log('Error! Bitte kontaktieren Sie einen Administrator!');
+        }
+    });
+}
+
+function addNotStartedTour(data) {
+    var panel = buildNotStartedTourPanel(data.id, data.guideName, data.guideTeam, data.visitorName);
+    $("#notStartedTours").append(panel);
+}
+
+function addStartedTour(data) {
+    var panel = buildStartedTourPanel(data.id, data.guideName, data.guideTeam, data.visitorName, data.startedTour);
+    $("#startedTours").append(panel);
+}
+
+function buildNotStartedTourPanel(id, guideName, guideTeam, visitorName) {
+    return '<div id="tourNotStarted_' + id + '" class="col-12 col-lg-6 mt-3" >' +
+                    '<div class="card">' +
+                        '<div class="card-header bg-secondary-color h4">' + guideName + '</div>' +
+                        '<div class="card-body bg-ternary-color text-white">' +
+                            '<p>' +
+                                '<strong>Team:</strong> ' + guideTeam + '<br />' +
+                                '<strong>Gast:</strong> ' + visitorName +
+                            '</p>' +
+                            '<button type="button" class="btn bg-primary-color text-white w-100 font-weight-bold"' +
+                            'onclick="startTourAjax(\'' + id + '\');">Bestätigen</button>' +
+                        '</div>' +
+                    '</div>' +
+                '</div >';
+}
+
+function buildStartedTourPanel(id, guideName, guideTeam, visitorName, startTime) {
+    var date = new Date(startTime);
+    return '<div id="tourStarted_' + id + '" class="col-12 col-lg-6 mt-3" >' +
+                '<div class="card">' +
+                '<div class="card-header bg-secondary-color h4">' + guideName + '</div>' +
+                    '<div class="card-body bg-ternary-color text-white">' +
+                        '<p>' +
+                            '<strong>Team:</strong> ' + guideTeam + '<br />' +
+                            '<strong>Führungsstart:</strong> ' + date.getHours() + ':' + date.getMinutes() + '<br />' +
+                            '<strong>Gast:</strong> ' + visitorName +
+                        '</p>' +
+                        '<button type="button" class="btn bg-primary-color text-white w-100 font-weight-bold"' +
+                        'onclick="completeTourAjax(\'' + id + '\');">Beenden</button>' +
+                    '</div>' +
+                '</div>' +
+            '</div >';
+}
