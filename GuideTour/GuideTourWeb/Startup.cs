@@ -50,7 +50,7 @@ namespace GuideTourWeb
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Tour}/{action=Index}/{id?}");
             });
         }
     }

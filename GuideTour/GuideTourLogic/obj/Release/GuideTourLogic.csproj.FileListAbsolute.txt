@@ -1,0 +1,11 @@
+D:\Programmieren\TDOT2020\GuideTour\GuideTourLogic\bin\Release\GuideTourLogic.dll
+D:\Programmieren\TDOT2020\GuideTour\GuideTourLogic\bin\Release\GuideTourLogic.pdb
+D:\Programmieren\TDOT2020\GuideTour\GuideTourLogic\bin\Release\GuideTourData.dll
+D:\Programmieren\TDOT2020\GuideTour\GuideTourLogic\bin\Release\Microsoft.Analytics.Interfaces.dll
+D:\Programmieren\TDOT2020\GuideTour\GuideTourLogic\bin\Release\Microsoft.Analytics.Interfaces.Streaming.dll
+D:\Programmieren\TDOT2020\GuideTour\GuideTourLogic\bin\Release\Microsoft.Analytics.Types.dll
+D:\Programmieren\TDOT2020\GuideTour\GuideTourLogic\bin\Release\GuideTourData.pdb
+D:\Programmieren\TDOT2020\GuideTour\GuideTourLogic\obj\Release\GuideTourLogic.csprojAssemblyReference.cache
+D:\Programmieren\TDOT2020\GuideTour\GuideTourLogic\obj\Release\GuideTourLogic.csproj.CopyComplete
+D:\Programmieren\TDOT2020\GuideTour\GuideTourLogic\obj\Release\GuideTourLogic.dll
+D:\Programmieren\TDOT2020\GuideTour\GuideTourLogic\obj\Release\GuideTourLogic.pdb

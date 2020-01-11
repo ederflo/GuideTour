@@ -1,0 +1,6 @@
+D:\Programmieren\TDOT2020\GuideTour\GuideTourData\bin\Debug\GuideTourData.dll
+D:\Programmieren\TDOT2020\GuideTour\GuideTourData\bin\Debug\GuideTourData.pdb
+D:\Programmieren\TDOT2020\GuideTour\GuideTourData\obj\Debug\GuideTourData.csprojAssemblyReference.cache
+D:\Programmieren\TDOT2020\GuideTour\GuideTourData\obj\Debug\GuideTourData.csproj.CopyComplete
+D:\Programmieren\TDOT2020\GuideTour\GuideTourData\obj\Debug\GuideTourData.dll
+D:\Programmieren\TDOT2020\GuideTour\GuideTourData\obj\Debug\GuideTourData.pdb

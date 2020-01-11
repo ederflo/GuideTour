@@ -21,6 +21,7 @@ namespace GuideTourWeb
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                    webBuilder.UseUrls("http://127.0.0.1:50003");
                 });
     }
 }
