@@ -1945,33 +1945,12 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XDocument.dll": {}
         }
-      },
-      "GuideTourData/1.0.0": {
-        "type": "project",
-        "compile": {
-          "bin/placeholder/GuideTourData.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/GuideTourData.dll": {}
-        }
-      },
-      "GuideTourLogic/1.0.0": {
-        "type": "project",
-        "dependencies": {
-          "GuideTourData": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/GuideTourLogic.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/GuideTourLogic.dll": {}
-        }
       }
     }
   },
   "libraries": {
     "Microsoft.AspNetCore.Html.Abstractions/2.2.0": {
-      "sha512": "Z08ZN/kjJ15AQyNY349dpTPJdpdVJ/RYLLJjY9sf6VoHBf3vRBSCBx6orXMspMeRJrhHultPTP0IKVK2g4KZxg==",
+      "sha512": "Y4rs5aMEXY8G7wJo5S3EEt6ltqyOTr/qOeZzfn+hw/fuQj5GppGckMY5psGLETo1U9hcT5MmAhaT5xtusM1b5g==",
       "type": "package",
       "path": "microsoft.aspnetcore.html.abstractions/2.2.0",
       "files": [
@@ -2014,7 +1993,7 @@
       ]
     },
     "Microsoft.AspNetCore.Razor/2.2.0": {
-      "sha512": "aM2aGQQh/kVOdgThej+4+ypFU8jSp2Dq/wZg9+e6/7RVAwlk8lQp8n2iYV9ltsSycE/4EU+LIMHegzaGBLOmsA==",
+      "sha512": "V54PIyDCFl8COnTp9gezNHpUNHk7F9UnerGeZy3UfbnwYvfzbo+ipqQmSgeoESH8e0JvKhRTyQyZquW2EPtCmg==",
       "type": "package",
       "path": "microsoft.aspnetcore.razor/2.2.0",
       "files": [
@@ -2041,7 +2020,7 @@
       ]
     },
     "Microsoft.AspNetCore.Razor.Runtime/2.2.0": {
-      "sha512": "UMBfVgxYVH0/OYNleZGCEsLHK8X5j80dU5hqYYBoTm2TfUoBkXDecuODtDAf5x0KfKZLKHnDT4+5lcIKKthQog==",
+      "sha512": "7YqK+H61lN6yj9RiQUko7oaOhKtRR9Q/kBcoWNRemhJdTIWOh1OmdvJKzZrMWOlff3BAjejkPQm+0V0qXk+B1w==",
       "type": "package",
       "path": "microsoft.aspnetcore.razor.runtime/2.2.0",
       "files": [
@@ -2431,7 +2410,7 @@
       ]
     },
     "Microsoft.NETCore.Platforms/2.1.2": {
-      "sha512": "7J7veIH7Mu6zc4llWnM7YRgTv9+Ew+JWkkDj0K7cEe8wuFA6HRt6STtwux2g+qjpDXeYeWsK0UQ3uIgRiTYHIg==",
+      "sha512": "mOJy3M0UN+LUG21dLGMxaWZEP6xYpQEpLuvuEQBaownaX4YuhH6NmNUlN9si+vNkAS6dwJ//N1O4DmLf2CikVg==",
       "type": "package",
       "path": "microsoft.netcore.platforms/2.1.2",
       "files": [
@@ -6426,49 +6405,32 @@
         "system.xml.xdocument.4.3.0.nupkg.sha512",
         "system.xml.xdocument.nuspec"
       ]
-    },
-    "GuideTourData/1.0.0": {
-      "type": "project",
-      "path": "../GuideTourData/GuideTourData.csproj",
-      "msbuildProject": "../GuideTourData/GuideTourData.csproj"
-    },
-    "GuideTourLogic/1.0.0": {
-      "type": "project",
-      "path": "../GuideTourLogic/GuideTourLogic.csproj",
-      "msbuildProject": "../GuideTourLogic/GuideTourLogic.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
-      "GuideTourData >= 1.0.0",
-      "GuideTourLogic >= 1.0.0",
+      "D:\\TDOT\\GuideTour\\GuideTour\\GuideTourData\\GuideTourData.csproj",
+      "D:\\TDOT\\GuideTour\\GuideTour\\GuideTourLogic\\GuideTourLogic.csproj",
       "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation >= 3.1.0",
       "Microsoft.Extensions.Logging.Debug >= 3.1.0",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 3.1.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ederf\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\ederf\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Programmieren\\TDOT2020\\GuideTour\\GuideTourWeb\\GuideTourWeb.csproj",
+      "projectUniqueName": "D:\\TDOT\\GuideTour\\GuideTour\\GuideTourWeb\\GuideTourWeb.csproj",
       "projectName": "GuideTourWeb",
-      "projectPath": "D:\\Programmieren\\TDOT2020\\GuideTour\\GuideTourWeb\\GuideTourWeb.csproj",
+      "projectPath": "D:\\TDOT\\GuideTour\\GuideTour\\GuideTourWeb\\GuideTourWeb.csproj",
       "packagesPath": "C:\\Users\\ederf\\.nuget\\packages\\",
-      "outputPath": "D:\\Programmieren\\TDOT2020\\GuideTour\\GuideTourWeb\\obj\\",
+      "outputPath": "D:\\TDOT\\GuideTour\\GuideTour\\GuideTourWeb\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\",
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
         "C:\\Users\\ederf\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -6480,11 +6442,11 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "D:\\Programmieren\\TDOT2020\\GuideTour\\GuideTourData\\GuideTourData.csproj": {
-              "projectPath": "D:\\Programmieren\\TDOT2020\\GuideTour\\GuideTourData\\GuideTourData.csproj"
+            "D:\\TDOT\\GuideTour\\GuideTour\\GuideTourData\\GuideTourData.csproj": {
+              "projectPath": "D:\\TDOT\\GuideTour\\GuideTour\\GuideTourData\\GuideTourData.csproj"
             },
-            "D:\\Programmieren\\TDOT2020\\GuideTour\\GuideTourLogic\\GuideTourLogic.csproj": {
-              "projectPath": "D:\\Programmieren\\TDOT2020\\GuideTour\\GuideTourLogic\\GuideTourLogic.csproj"
+            "D:\\TDOT\\GuideTour\\GuideTour\\GuideTourLogic\\GuideTourLogic.csproj": {
+              "projectPath": "D:\\TDOT\\GuideTour\\GuideTour\\GuideTourLogic\\GuideTourLogic.csproj"
             }
           }
         }
@@ -6532,5 +6494,25 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1105",
+      "level": "Error",
+      "message": "Projektinformationen für \"D:\\TDOT\\GuideTour\\GuideTour\\GuideTourLogic\\GuideTourLogic.csproj\" wurden nicht gefunden. Wenn Sie Visual Studio verwenden, wurde das Projekt möglicherweise entladen oder gehört nicht zur aktuellen Projektmappe. Führen Sie daher eine Wiederherstellung über die Befehlszeile aus. Andernfalls ist die Projektdatei möglicherweise ungültig, oder es fehlen Ziele, die für die Wiederherstellung erforderlich sind.",
+      "libraryId": "D:\\TDOT\\GuideTour\\GuideTour\\GuideTourLogic\\GuideTourLogic.csproj",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    },
+    {
+      "code": "NU1105",
+      "level": "Error",
+      "message": "Projektinformationen für \"D:\\TDOT\\GuideTour\\GuideTour\\GuideTourData\\GuideTourData.csproj\" wurden nicht gefunden. Wenn Sie Visual Studio verwenden, wurde das Projekt möglicherweise entladen oder gehört nicht zur aktuellen Projektmappe. Führen Sie daher eine Wiederherstellung über die Befehlszeile aus. Andernfalls ist die Projektdatei möglicherweise ungültig, oder es fehlen Ziele, die für die Wiederherstellung erforderlich sind.",
+      "libraryId": "D:\\TDOT\\GuideTour\\GuideTour\\GuideTourData\\GuideTourData.csproj",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    }
+  ]
 }

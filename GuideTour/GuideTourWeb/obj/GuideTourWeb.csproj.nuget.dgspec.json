@@ -1,57 +1,21 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Programmieren\\TDOT2020\\GuideTour\\GuideTourWeb\\GuideTourWeb.csproj": {}
+    "D:\\TDOT\\GuideTour\\GuideTour\\GuideTourWeb\\GuideTourWeb.csproj": {}
   },
   "projects": {
-    "D:\\Programmieren\\TDOT2020\\GuideTour\\GuideTourData\\GuideTourData.csproj": {
+    "D:\\TDOT\\GuideTour\\GuideTour\\GuideTourWeb\\GuideTourWeb.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Programmieren\\TDOT2020\\GuideTour\\GuideTourData\\GuideTourData.csproj",
-        "projectName": "GuideTourData",
-        "projectPath": "D:\\Programmieren\\TDOT2020\\GuideTour\\GuideTourData\\GuideTourData.csproj"
-      },
-      "frameworks": {
-        "net472": {}
-      }
-    },
-    "D:\\Programmieren\\TDOT2020\\GuideTour\\GuideTourLogic\\GuideTourLogic.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "D:\\Programmieren\\TDOT2020\\GuideTour\\GuideTourLogic\\GuideTourLogic.csproj",
-        "projectName": "GuideTourLogic",
-        "projectPath": "D:\\Programmieren\\TDOT2020\\GuideTour\\GuideTourLogic\\GuideTourLogic.csproj",
-        "frameworks": {
-          "net472": {
-            "projectReferences": {
-              "D:\\Programmieren\\TDOT2020\\GuideTour\\GuideTourData\\GuideTourData.csproj": {
-                "projectPath": "D:\\Programmieren\\TDOT2020\\GuideTour\\GuideTourData\\GuideTourData.csproj"
-              }
-            }
-          }
-        }
-      },
-      "frameworks": {
-        "net472": {}
-      }
-    },
-    "D:\\Programmieren\\TDOT2020\\GuideTour\\GuideTourWeb\\GuideTourWeb.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "D:\\Programmieren\\TDOT2020\\GuideTour\\GuideTourWeb\\GuideTourWeb.csproj",
+        "projectUniqueName": "D:\\TDOT\\GuideTour\\GuideTour\\GuideTourWeb\\GuideTourWeb.csproj",
         "projectName": "GuideTourWeb",
-        "projectPath": "D:\\Programmieren\\TDOT2020\\GuideTour\\GuideTourWeb\\GuideTourWeb.csproj",
+        "projectPath": "D:\\TDOT\\GuideTour\\GuideTour\\GuideTourWeb\\GuideTourWeb.csproj",
         "packagesPath": "C:\\Users\\ederf\\.nuget\\packages\\",
-        "outputPath": "D:\\Programmieren\\TDOT2020\\GuideTour\\GuideTourWeb\\obj\\",
+        "outputPath": "D:\\TDOT\\GuideTour\\GuideTour\\GuideTourWeb\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
           "C:\\Users\\ederf\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -63,11 +27,11 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "D:\\Programmieren\\TDOT2020\\GuideTour\\GuideTourData\\GuideTourData.csproj": {
-                "projectPath": "D:\\Programmieren\\TDOT2020\\GuideTour\\GuideTourData\\GuideTourData.csproj"
+              "D:\\TDOT\\GuideTour\\GuideTour\\GuideTourData\\GuideTourData.csproj": {
+                "projectPath": "D:\\TDOT\\GuideTour\\GuideTour\\GuideTourData\\GuideTourData.csproj"
               },
-              "D:\\Programmieren\\TDOT2020\\GuideTour\\GuideTourLogic\\GuideTourLogic.csproj": {
-                "projectPath": "D:\\Programmieren\\TDOT2020\\GuideTour\\GuideTourLogic\\GuideTourLogic.csproj"
+              "D:\\TDOT\\GuideTour\\GuideTour\\GuideTourLogic\\GuideTourLogic.csproj": {
+                "projectPath": "D:\\TDOT\\GuideTour\\GuideTour\\GuideTourLogic\\GuideTourLogic.csproj"
               }
             }
           }
