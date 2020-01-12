@@ -21,7 +21,7 @@
                         <div class="card-body bg-ternary-color text-white">
                             <p>
                                 <strong>Team:</strong> @item.GuideTeam<br />
-                                <strong>Gast:</strong> @item.VisitorName
+                                <strong>Gast:</strong> @(string.IsNullOrWhiteSpace(item.VisitorName) ? "--" : item.VisitorName)
                             </p>
                             <button type="button" class="btn bg-primary-color text-white w-100 font-weight-bold" 
                                     onclick="startTourAjax('@item.Id');">Bestätigen</button>
@@ -46,7 +46,7 @@
                             <p>
                                 <strong>Team:</strong> @item.GuideTeam<br />
                                 <strong>Führungsstart:</strong> @item.StartedTour.Value.ToString("HH:mm")<br />
-                                <strong>Gast:</strong> @item.VisitorName
+                                <strong>Gast:</strong> @(string.IsNullOrWhiteSpace(item.VisitorName) ? "--" : item.VisitorName)
                             </p>
                             <button type="button" class="btn bg-primary-color text-white w-100 font-weight-bold"
                                     onclick="completeTourAjax('@item.Id');">Beenden</button>
@@ -69,7 +69,10 @@
                     </button>
                 </div>
                 <div class="modal-body bg-ternary-color text-white">
-                    <form method="post" asp-action="NewTour" asp-controller="Tour" data-ajax="true" data-ajax-success="success" data-ajax-method="post">
+                    <form id="newTourForm" method="post" asp-action="NewTour" asp-controller="Tour"
+                          data-ajax="true"
+                          data-ajax-success="onNewTourCreatedSuccess"
+                          data-ajax-method="post">
                         <div class="form-group">
                             <label for="guideTeam">Team</label>
                             <select class="form-control" asp-for="GuideTeam" id="guideTeam">
@@ -123,9 +126,9 @@
             $("#guideName").prop("selectedIndex", 0).val(); 
         }
 
-        function success(data) {
+        onNewTourCreatedSuccess = function (data) {
             $('#createTourModal').modal('hide');
-            addNotStartedTour(data);
+            $("#newTourForm")[0].reset();
         }
     </script>
 }

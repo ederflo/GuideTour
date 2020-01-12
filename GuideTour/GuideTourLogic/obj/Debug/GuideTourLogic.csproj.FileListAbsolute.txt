@@ -1,8 +1,0 @@
-D:\Programmieren\TDOT2020\GuideTour\GuideTourLogic\bin\Debug\GuideTourLogic.dll
-D:\Programmieren\TDOT2020\GuideTour\GuideTourLogic\bin\Debug\GuideTourLogic.pdb
-D:\Programmieren\TDOT2020\GuideTour\GuideTourLogic\bin\Debug\GuideTourData.dll
-D:\Programmieren\TDOT2020\GuideTour\GuideTourLogic\bin\Debug\GuideTourData.pdb
-D:\Programmieren\TDOT2020\GuideTour\GuideTourLogic\obj\Debug\GuideTourLogic.csprojAssemblyReference.cache
-D:\Programmieren\TDOT2020\GuideTour\GuideTourLogic\obj\Debug\GuideTourLogic.csproj.CopyComplete
-D:\Programmieren\TDOT2020\GuideTour\GuideTourLogic\obj\Debug\GuideTourLogic.dll
-D:\Programmieren\TDOT2020\GuideTour\GuideTourLogic\obj\Debug\GuideTourLogic.pdb

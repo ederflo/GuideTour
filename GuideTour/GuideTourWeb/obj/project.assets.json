@@ -633,7 +633,7 @@
           "System.Xml.XDocument": "4.3.0"
         }
       },
-      "Newtonsoft.Json/11.0.2": {
+      "Newtonsoft.Json/12.0.3": {
         "type": "package",
         "compile": {
           "lib/netstandard2.0/Newtonsoft.Json.dll": {}
@@ -1945,6 +1945,32 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XDocument.dll": {}
         }
+      },
+      "GuideTourData/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "Newtonsoft.Json": "12.0.3"
+        },
+        "compile": {
+          "bin/placeholder/GuideTourData.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GuideTourData.dll": {}
+        }
+      },
+      "GuideTourLogic/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "GuideTourData": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/GuideTourLogic.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GuideTourLogic.dll": {}
+        }
       }
     }
   },
@@ -2900,10 +2926,10 @@
         "netstandard.library.nuspec"
       ]
     },
-    "Newtonsoft.Json/11.0.2": {
-      "sha512": "IvJe1pj7JHEsP8B8J8DwlMEx8UInrs/x+9oVY+oCD13jpLu4JbJU2WCIsMRn5C4yW9+DgkaO8uiVE5VHKjpmdQ==",
+    "Newtonsoft.Json/12.0.3": {
+      "sha512": "6mgjfnRB4jKMlzHSl+VD+oUc1IebOZabkbyWj2RiTgWwYPPuaK1H97G1sHqGwPlS5npiF5Q0OrxN1wni2n5QWg==",
       "type": "package",
-      "path": "newtonsoft.json/11.0.2",
+      "path": "newtonsoft.json/12.0.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2926,8 +2952,9 @@
         "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.xml",
         "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.dll",
         "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.xml",
-        "newtonsoft.json.11.0.2.nupkg.sha512",
-        "newtonsoft.json.nuspec"
+        "newtonsoft.json.12.0.3.nupkg.sha512",
+        "newtonsoft.json.nuspec",
+        "packageIcon.png"
       ]
     },
     "NuGet.Frameworks/4.7.0": {
@@ -6405,12 +6432,22 @@
         "system.xml.xdocument.4.3.0.nupkg.sha512",
         "system.xml.xdocument.nuspec"
       ]
+    },
+    "GuideTourData/1.0.0": {
+      "type": "project",
+      "path": "../GuideTourData/GuideTourData.csproj",
+      "msbuildProject": "../GuideTourData/GuideTourData.csproj"
+    },
+    "GuideTourLogic/1.0.0": {
+      "type": "project",
+      "path": "../GuideTourLogic/GuideTourLogic.csproj",
+      "msbuildProject": "../GuideTourLogic/GuideTourLogic.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
-      "D:\\TDOT\\GuideTour\\GuideTour\\GuideTourData\\GuideTourData.csproj",
-      "D:\\TDOT\\GuideTour\\GuideTour\\GuideTourLogic\\GuideTourLogic.csproj",
+      "GuideTourData >= 1.0.0",
+      "GuideTourLogic >= 1.0.0",
       "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation >= 3.1.0",
       "Microsoft.Extensions.Logging.Debug >= 3.1.0",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 3.1.0"
@@ -6422,11 +6459,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\TDOT\\GuideTour\\GuideTour\\GuideTourWeb\\GuideTourWeb.csproj",
+      "projectUniqueName": "D:\\TODT2020\\GuideTour\\GuideTour\\GuideTourWeb\\GuideTourWeb.csproj",
       "projectName": "GuideTourWeb",
-      "projectPath": "D:\\TDOT\\GuideTour\\GuideTour\\GuideTourWeb\\GuideTourWeb.csproj",
+      "projectPath": "D:\\TODT2020\\GuideTour\\GuideTour\\GuideTourWeb\\GuideTourWeb.csproj",
       "packagesPath": "C:\\Users\\ederf\\.nuget\\packages\\",
-      "outputPath": "D:\\TDOT\\GuideTour\\GuideTour\\GuideTourWeb\\obj\\",
+      "outputPath": "D:\\TODT2020\\GuideTour\\GuideTour\\GuideTourWeb\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ederf\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -6442,11 +6479,11 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "D:\\TDOT\\GuideTour\\GuideTour\\GuideTourData\\GuideTourData.csproj": {
-              "projectPath": "D:\\TDOT\\GuideTour\\GuideTour\\GuideTourData\\GuideTourData.csproj"
+            "D:\\TODT2020\\GuideTour\\GuideTour\\GuideTourData\\GuideTourData.csproj": {
+              "projectPath": "D:\\TODT2020\\GuideTour\\GuideTour\\GuideTourData\\GuideTourData.csproj"
             },
-            "D:\\TDOT\\GuideTour\\GuideTour\\GuideTourLogic\\GuideTourLogic.csproj": {
-              "projectPath": "D:\\TDOT\\GuideTour\\GuideTour\\GuideTourLogic\\GuideTourLogic.csproj"
+            "D:\\TODT2020\\GuideTour\\GuideTour\\GuideTourLogic\\GuideTourLogic.csproj": {
+              "projectPath": "D:\\TODT2020\\GuideTour\\GuideTour\\GuideTourLogic\\GuideTourLogic.csproj"
             }
           }
         }
@@ -6494,25 +6531,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1105",
-      "level": "Error",
-      "message": "Projektinformationen für \"D:\\TDOT\\GuideTour\\GuideTour\\GuideTourLogic\\GuideTourLogic.csproj\" wurden nicht gefunden. Wenn Sie Visual Studio verwenden, wurde das Projekt möglicherweise entladen oder gehört nicht zur aktuellen Projektmappe. Führen Sie daher eine Wiederherstellung über die Befehlszeile aus. Andernfalls ist die Projektdatei möglicherweise ungültig, oder es fehlen Ziele, die für die Wiederherstellung erforderlich sind.",
-      "libraryId": "D:\\TDOT\\GuideTour\\GuideTour\\GuideTourLogic\\GuideTourLogic.csproj",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v3.1"
-      ]
-    },
-    {
-      "code": "NU1105",
-      "level": "Error",
-      "message": "Projektinformationen für \"D:\\TDOT\\GuideTour\\GuideTour\\GuideTourData\\GuideTourData.csproj\" wurden nicht gefunden. Wenn Sie Visual Studio verwenden, wurde das Projekt möglicherweise entladen oder gehört nicht zur aktuellen Projektmappe. Führen Sie daher eine Wiederherstellung über die Befehlszeile aus. Andernfalls ist die Projektdatei möglicherweise ungültig, oder es fehlen Ziele, die für die Wiederherstellung erforderlich sind.",
-      "libraryId": "D:\\TDOT\\GuideTour\\GuideTour\\GuideTourData\\GuideTourData.csproj",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v3.1"
-      ]
-    }
-  ]
+  }
 }

@@ -1,0 +1,8 @@
+D:\TODT2020\GuideTour\GuideTour\GuideTourData\bin\Debug\netcoreapp3.1\GuideTourData.deps.json
+D:\TODT2020\GuideTour\GuideTour\GuideTourData\bin\Debug\netcoreapp3.1\GuideTourData.dll
+D:\TODT2020\GuideTour\GuideTour\GuideTourData\bin\Debug\netcoreapp3.1\GuideTourData.pdb
+D:\TODT2020\GuideTour\GuideTour\GuideTourData\obj\Debug\netcoreapp3.1\GuideTourData.csprojAssemblyReference.cache
+D:\TODT2020\GuideTour\GuideTour\GuideTourData\obj\Debug\netcoreapp3.1\GuideTourData.AssemblyInfoInputs.cache
+D:\TODT2020\GuideTour\GuideTour\GuideTourData\obj\Debug\netcoreapp3.1\GuideTourData.AssemblyInfo.cs
+D:\TODT2020\GuideTour\GuideTour\GuideTourData\obj\Debug\netcoreapp3.1\GuideTourData.dll
+D:\TODT2020\GuideTour\GuideTour\GuideTourData\obj\Debug\netcoreapp3.1\GuideTourData.pdb
