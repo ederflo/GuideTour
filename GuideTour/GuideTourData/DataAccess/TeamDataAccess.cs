@@ -12,10 +12,10 @@ namespace GuideTourData.DataAccess
         private static readonly Dictionary<string, Team> teams = new Dictionary<string, Team>
         {
             {
-                "Bestes Team",
+                "Team A",
                 new Team()
                 {
-                    Name = "Bestes Team",
+                    Name = "Team A",
                     Guides = new List<Guide>
                     {
                         new Guide()
@@ -37,10 +37,10 @@ namespace GuideTourData.DataAccess
                 }
             },
             {
-                "Team Villach",
+                "Team B",
                 new Team()
                 {
-                    Name = "Team Villach",
+                    Name = "Team B",
                     Guides = new List<Guide>
                     {
                         new Guide()
@@ -62,10 +62,10 @@ namespace GuideTourData.DataAccess
                 }
             },
             {
-                "Meiste Führungen",
+                "Team C",
                 new Team()
                 {
-                    Name = "Meiste Führungen",
+                    Name = "Team C",
                     Guides = new List<Guide>
                     {
                         new Guide()
@@ -81,6 +81,158 @@ namespace GuideTourData.DataAccess
                         new Guide()
                         {
                             Name = "Noah Resch",
+                            Email = "reschn@edu.htl-villach.at"
+                        }
+                    }
+                }
+            },
+            {
+                "Team D",
+                new Team()
+                {
+                    Name = "Team D",
+                    Guides = new List<Guide>
+                    {
+                        new Guide()
+                        {
+                            Name = "Mister X",
+                            Email = "koderf@edu.htl-villach.at"
+                        },
+                        new Guide()
+                        {
+                            Name = "Mister Y",
+                            Email = "kreuzerl@edu.htl-villach.at"
+                        },
+                        new Guide()
+                        {
+                            Name = "Mister Z",
+                            Email = "reschn@edu.htl-villach.at"
+                        }
+                    }
+                }
+            },
+            {
+                "Team E",
+                new Team()
+                {
+                    Name = "Team E",
+                    Guides = new List<Guide>
+                    {
+                        new Guide()
+                        {
+                            Name = "Lelekt",
+                            Email = "koderf@edu.htl-villach.at"
+                        },
+                        new Guide()
+                        {
+                            Name = "Magnesium Manuel",
+                            Email = "kreuzerl@edu.htl-villach.at"
+                        },
+                        new Guide()
+                        {
+                            Name = "Karsten Stahl",
+                            Email = "reschn@edu.htl-villach.at"
+                        }
+                    }
+                }
+            },
+            {
+                "Team F",
+                new Team()
+                {
+                    Name = "Team F",
+                    Guides = new List<Guide>
+                    {
+                        new Guide()
+                        {
+                            Name = "Fette Beate",
+                            Email = "koderf@edu.htl-villach.at"
+                        },
+                        new Guide()
+                        {
+                            Name = "Klana Schlumpf",
+                            Email = "kreuzerl@edu.htl-villach.at"
+                        },
+                        new Guide()
+                        {
+                            Name = "Kreta Kliemann",
+                            Email = "reschn@edu.htl-villach.at"
+                        }
+                    }
+                }
+            },
+            {
+                "Team G",
+                new Team()
+                {
+                    Name = "Team G",
+                    Guides = new List<Guide>
+                    {
+                        new Guide()
+                        {
+                            Name = "Hagen Kreuz",
+                            Email = "koderf@edu.htl-villach.at"
+                        },
+                        new Guide()
+                        {
+                            Name = "Bauchspeichel",
+                            Email = "kreuzerl@edu.htl-villach.at"
+                        },
+                        new Guide()
+                        {
+                            Name = "Manfred Bauer",
+                            Email = "reschn@edu.htl-villach.at"
+                        }
+                    }
+                }
+            }
+            ,
+            {
+                "Team H",
+                new Team()
+                {
+                    Name = "Team H",
+                    Guides = new List<Guide>
+                    {
+                        new Guide()
+                        {
+                            Name = "Dick Tator",
+                            Email = "koderf@edu.htl-villach.at"
+                        },
+                        new Guide()
+                        {
+                            Name = "Holda Daraus",
+                            Email = "kreuzerl@edu.htl-villach.at"
+                        },
+                        new Guide()
+                        {
+                            Name = "Meta Bolien",
+                            Email = "reschn@edu.htl-villach.at"
+                        }
+                    }
+                }
+            }
+            ,
+            {
+                "Team I",
+                new Team()
+                {
+                    Name = "Team I",
+                    Guides = new List<Guide>
+                    {
+                        new Guide()
+                        {
+                            Name = "Einstein",
+                            Email = "koderf@edu.htl-villach.at"
+                        },
+                        new Guide()
+                        {
+                            Name = "Zweistein",
+                            Email = "kreuzerl@edu.htl-villach.at"
+                        },
+                        new Guide()
+                        {
+                            Name = "Dreistein",
                             Email = "reschn@edu.htl-villach.at"
                         }
                     }

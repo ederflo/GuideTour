@@ -9,3 +9,7 @@
 .bg-ternary-color {
     background-color: #3E3C40 !important;
 }
+
+input[type="radio"] {
+    display: none;
+}

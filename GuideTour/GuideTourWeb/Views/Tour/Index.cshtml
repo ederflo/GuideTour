@@ -73,20 +73,43 @@
                           data-ajax="true"
                           data-ajax-success="onNewTourCreatedSuccess"
                           data-ajax-method="post">
-                        <div class="form-group">
-                            <label for="guideTeam">Team</label>
-                            <select class="form-control" asp-for="GuideTeam" id="guideTeam">
-                                <option selected disabled>Wähle ein Team aus...</option>
-                                @foreach (Team t in Model.Teams)
+
+                        @{
+                            int numberOfCols = 3;
+                            int numberOfRows = 0;
+                            int cntTeams = Model.Teams.Count;
+                            int currentTeam = 0;
+                            int counter = 0;
+
+                            numberOfRows = cntTeams / numberOfCols;
+
+                            if (cntTeams % numberOfCols != 0)
+                                numberOfRows++;
+
+                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                @for (int i = 0; i < numberOfRows; i++)
                                 {
-                                    <option>@t.Name</option>
+                                    <div class="row mt-1">
+                                        <div class="col-12 text-center">
+                                            @while (counter < 3 && currentTeam < cntTeams)
+                                            {
+                                                <label class="btn btn-secondary active w-100">
+                                                    <input type="radio" name="guideTeam" value="@Model.Teams[currentTeam].Name" id="@("radio_" + Model.Teams[currentTeam].Name)" @(currentTeam == 0 ? "checked" : "")> @Model.Teams[currentTeam].Name
+                                                </label>
+                                                counter++;
+                                                currentTeam++;
+                                            }
+                                        </div>
+                                    </div>
+                                    counter = 0;
                                 }
-                            </select>
-                        </div>
+                            </div>  
+                        }
+
                         <div class="form-group">
                             <label for="guideName">Name</label>
-                            <select class="form-control" asp-for="GuideName" id="guideName">
-                                <option selected disabled>Wähle einen Guide aus...</option>
+                            <select multiple class="form-control" asp-for="GuideName" id="guideName" required>
+                                @*<option selected disabled>Wähle einen Guide aus...</option>*@
                                 @foreach (Team t in Model.Teams)
                                 {
                                     @foreach (Guide g in t.Guides)
@@ -120,6 +143,10 @@
             fillOptionsOfSelect(newSelectedTeam);
         });
 
+        $('input[type=radio][name=guideTeam]').change(function() {
+            fillOptionsOfSelect(this.value);
+        });
+
         function fillOptionsOfSelect(teamname) {
             $('#guideName').children().hide();
             $('#guideName').children('option[name="' + teamname + '"]').show();
@@ -131,4 +158,4 @@
             $("#newTourForm")[0].reset();
         }
     </script>
-}
+}t5
