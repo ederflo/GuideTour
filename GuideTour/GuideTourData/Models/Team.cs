@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson.Serialization.IdGenerators;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +11,10 @@ namespace GuideTourData.Models
 {
     public class Team
     {
+        [BsonElement("id")]
+        [BsonId(IdGenerator = typeof(CombGuidGenerator))]
+        public String Id { get; set; }
+
         [JsonProperty("name")]
         public string Name { get; set; }
 

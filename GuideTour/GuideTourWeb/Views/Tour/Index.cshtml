@@ -2,7 +2,13 @@
 @{
     ViewData["Title"] = "Übersicht";
 }
-
+    <div class="container-sm mt-n4 mb-3">
+        <div class="row">
+            <div class="col-12">
+                <input type="text" class="form-control" asp-for="TeacherId" id="teacherId" placeholder="Kürzel des Lehrers...">
+            </div>
+        </div>
+    </div>
     <div class="row">
         <div class="col-12 col-md-6 border-right">
             <div id="notStartedTours" class="row">
@@ -68,48 +74,47 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body bg-ternary-color text-white">
+                <div class="modal-body bg-primary-color text-white">
                     <form id="newTourForm" method="post" asp-action="NewTour" asp-controller="Tour"
                           data-ajax="true"
                           data-ajax-success="onNewTourCreatedSuccess"
                           data-ajax-method="post">
+                        <div class="form-group">
+                            @{
+                                int numberOfCols = 3;
+                                int numberOfRows = 0;
+                                int cntTeams = Model.Teams.Count;
+                                int currentTeam = 0;
+                                int counter = 0;
 
-                        @{
-                            int numberOfCols = 3;
-                            int numberOfRows = 0;
-                            int cntTeams = Model.Teams.Count;
-                            int currentTeam = 0;
-                            int counter = 0;
+                                numberOfRows = cntTeams / numberOfCols;
 
-                            numberOfRows = cntTeams / numberOfCols;
+                                if (cntTeams % numberOfCols != 0)
+                                    numberOfRows++;
 
-                            if (cntTeams % numberOfCols != 0)
-                                numberOfRows++;
-
-                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                @for (int i = 0; i < numberOfRows; i++)
-                                {
-                                    <div class="row mt-1">
-                                        <div class="col-12 text-center">
-                                            @while (counter < 3 && currentTeam < cntTeams)
-                                            {
-                                                <label class="btn btn-secondary active w-100">
-                                                    <input type="radio" name="guideTeam" value="@Model.Teams[currentTeam].Name" id="@("radio_" + Model.Teams[currentTeam].Name)" @(currentTeam == 0 ? "checked" : "")> @Model.Teams[currentTeam].Name
-                                                </label>
-                                                counter++;
-                                                currentTeam++;
-                                            }
+                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    @for (int i = 0; i < numberOfRows; i++)
+                                    {
+                                        <div class="row mt-1">
+                                            <div class="col-12 text-center">
+                                                @while (counter < 3 && currentTeam < cntTeams)
+                                                {
+                                                    <label class="btn btn-secondary active w-100">
+                                                        <input type="radio" name="guideTeam" value="@Model.Teams[currentTeam].Name" id="@("radio_" + Model.Teams[currentTeam].Name)" @(currentTeam == 0 ? "checked" : "")> @Model.Teams[currentTeam].Name
+                                                    </label>
+                                                    counter++;
+                                                    currentTeam++;
+                                                }
+                                            </div>
                                         </div>
-                                    </div>
-                                    counter = 0;
-                                }
-                            </div>  
-                        }
-
+                                        counter = 0;
+                                    }
+                                </div>
+                            }
+                        </div>
                         <div class="form-group">
                             <label for="guideName">Name</label>
-                            <select multiple class="form-control" asp-for="GuideName" id="guideName" required>
-                                @*<option selected disabled>Wähle einen Guide aus...</option>*@
+                            <select multiple class="form-control bg-ternary-color text-white" asp-for="GuideName" id="guideName" required>
                                 @foreach (Team t in Model.Teams)
                                 {
                                     @foreach (Guide g in t.Guides)
@@ -119,11 +124,11 @@
                                 }
                             </select>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group text-white">
                             <label for="visitorName">Gast (optional)</label>
-                            <input type="text" class="form-control" asp-for="VisitorName" id="visitorName" placeholder="Name des Gastes...">
+                            <input type="text" class="form-control bg-primary-color text-white" asp-for="VisitorName" id="visitorName" placeholder="Name des Gastes...">
                         </div>
-                        <button type="submit" class="btn bg-primary-color text-white w-100 font-weight-bold">Erstellen</button>
+                        <button type="submit" class="btn bg-ternary-color text-white w-100 font-weight-bold">Erstellen</button>
                     </form>
                 </div>
             </div>
@@ -136,6 +141,8 @@
     <script>
         $(document).ready(function () {
             $('#guideName').children().hide();
+
+            fillOptionsOfSelect('@Model.Teams.First().Name');
         });
 
         $("#guideTeam").change(function(){
@@ -156,6 +163,10 @@
         onNewTourCreatedSuccess = function (data) {
             $('#createTourModal').modal('hide');
             $("#newTourForm")[0].reset();
+        }
+
+        function getTeacherId() {
+            return $('#teacherId').val();
         }
     </script>
 }t5

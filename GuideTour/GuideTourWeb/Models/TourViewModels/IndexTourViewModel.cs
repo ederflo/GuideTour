@@ -24,5 +24,8 @@ namespace GuideTourWeb.Models.TourViewModels
 
         [JsonProperty("visitorName")]
         public string VisitorName { get; set; }
+
+        [JsonProperty("teacherId")]
+        public string TeacherId { get; set; }
     }
 }

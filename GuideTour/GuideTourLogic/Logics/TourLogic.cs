@@ -71,5 +71,22 @@ namespace GuideTourLogic.Logics
 
             return tourToUpdate;
         }
+
+        public Tour CancelTour(string id)
+        {
+            if (string.IsNullOrWhiteSpace(id))
+                return null;
+
+            Tour tourToCancel = Get(id);
+
+            if (tourToCancel == null)
+                return null;
+
+            tourToCancel.EndedTour = DateTime.Now;
+            tourToCancel.Canceld = true;
+            tourToCancel = Update(tourToCancel);
+
+            return tourToCancel;
+        }
     }
 }

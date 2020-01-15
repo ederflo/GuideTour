@@ -32,7 +32,7 @@ hubConnection.on("TourCompleted", function (data) {
     $('#tourStarted_' + data.id).remove();
 });
 
-function startTourAjax(id) {
+function startTourAjax(id, teacherId) {
     if (!id)
         alert('Tour konnte nicht gestartet werden! Bitte wenden Sie sich an einen Administrator!');
 
@@ -52,7 +52,7 @@ function startTourAjax(id) {
     });
 }
 
-function completeTourAjax(id) {
+function completeTourAjax(id, teacherId) {
     if (!id)
         alert('Tour konnte nicht beendet werden! Bitte wenden Sie sich an einen Administrator!');
 

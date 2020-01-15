@@ -38,6 +38,10 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "MongoDB.Driver": {
+              "target": "Package",
+              "version": "[2.10.0, )"
+            },
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[12.0.3, )"
@@ -159,6 +163,10 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "M2MqttDotnetCore": {
+              "target": "Package",
+              "version": "[1.0.8, )"
+            },
             "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": {
               "target": "Package",
               "version": "[3.1.0, )"

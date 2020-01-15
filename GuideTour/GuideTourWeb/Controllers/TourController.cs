@@ -61,6 +61,18 @@ namespace GuideTourWeb.Controllers
             return tour;
         }
 
+        [HttpPatch]
+        public Tour CancelTour(string id = "")
+        {
+            TourLogic tourLogic = new TourLogic();
+            Tour tour = null;
+            if ((tour = tourLogic.CompleteTour(id)) != null)
+            {
+                _hubcontext.Clients.All.SendAsync("TourCompleted", tour);
+            }
+            return tour;
+        }
+
         [HttpPost]
         public Tour NewTour (IndexTourViewModel viewModel)
         {
