@@ -34,6 +34,8 @@ namespace GuideTourWeb
                     options.ConnectionString = Configuration.GetSection("MongoDb:ConnectionString").Value;
                     options.DatabaseName = Configuration.GetSection("MongoDb:DatabaseName").Value;
                 });
+
+            services.AddTransient<IDocumentDbRepository, DocumentDbRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

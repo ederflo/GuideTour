@@ -38,6 +38,22 @@ namespace GuideTourLogic.Logics
             return await teamDataAccess.GetItemAsync(x => x.Name == teamname);
         }
 
+        public async Task<List<Guide>> GetAllGuidesByTeamname(string teamname)
+        {
+            TeamDataAccess teamDataAccess = new TeamDataAccess(_ddb);
+            Team t = await GetByName(teamname);
+            if (t == null)
+                return null;
+            return await GetAllGuidesByTeamId(t.Id);
+        }
+
+        public async Task<List<Guide>> GetAllGuidesByTeamId(string teamId)
+        {
+            GuideDataAccess guideDataAccess = new GuideDataAccess(_ddb);
+            var result = await guideDataAccess.GetItemsAsync(x => x.TeamId == teamId);
+            return result.ToList();
+        }
+
         public async Task<Team> Add(Team team)
         {
             TeamDataAccess teamDataAccess = new TeamDataAccess(_ddb);

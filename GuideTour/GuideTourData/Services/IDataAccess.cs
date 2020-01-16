@@ -24,6 +24,6 @@ namespace GuideTourData.Services
 
         Task<T> UpdateItemAsync(T item);
 
-        Task DeleteItemAsync(string id, string partitionKey);
+        Task<bool> DeleteItemAsync(string id);
     }
 }

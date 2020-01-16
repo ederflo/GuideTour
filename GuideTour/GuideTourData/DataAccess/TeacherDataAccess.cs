@@ -18,6 +18,27 @@ namespace GuideTourData.DataAccess
             _ddb = ddb;
         }
 
+
+        public Task<Teacher> GetItemAsync(Expression<Func<Teacher, bool>> predicate)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Teacher> GetItemByIdAsync(string id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<Teacher>> GetAllItemsAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<Teacher>> GetItemsAsync(Expression<Func<Teacher, bool>> predicate)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<Teacher> CreateItemAsync(Teacher item)
         {
             throw new NotImplementedException();
@@ -39,26 +60,6 @@ namespace GuideTourData.DataAccess
         }
 
         public Task<bool> DeleteItemAsync(string id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<Teacher>> GetAllItemsAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Teacher> GetItemAsync(Expression<Func<Teacher, bool>> predicate)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Teacher> GetItemByIdAsync(string id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<Teacher>> GetItemsAsync(Expression<Func<Teacher, bool>> predicate)
         {
             throw new NotImplementedException();
         }

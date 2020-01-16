@@ -19,14 +19,14 @@
                     <h3>Startende Führungen</h3>
                     <h6>Hier finden Sie zu startende Führungen, welche bestätigt werden müssen.</h6>
                 </div>
-                @foreach (Tour item in Model.NotStarted)
+                @foreach (TourViewModel item in Model.NotStarted)
                 {
                 <div id="@("tourNotStarted_" + item.Id)" class="col-12 col-lg-6 mt-3">
                     <div class="card">
                         <div class="card-header bg-secondary-color h4">@item.GuideName</div>
                         <div class="card-body bg-ternary-color text-white">
                             <p>
-                                <strong>Team:</strong> @item.GuideTeam<br />
+                                <strong>Team:</strong> @item.Team<br />
                                 <strong>Gast:</strong> @(string.IsNullOrWhiteSpace(item.VisitorName) ? "--" : item.VisitorName)
                             </p>
                             <button type="button" class="btn bg-primary-color text-white w-100 font-weight-bold" 
@@ -43,14 +43,14 @@
                     <h3>Laufende Führungen</h3>
                     <h6>Hier finden Sie laufende Führungen, welche beendet werden können.</h6>
                 </div>
-                @foreach (Tour item in Model.Started)
+                @foreach (TourViewModel item in Model.Started)
                 {
                 <div id="@("tourStarted_" + item.Id)" class="col-12 col-lg-6 mt-3">
                     <div class="card">
                         <div class="card-header bg-secondary-color h4">@item.GuideName</div>
                         <div class="card-body bg-ternary-color text-white">
                             <p>
-                                <strong>Team:</strong> @item.GuideTeam<br />
+                                <strong>Team:</strong> @item.Team<br />
                                 <strong>Führungsstart:</strong> @item.StartedTour.Value.ToString("HH:mm")<br />
                                 <strong>Gast:</strong> @(string.IsNullOrWhiteSpace(item.VisitorName) ? "--" : item.VisitorName)
                             </p>
@@ -100,7 +100,7 @@
                                                 @while (counter < 3 && currentTeam < cntTeams)
                                                 {
                                                     <label class="btn btn-secondary active w-100">
-                                                        <input type="radio" name="guideTeam" value="@Model.Teams[currentTeam].Name" id="@("radio_" + Model.Teams[currentTeam].Name)" @(currentTeam == 0 ? "checked" : "")> @Model.Teams[currentTeam].Name
+                                                        <input type="radio" name="guideTeam" value="@Model.Teams[currentTeam].TeamName" id="@("radio_" + Model.Teams[currentTeam].TeamName)" @(currentTeam == 0 ? "checked" : "")> @Model.Teams[currentTeam].TeamName
                                                     </label>
                                                     counter++;
                                                     currentTeam++;
@@ -115,11 +115,11 @@
                         <div class="form-group">
                             <label for="guideName">Name</label>
                             <select multiple class="form-control bg-ternary-color text-white" asp-for="GuideName" id="guideName" required>
-                                @foreach (Team t in Model.Teams)
+                                @foreach (TeamViewModel t in Model.Teams)
                                 {
                                     @foreach (Guide g in t.Guides)
                                     {
-                                        <option name="@Html.Raw(t.Name)">@g.Name</option>
+                                        <option name="@Html.Raw(g.Name)">@g.Name</option>
                                     }
                                 }
                             </select>
@@ -142,7 +142,7 @@
         $(document).ready(function () {
             $('#guideName').children().hide();
 
-            fillOptionsOfSelect('@Model.Teams.First().Name');
+            fillOptionsOfSelect('@Model.Teams.First().TeamName');
         });
 
         $("#guideTeam").change(function(){

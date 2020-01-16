@@ -15,7 +15,7 @@ namespace GuideTourWeb.Models.TourViewModels
         public string GuideId { get; set; }
 
         [BsonElement("name")]
-        public string Name { get; set; }
+        public string GuideName { get; set; }
 
         [BsonElement("teamId")]
         public string TeamId { get; set; }
@@ -23,11 +23,11 @@ namespace GuideTourWeb.Models.TourViewModels
         [BsonElement("team")]
         public string Team { get; set; }
 
-        [BsonElement("startedTime")]
-        public DateTime StartedTime { get; set; }
+        [BsonElement("startedTour")]
+        public DateTime? StartedTour { get; set; }
 
-        [BsonElement("endedTime")]
-        public DateTime EndedTime { get; set; }
+        [BsonElement("endedTour")]
+        public DateTime? EndedTour { get; set; }
 
         [BsonElement("visitorName")]
         public string VisitorName { get; set; }

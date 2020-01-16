@@ -14,7 +14,7 @@ namespace GuideTourWeb.Models.TourViewModels
 
         public List<TourViewModel> Started { get; set; } = new List<TourViewModel>();
 
-        public List<Tour> Teams { get; set; } = new List<Tour>();
+        public List<TeamViewModel> Teams { get; set; } = new List<TeamViewModel>();
 
         [JsonProperty("guideName")]
         public string GuideName { get; set; }

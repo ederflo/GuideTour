@@ -25,77 +25,72 @@ namespace GuideTourLogic.Logics
             return result.ToList();
         }
 
-        public Tour Get(string id)
+        public async Task<Tour> Get(string id)
         {
             TourDataAccess tourDataAccess = new TourDataAccess(_ddb);
-            return null;
+            return await tourDataAccess.GetItemByIdAsync(id);
         }
 
-        public Tour Add(Tour tour)
+        public async Task<Tour> Add(Tour tour)
         {
             TourDataAccess tourDataAccess = new TourDataAccess(_ddb);
-            return tourDataAccess.Add(tour);
+            return await tourDataAccess.CreateItemAsync(tour);
         }
 
-        public Tour Update(Tour tour)
+        public async Task<Tour> Update(Tour tour)
         {
             TourDataAccess tourDataAccess = new TourDataAccess(_ddb);
-            return tourDataAccess.Update(tour);
+            return await tourDataAccess.UpdateItemAsync(tour);
         }
 
-        public bool Delete(string id)
+        public async Task<bool> Delete(string id)
         {
             TourDataAccess tourDataAccess = new TourDataAccess(_ddb);
-            return tourDataAccess.Delete(id);
+            return await tourDataAccess.DeleteItemAsync(id);
         }
 
-        public Tour StartTour(string id)
+        public async Task<Tour> StartTour(string id)
         {
             if (string.IsNullOrWhiteSpace(id))
                 return null;
 
-            Tour tourToUpdate = Get(id);
+            Tour tourToUpdate = await Get(id);
 
             if (tourToUpdate == null)
                 return null;
 
             tourToUpdate.StartedTour = DateTime.Now;
-            tourToUpdate = Update(tourToUpdate);
-
-            return tourToUpdate;
+            return tourToUpdate = await Update(tourToUpdate);
         }
 
-        public Tour CompleteTour(string id)
+        public async Task<Tour> CompleteTour(string id)
         {
             if (string.IsNullOrWhiteSpace(id))
                 return null;
 
-            Tour tourToUpdate = Get(id);
+            Tour tourToUpdate = await Get(id);
 
             if (tourToUpdate == null)
                 return null;
 
             tourToUpdate.EndedTour = DateTime.Now;
-            tourToUpdate = Update(tourToUpdate);
-
-            return tourToUpdate;
+            return await Update(tourToUpdate);
         }
 
-        public Tour CancelTour(string id)
+        public async Task<Tour> CancelTour(string id)
         {
             if (string.IsNullOrWhiteSpace(id))
                 return null;
 
-            Tour tourToCancel = Get(id);
+            Tour tourToCancel = await Get(id);
 
             if (tourToCancel == null)
                 return null;
 
             tourToCancel.EndedTour = DateTime.Now;
             tourToCancel.Canceld = true;
-            tourToCancel = Update(tourToCancel);
 
-            return tourToCancel;
+            return await Update(tourToCancel);
         }
     }
 }
