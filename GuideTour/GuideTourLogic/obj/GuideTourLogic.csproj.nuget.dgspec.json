@@ -1,21 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "D:\\TODT2020\\GuideTour\\GuideTour\\GuideTourLogic\\GuideTourLogic.csproj": {}
+    "D:\\Programmieren\\TDOT2020\\GuideTour\\GuideTour\\GuideTourLogic\\GuideTourLogic.csproj": {}
   },
   "projects": {
-    "D:\\TODT2020\\GuideTour\\GuideTour\\GuideTourData\\GuideTourData.csproj": {
+    "D:\\Programmieren\\TDOT2020\\GuideTour\\GuideTour\\GuideTourData\\GuideTourData.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\TODT2020\\GuideTour\\GuideTour\\GuideTourData\\GuideTourData.csproj",
+        "projectUniqueName": "D:\\Programmieren\\TDOT2020\\GuideTour\\GuideTour\\GuideTourData\\GuideTourData.csproj",
         "projectName": "GuideTourData",
-        "projectPath": "D:\\TODT2020\\GuideTour\\GuideTour\\GuideTourData\\GuideTourData.csproj",
+        "projectPath": "D:\\Programmieren\\TDOT2020\\GuideTour\\GuideTour\\GuideTourData\\GuideTourData.csproj",
         "packagesPath": "C:\\Users\\ederf\\.nuget\\packages\\",
-        "outputPath": "D:\\TODT2020\\GuideTour\\GuideTour\\GuideTourData\\obj\\",
+        "outputPath": "D:\\Programmieren\\TDOT2020\\GuideTour\\GuideTour\\GuideTourData\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
           "C:\\Users\\ederf\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -66,22 +71,27 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\TODT2020\\GuideTour\\GuideTour\\GuideTourLogic\\GuideTourLogic.csproj": {
+    "D:\\Programmieren\\TDOT2020\\GuideTour\\GuideTour\\GuideTourLogic\\GuideTourLogic.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\TODT2020\\GuideTour\\GuideTour\\GuideTourLogic\\GuideTourLogic.csproj",
+        "projectUniqueName": "D:\\Programmieren\\TDOT2020\\GuideTour\\GuideTour\\GuideTourLogic\\GuideTourLogic.csproj",
         "projectName": "GuideTourLogic",
-        "projectPath": "D:\\TODT2020\\GuideTour\\GuideTour\\GuideTourLogic\\GuideTourLogic.csproj",
+        "projectPath": "D:\\Programmieren\\TDOT2020\\GuideTour\\GuideTour\\GuideTourLogic\\GuideTourLogic.csproj",
         "packagesPath": "C:\\Users\\ederf\\.nuget\\packages\\",
-        "outputPath": "D:\\TODT2020\\GuideTour\\GuideTour\\GuideTourLogic\\obj\\",
+        "outputPath": "D:\\Programmieren\\TDOT2020\\GuideTour\\GuideTour\\GuideTourLogic\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
           "C:\\Users\\ederf\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -93,8 +103,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "D:\\TODT2020\\GuideTour\\GuideTour\\GuideTourData\\GuideTourData.csproj": {
-                "projectPath": "D:\\TODT2020\\GuideTour\\GuideTour\\GuideTourData\\GuideTourData.csproj"
+              "D:\\Programmieren\\TDOT2020\\GuideTour\\GuideTour\\GuideTourData\\GuideTourData.csproj": {
+                "projectPath": "D:\\Programmieren\\TDOT2020\\GuideTour\\GuideTour\\GuideTourData\\GuideTourData.csproj"
               }
             }
           }
@@ -122,7 +132,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
         }
       }
     }
