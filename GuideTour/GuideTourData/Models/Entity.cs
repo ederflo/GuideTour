@@ -1,4 +1,5 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson.Serialization.IdGenerators;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,6 @@ namespace GuideTourData.Models
     public class Entity
     { 
         [BsonElement("id")]
-        [BsonId(IdGenerator = typeof(CombGuidGenerator))]
         public string Id { get; set; }
 
         [BsonElement("type")]

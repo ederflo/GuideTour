@@ -15,5 +15,7 @@ namespace GuideTourData.Services
         IMongoCollection<Guide> Guides { get; }
 
         IMongoCollection<Tour> Tours { get; }
+        
+        IMongoCollection<Teacher> Teachers { get; }
     }
 }

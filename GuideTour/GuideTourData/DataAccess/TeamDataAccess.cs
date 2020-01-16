@@ -1,5 +1,6 @@
 ﻿using GuideTourData.Models;
 using GuideTourData.Services;
+using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,100 +19,46 @@ namespace GuideTourData.DataAccess
             _ddb = ddb;
         }
 
-
-
-        public static readonly Dictionary<string, Team> teams = new Dictionary<string, Team>
+        public async Task<Team> GetItemAsync(Expression<Func<Team, bool>> predicate)
         {
-            {
-                "Team A",
-                new Team()
-                {
-                    Name = "Team A"
-                }
-            },
-            {
-                "Team B",
-                new Team()
-                {
-                    Name = "Team B"
-                }
-            },
-            {
-                "Team C",
-                new Team()
-                {
-                    Name = "Team C"
-                }
-            },
-            {
-                "Team D",
-                new Team()
-                {
-                    Name = "Team D"
-                }
-            },
-            {
-                "Team E",
-                new Team()
-                {
-                    Name = "Team E"
-                }
-            },
-            {
-                "Team F",
-                new Team()
-                {
-                    Name = "Team F"
-                }
-            },
-            {
-                "Team G",
-                new Team()
-                {
-                    Name = "Team G"
-                }
-            }
-            ,
-            {
-                "Team H",
-                new Team()
-                {
-                    Name = "Team H"
-                }
-            }
-            ,
-            {
-                "Team I",
-                new Team()
-                {
-                    Name = "Team I"
-                }
-            }
-        };
-
-        public Task<Team> GetItemAsync(Expression<Func<Team, bool>> predicate)
-        {
-            throw new NotImplementedException();
+            var result = await _ddb.Teams.FindAsync(predicate);
+            List<Team> guides = await result.ToListAsync();
+            if (guides.Count > 1)
+                return null;
+            return guides.FirstOrDefault();
         }
 
-        public Task<Team> GetItemByIdAsync(string id)
+        public async Task<Team> GetItemByIdAsync(string id)
         {
-            throw new NotImplementedException();
+            var result = await _ddb.Teams.FindAsync(Builders<Team>.Filter.Eq(x => x.Id.ToString(), id));
+            List<Team> teams = await result.ToListAsync();
+            if (teams.Count > 1)
+                return null;
+            return teams.FirstOrDefault();
         }
 
-        public Task<IEnumerable<Team>> GetAllItemsAsync()
+        public async Task<IEnumerable<Team>> GetAllItemsAsync()
         {
-            throw new NotImplementedException();
+            var result = await _ddb.Teams.FindAsync(_ => true);
+            return await result.ToListAsync();
         }
 
-        public Task<IEnumerable<Team>> GetItemsAsync(Expression<Func<Team, bool>> predicate)
+        public async Task<IEnumerable<Team>> GetItemsAsync(Expression<Func<Team, bool>> predicate)
         {
-            throw new NotImplementedException();
+            var result = await _ddb.Teams.FindAsync(predicate);
+            return await result.ToListAsync();
         }
 
-        public Task<Team> CreateItemAsync(Team item)
+        public async Task<Team> CreateItemAsync(Team item)
         {
-            throw new NotImplementedException();
+            await _ddb.Teams.InsertOneAsync(item);
+            return item;
+        }
+
+        public async Task<List<Team>> CreateItemsAsync(List<Team> items)
+        {
+            await _ddb.Teams.InsertManyAsync(items);
+            return items;
         }
 
         public Task<IEnumerable<Team>> CreateQueryAsync(string sqlExpression)
@@ -126,12 +73,15 @@ namespace GuideTourData.DataAccess
 
         public async Task<Team> UpdateItemAsync(Team item)
         {
-            throw new NotImplementedException();
+            ReplaceOneResult updateResult = await _ddb.Teams.ReplaceOneAsync(
+                Builders<Team>.Filter.Eq(x => x.Id.ToString(), item.Id), item);
+            return updateResult.IsAcknowledged && updateResult.ModifiedCount > 1 ? item : null;
         }
 
-        public Task<bool> DeleteItemAsync(string id)
+        public async Task<bool> DeleteItemAsync(string id)
         {
-            throw new NotImplementedException();
+            DeleteResult deleteResult = await _ddb.Teams.DeleteOneAsync(Builders<Team>.Filter.Eq(x => x.Id.ToString(), id));
+            return deleteResult.IsAcknowledged && deleteResult.DeletedCount > 0;
         }
     }
 }

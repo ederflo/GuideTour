@@ -44,7 +44,7 @@ namespace GuideTourLogic.Logics
             Team t = await GetByName(teamname);
             if (t == null)
                 return null;
-            return await GetAllGuidesByTeamId(t.Id);
+            return await GetAllGuidesByTeamId(t.Id.ToString());
         }
 
         public async Task<List<Guide>> GetAllGuidesByTeamId(string teamId)
@@ -58,6 +58,12 @@ namespace GuideTourLogic.Logics
         {
             TeamDataAccess teamDataAccess = new TeamDataAccess(_ddb);
             return await teamDataAccess.CreateItemAsync(team);
+        }
+
+        public async Task<List<Team>> Add(List<Team> teams)
+        {
+            TeamDataAccess teamDataAccess = new TeamDataAccess(_ddb);
+            return await teamDataAccess.CreateItemsAsync(teams);
         }
 
         public async Task<Team> Update(Team team)

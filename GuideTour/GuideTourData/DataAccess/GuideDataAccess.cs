@@ -30,21 +30,23 @@ namespace GuideTourData.DataAccess
 
         public async Task<Guide> GetItemByIdAsync(string id)
         {
-            var result = await _ddb.Guides.FindAsync(Builders<Guide>.Filter.Eq(x => x.Id, id));
+            var result = await _ddb.Guides.FindAsync(Builders<Guide>.Filter.Eq(x => x.Id.ToString(), id));
             List<Guide> guides = await result.ToListAsync();
             if (guides.Count > 1)
                 return null;
             return guides.FirstOrDefault();
         }
 
-        public Task<IEnumerable<Guide>> GetAllItemsAsync()
+        public async Task<IEnumerable<Guide>> GetAllItemsAsync()
         {
-            throw new NotImplementedException();
+            var result = await _ddb.Guides.FindAsync(_ => true);
+            return await result.ToListAsync();
         }
 
-        public Task<IEnumerable<Guide>> GetItemsAsync(Expression<Func<Guide, bool>> predicate)
+        public async Task<IEnumerable<Guide>> GetItemsAsync(Expression<Func<Guide, bool>> predicate)
         {
-            throw new NotImplementedException();
+            var result = await _ddb.Guides.FindAsync(predicate);
+            return await result.ToListAsync();
         }
 
         public Task<Guide> CreateSingleQueryAsync(string sqlExpression)
@@ -57,19 +59,29 @@ namespace GuideTourData.DataAccess
             throw new NotImplementedException();
         }
 
-        public Task<Guide> CreateItemAsync(Guide item)
+        public async Task<Guide> CreateItemAsync(Guide item)
         {
-            throw new NotImplementedException();
+            await _ddb.Guides.InsertOneAsync(item);
+            return item;
+        }
+
+        public async Task<List<Guide>> CreateItemsAsync(List<Guide> items)
+        {
+            await _ddb.Guides.InsertManyAsync(items);
+            return items;
         }
 
         public async Task<Guide> UpdateItemAsync(Guide item)
         {
-            throw new NotImplementedException();
+            ReplaceOneResult updateResult = await _ddb.Guides.ReplaceOneAsync(
+                Builders<Guide>.Filter.Eq(x => x.Id.ToString(), item.Id), item);
+            return updateResult.IsAcknowledged && updateResult.ModifiedCount > 1 ? item : null;
         }
 
-        public Task<bool> DeleteItemAsync(string id)
+        public async Task<bool> DeleteItemAsync(string id)
         {
-            throw new NotImplementedException();
+            DeleteResult deleteResult = await _ddb.Guides.DeleteOneAsync(Builders<Guide>.Filter.Eq(x => x.Id.ToString(), id));
+            return deleteResult.IsAcknowledged && deleteResult.DeletedCount > 0;
         }
     }
 }

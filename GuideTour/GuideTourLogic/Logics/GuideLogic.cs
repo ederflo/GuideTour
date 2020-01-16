@@ -31,16 +31,22 @@ namespace GuideTourLogic.Logics
             return await guidDataAccess.GetItemByIdAsync(id);
         }
 
-        public async Task<Guide> Add(Guide guid)
+        public async Task<Guide> Add(Guide guide)
         {
             GuideDataAccess guidDataAccess = new GuideDataAccess(_ddb);
-            return await guidDataAccess.CreateItemAsync(guid);
+            return await guidDataAccess.CreateItemAsync(guide);
         }
 
-        public async Task<Guide> Update(Guide guid)
+        public async Task<List<Guide>> Add(List<Guide> guides)
         {
             GuideDataAccess guidDataAccess = new GuideDataAccess(_ddb);
-            return await guidDataAccess.UpdateItemAsync(guid);
+            return await guidDataAccess.CreateItemsAsync(guides);
+        }
+
+        public async Task<Guide> Update(Guide guide)
+        {
+            GuideDataAccess guidDataAccess = new GuideDataAccess(_ddb);
+            return await guidDataAccess.UpdateItemAsync(guide);
         }
 
         public async Task<bool> Delete(string id)

@@ -35,7 +35,7 @@ namespace GuideTourWeb.Helpers.ObjectHelpers
         {
             return new TeamViewModel()
             {
-                TeamId = t.Id,
+                TeamId = t.Id.ToString(),
                 TeamName = t.Name,
                 Guides = new List<Guide>()
             };

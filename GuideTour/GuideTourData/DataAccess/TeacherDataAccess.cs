@@ -1,5 +1,6 @@
 ﻿using GuideTourData.Models;
 using GuideTourData.Services;
+using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,29 +20,40 @@ namespace GuideTourData.DataAccess
         }
 
 
-        public Task<Teacher> GetItemAsync(Expression<Func<Teacher, bool>> predicate)
+        public async Task<Teacher> GetItemAsync(Expression<Func<Teacher, bool>> predicate)
         {
-            throw new NotImplementedException();
+            var result = await _ddb.Teachers.FindAsync(predicate);
+            List<Teacher> teachers = await result.ToListAsync();
+            if (teachers.Count > 1)
+                return null;
+            return teachers.FirstOrDefault();
         }
 
-        public Task<Teacher> GetItemByIdAsync(string id)
+        public async Task<Teacher> GetItemByIdAsync(string id)
         {
-            throw new NotImplementedException();
+            var result = await _ddb.Teachers.FindAsync(Builders<Teacher>.Filter.Eq(x => x.Id.ToString(), id));
+            List<Teacher> teachers = await result.ToListAsync();
+            if (teachers.Count > 1)
+                return null;
+            return teachers.FirstOrDefault();
         }
 
-        public Task<IEnumerable<Teacher>> GetAllItemsAsync()
+        public async Task<IEnumerable<Teacher>> GetAllItemsAsync()
         {
-            throw new NotImplementedException();
+            var result = await _ddb.Teachers.FindAsync(_ => true);
+            return await result.ToListAsync();
         }
 
-        public Task<IEnumerable<Teacher>> GetItemsAsync(Expression<Func<Teacher, bool>> predicate)
+        public async Task<IEnumerable<Teacher>> GetItemsAsync(Expression<Func<Teacher, bool>> predicate)
         {
-            throw new NotImplementedException();
+            var result = await _ddb.Teachers.FindAsync(predicate);
+            return await result.ToListAsync();
         }
 
-        public Task<Teacher> CreateItemAsync(Teacher item)
+        public async Task<Teacher> CreateItemAsync(Teacher item)
         {
-            throw new NotImplementedException();
+            await _ddb.Teachers.InsertOneAsync(item);
+            return item;
         }
 
         public Task<IEnumerable<Teacher>> CreateQueryAsync(string sqlExpression)
@@ -56,12 +68,15 @@ namespace GuideTourData.DataAccess
 
         public async Task<Teacher> UpdateItemAsync(Teacher item)
         {
-            throw new NotImplementedException();
+            ReplaceOneResult updateResult = await _ddb.Teachers.ReplaceOneAsync(
+                Builders<Teacher>.Filter.Eq(x => x.Id.ToString(), item.Id), item);
+            return updateResult.IsAcknowledged && updateResult.ModifiedCount > 1 ? item : null;
         }
 
-        public Task<bool> DeleteItemAsync(string id)
+        public async Task<bool> DeleteItemAsync(string id)
         {
-            throw new NotImplementedException();
+            DeleteResult deleteResult = await _ddb.Teachers.DeleteOneAsync(Builders<Teacher>.Filter.Eq(x => x.Id.ToString(), id));
+            return deleteResult.IsAcknowledged && deleteResult.DeletedCount > 0;
         }
     }
 }

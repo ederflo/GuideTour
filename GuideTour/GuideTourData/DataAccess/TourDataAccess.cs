@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using MongoDB.Driver;
 using System.Collections;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,96 +20,40 @@ namespace GuideTourData.DataAccess
             _ddb = ddb;
         }
 
-
-        //private static readonly Dictionary<string, Tour> tours = new Dictionary<string, Tour>
-        //{
-        //    {
-        //        "1",
-        //        new Tour()
-        //        {
-        //            Id = "1",
-        //            StartedTour = null,
-        //            EndedTour = null,
-        //            VisitorName = "Harald Töpfer"
-        //        }
-        //    },
-        //    {
-        //        "2",
-        //        new Tour()
-        //        {
-        //            Id = "2",
-        //            StartedTour = null,
-        //            EndedTour = null,
-        //            VisitorName = "Einstein"
-        //        }
-        //    },
-        //    {
-        //        "3",
-        //        new Tour()
-        //        {
-        //            Id = "3",
-        //            StartedTour = null,
-        //            EndedTour = null,
-        //            VisitorName = "Zweistein"
-        //        }
-        //    },
-        //    {
-        //        "4",
-        //        new Tour()
-        //        {
-        //            Id = "4",
-        //            StartedTour = null,
-        //            EndedTour = null,
-        //            VisitorName = "Gustav"
-        //        }
-        //    },
-        //    {
-        //        "5",
-        //        new Tour()
-        //        {
-        //            Id = "5",
-        //            StartedTour = null,
-        //            EndedTour = null,
-        //            VisitorName = "Günter Jauch"
-        //        }
-        //    },
-        //    {
-        //        "6",
-        //        new Tour()
-        //        {
-        //            Id = "6",
-        //            GuideName = "Lukas Kreuzer",
-        //            GuideTeam = "Team B",
-        //            StartedTour = null,
-        //            EndedTour = null,
-        //            VisitorName = "Steve Jobs"
-        //        }
-        //    },
-        //};
-
-        public Task<Tour> GetItemAsync(Expression<Func<Tour, bool>> predicate)
+        public async Task<Tour> GetItemAsync(Expression<Func<Tour, bool>> predicate)
         {
-            throw new NotImplementedException();
+            var result = await _ddb.Tours.FindAsync(predicate);
+            List<Tour> tours = await result.ToListAsync();
+            if (tours.Count > 1)
+                return null;
+            return tours.FirstOrDefault();
         }
 
-        public Task<Tour> GetItemByIdAsync(string id)
+        public async Task<Tour> GetItemByIdAsync(string id)
         {
-            throw new NotImplementedException();
+            var result = await _ddb.Tours.FindAsync(Builders<Tour>.Filter.Eq(x => x.Id.ToString(), id));
+            List<Tour> tours = await result.ToListAsync();
+            if (tours.Count > 1)
+                return null;
+            return tours.FirstOrDefault();
         }
 
-        public Task<IEnumerable<Tour>> GetAllItemsAsync()
+        public async Task<IEnumerable<Tour>> GetAllItemsAsync()
         {
-            throw new NotImplementedException();
+            var result = await _ddb.Tours.FindAsync(_ => true);
+            return await result.ToListAsync();
         }
 
-        public Task<IEnumerable<Tour>> GetItemsAsync(Expression<Func<Tour, bool>> predicate)
+        public async Task<IEnumerable<Tour>> GetItemsAsync(Expression<Func<Tour, bool>> predicate)
         {
-            throw new NotImplementedException();
+            var result = await _ddb.Tours.FindAsync(predicate);
+            return await result.ToListAsync();
         }
 
-        public Task<Tour> CreateItemAsync(Tour item)
+        public async Task<Tour> CreateItemAsync(Tour item)
         {
-            throw new NotImplementedException();
+            await _ddb.Tours.InsertOneAsync(item);
+            return item;
         }
 
         public Task<IEnumerable<Tour>> CreateQueryAsync(string sqlExpression)
@@ -116,19 +61,22 @@ namespace GuideTourData.DataAccess
             throw new NotImplementedException();
         }
 
-        public Task<Tour> CreateSingleQueryAsync(string sqlExpression)
+        public async Task<Tour> CreateSingleQueryAsync(string sqlExpression)
         {
             throw new NotImplementedException();
         }
 
         public async Task<Tour> UpdateItemAsync(Tour item)
         {
-            throw new NotImplementedException();
+            ReplaceOneResult updateResult = await _ddb.Tours.ReplaceOneAsync(
+                Builders<Tour>.Filter.Eq(x => x.Id.ToString(), item.Id), item);
+            return updateResult.IsAcknowledged && updateResult.ModifiedCount > 1 ? item : null;
         }
 
-        public Task<bool> DeleteItemAsync(string id)
+        public async Task<bool> DeleteItemAsync(string id)
         {
-            throw new NotImplementedException();
+            DeleteResult deleteResult = await _ddb.Tours.DeleteOneAsync(Builders<Tour>.Filter.Eq(x => x.Id.ToString(), id));
+            return deleteResult.IsAcknowledged && deleteResult.DeletedCount > 0;
         }
     }
 }

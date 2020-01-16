@@ -119,7 +119,7 @@
                                 {
                                     @foreach (Guide g in t.Guides)
                                     {
-                                        <option name="@Html.Raw(g.Name)">@g.Name</option>
+                                        <option name="@Html.Raw(t.TeamName)">@g.Name</option>
                                     }
                                 }
                             </select>
@@ -128,6 +128,8 @@
                             <label for="visitorName">Gast (optional)</label>
                             <input type="text" class="form-control bg-primary-color text-white" asp-for="VisitorName" id="visitorName" placeholder="Name des Gastes...">
                         </div>
+                        <input id="createTourGuideId" type="hidden" value="">
+                        <input id="createTourGuideTeamId" type="hidden" value="">
                         <button type="submit" class="btn bg-ternary-color text-white w-100 font-weight-bold">Erstellen</button>
                     </form>
                 </div>

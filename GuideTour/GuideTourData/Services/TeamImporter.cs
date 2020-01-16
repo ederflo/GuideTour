@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using GuideTourData.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,17 +16,16 @@ namespace GuideTourData.Services
             _ddb = ddb;
         }
 
-        public static void LoadJson(string filepath)
+        public static List<ImportTeam> LoadJson(string filepath)
         {
+            List<ImportTeam> items = new List<ImportTeam>();
             using (StreamReader r = new StreamReader(filepath))
             {
                 var json = r.ReadToEnd();
-                var items = JsonConvert.DeserializeObject<List<object>>(json);
-                foreach (var item in items)
-                {
-                    // Console.WriteLine("{0} {1}", item.temp, item.vcc);
-                }
+                items = JsonConvert.DeserializeObject<List<ImportTeam>>(json);
             }
+
+            return items;
         }
     }
 }

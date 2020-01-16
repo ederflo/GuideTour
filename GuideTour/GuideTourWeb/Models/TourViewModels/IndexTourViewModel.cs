@@ -16,8 +16,14 @@ namespace GuideTourWeb.Models.TourViewModels
 
         public List<TeamViewModel> Teams { get; set; } = new List<TeamViewModel>();
 
+        [JsonProperty("guideId")]
+        public string GuideId { get; set; }
+
         [JsonProperty("guideName")]
         public string GuideName { get; set; }
+
+        [JsonProperty("guideTeamId")]
+        public string GuideTeamId { get; set; }
 
         [JsonProperty("guideTeam")]
         public string GuideTeam { get; set; }
