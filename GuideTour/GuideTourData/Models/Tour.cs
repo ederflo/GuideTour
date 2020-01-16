@@ -9,20 +9,10 @@ using System.Threading.Tasks;
 
 namespace GuideTourData.Models
 {
-    public class Tour
+    public class Tour : Entity
     {
-        [BsonElement("id")]
-        [BsonId(IdGenerator = typeof(CombGuidGenerator))]
-        public string Id { get; set; }
-
         [BsonElement("guideId")]
         public string GuideId { get; set; }
-
-        [BsonElement("guideName")]
-        public string GuideName { get; set; }
-
-        [BsonElement("guideTeam")]
-        public string GuideTeam { get; set; }
 
         [BsonElement("startedTour")]
         public DateTime? StartedTour { get; set; }
@@ -36,5 +26,7 @@ namespace GuideTourData.Models
         [BsonElement("canceld")]
         [BsonDefaultValue("false")]
         public bool Canceld { get; set; } = false;
+
+        public Tour () : base("Tour") { }
     }
 }

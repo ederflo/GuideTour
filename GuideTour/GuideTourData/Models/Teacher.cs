@@ -6,16 +6,14 @@ using System.Text;
 
 namespace GuideTourData.Models
 {
-    public class Teacher
+    public class Teacher : Entity
     {
-        [BsonElement("id")]
-        [BsonId(IdGenerator = typeof(CombGuidGenerator))]
-        public string Id { get; set; }
-
         [BsonElement("pinCode")]
         public int PinCode { get; set; }
 
         [BsonElement("lastAction")]
         public DateTime? LastAction { get; set; }
+    
+        public Teacher () : base("Teacher") { }
     }
 }

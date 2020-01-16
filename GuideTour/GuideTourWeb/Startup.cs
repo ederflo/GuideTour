@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GuideTourData.Services;
 using GuideTourWeb.Hubs;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -26,6 +27,13 @@ namespace GuideTourWeb
         {
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddSignalR();
+
+            services.Configure<DbProperties>(
+                options =>
+                {
+                    options.ConnectionString = Configuration.GetSection("MongoDb:ConnectionString").Value;
+                    options.DatabaseName = Configuration.GetSection("MongoDb:DatabaseName").Value;
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

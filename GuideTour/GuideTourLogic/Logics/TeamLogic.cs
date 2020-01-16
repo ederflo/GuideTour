@@ -1,5 +1,6 @@
 ﻿using GuideTourData.DataAccess;
 using GuideTourData.Models;
+using GuideTourData.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,34 +11,49 @@ namespace GuideTourLogic.Logics
 {
     public class TeamLogic
     {
-        public List<Team> Get()
+        private readonly IDocumentDbRepository _ddb;
+
+        public TeamLogic(IDocumentDbRepository ddb)
         {
-            TeamDataAccess tourDataAccess = new TeamDataAccess();
-            return tourDataAccess.Get();
+            _ddb = ddb;
         }
 
-        public Team Get(string teamname)
+
+        public async Task<List<Team>> Get()
         {
-            TeamDataAccess tourDataAccess = new TeamDataAccess();
-            return tourDataAccess.Get(teamname);
+            TeamDataAccess teamDataAccess = new TeamDataAccess(_ddb);
+            var result = await teamDataAccess.GetAllItemsAsync();
+            return result.ToList();
         }
 
-        public Team Add(Team team)
+        public async Task<Team> Get(string id)
         {
-            TeamDataAccess tourDataAccess = new TeamDataAccess();
-            return tourDataAccess.Add(team);
+            TeamDataAccess teamDataAccess = new TeamDataAccess(_ddb);
+            return await teamDataAccess.GetItemByIdAsync(id);
         }
 
-        public Team Update(Team team)
+        public async Task<Team> GetByName(string teamname)
         {
-            TeamDataAccess tourDataAccess = new TeamDataAccess();
-            return tourDataAccess.Update(team);
+            TeamDataAccess teamDataAccess = new TeamDataAccess(_ddb);
+            return await teamDataAccess.GetItemAsync(x => x.Name == teamname);
         }
 
-        public bool Delete(string teamname)
+        public async Task<Team> Add(Team team)
         {
-            TeamDataAccess tourDataAccess = new TeamDataAccess();
-            return tourDataAccess.Delete(teamname);
+            TeamDataAccess teamDataAccess = new TeamDataAccess(_ddb);
+            return await teamDataAccess.CreateItemAsync(team);
+        }
+
+        public async Task<Team> Update(Team team)
+        {
+            TeamDataAccess teamDataAccess = new TeamDataAccess(_ddb);
+            return await teamDataAccess.UpdateItemAsync(team);
+        }
+
+        public async Task<bool> Delete(string id)
+        {
+            TeamDataAccess teamDataAccess = new TeamDataAccess(_ddb);
+            return await teamDataAccess.DeleteItemAsync(id);
         }
     }
 }

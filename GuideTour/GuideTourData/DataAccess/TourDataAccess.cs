@@ -5,138 +5,130 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using GuideTourData.Models;
+using GuideTourData.Services;
+using System.Linq.Expressions;
 
 namespace GuideTourData.DataAccess
 {
-    public class TourDataAccess
+    public class TourDataAccess : IDataAccess<Tour>
     {
-        private static readonly Dictionary<string, Tour> tours = new Dictionary<string, Tour>
+        private readonly IDocumentDbRepository _ddb;
+
+        public TourDataAccess(IDocumentDbRepository ddb)
         {
-            {
-                "1",
-                new Tour()
-                {
-                    Id = "1",
-                    GuideName = "Florian Eder",
-                    GuideTeam = "Team A",
-                    StartedTour = null,
-                    EndedTour = null,
-                    VisitorName = "Harald Töpfer"
-                }
-            },
-            {
-                "2",
-                new Tour()
-                {
-                    Id = "2",
-                    GuideName = "Daniel Tschlatscher",
-                    GuideTeam = "Team A",
-                    StartedTour = null,
-                    EndedTour = null,
-                    VisitorName = "Einstein"
-                }
-            },
-            {
-                "3",
-                new Tour()
-                {
-                    Id = "3",
-                    GuideName = "Noah Resch",
-                    GuideTeam = "Team A",
-                    StartedTour = null,
-                    EndedTour = null,
-                    VisitorName = "Zweistein"
-                }
-            },
-            {
-                "4",
-                new Tour()
-                {
-                    Id = "4",
-                    GuideName = "Dominic Jelitsch",
-                    GuideTeam = "Team A",
-                    StartedTour = null,
-                    EndedTour = null,
-                    VisitorName = "Gustav"
-                }
-            },
-            {
-                "5",
-                new Tour()
-                {
-                    Id = "5",
-                    GuideName = "Fabian Koder",
-                    GuideTeam = "Team B",
-                    StartedTour = null,
-                    EndedTour = null,
-                    VisitorName = "Günter Jauch"
-                }
-            },
-            {
-                "6",
-                new Tour()
-                {
-                    Id = "6",
-                    GuideName = "Lukas Kreuzer",
-                    GuideTeam = "Team B",
-                    StartedTour = null,
-                    EndedTour = null,
-                    VisitorName = "Steve Jobs"
-                }
-            },
-        };
-
-
-        public List<Tour> Get()
-        {
-            return tours.Values.ToList();
-        }
-
-        public Tour Get(string id)
-        {
-            return tours[id];
-        }
-
-        public Tour Add(Tour tour)
-        {
-            if (tour == null)
-                return null;
-
-            if (string.IsNullOrWhiteSpace(tour.Id))
-            {
-                Random rand = new Random();
-                tour.Id = rand.Next().ToString();
-            }
-
-            tours.Add(tour.Id, tour);
-            return tour;
+            _ddb = ddb;
         }
 
 
-        public Tour Update(Tour tour)
+        //private static readonly Dictionary<string, Tour> tours = new Dictionary<string, Tour>
+        //{
+        //    {
+        //        "1",
+        //        new Tour()
+        //        {
+        //            Id = "1",
+        //            StartedTour = null,
+        //            EndedTour = null,
+        //            VisitorName = "Harald Töpfer"
+        //        }
+        //    },
+        //    {
+        //        "2",
+        //        new Tour()
+        //        {
+        //            Id = "2",
+        //            StartedTour = null,
+        //            EndedTour = null,
+        //            VisitorName = "Einstein"
+        //        }
+        //    },
+        //    {
+        //        "3",
+        //        new Tour()
+        //        {
+        //            Id = "3",
+        //            StartedTour = null,
+        //            EndedTour = null,
+        //            VisitorName = "Zweistein"
+        //        }
+        //    },
+        //    {
+        //        "4",
+        //        new Tour()
+        //        {
+        //            Id = "4",
+        //            StartedTour = null,
+        //            EndedTour = null,
+        //            VisitorName = "Gustav"
+        //        }
+        //    },
+        //    {
+        //        "5",
+        //        new Tour()
+        //        {
+        //            Id = "5",
+        //            StartedTour = null,
+        //            EndedTour = null,
+        //            VisitorName = "Günter Jauch"
+        //        }
+        //    },
+        //    {
+        //        "6",
+        //        new Tour()
+        //        {
+        //            Id = "6",
+        //            GuideName = "Lukas Kreuzer",
+        //            GuideTeam = "Team B",
+        //            StartedTour = null,
+        //            EndedTour = null,
+        //            VisitorName = "Steve Jobs"
+        //        }
+        //    },
+        //};
+
+        public Task<Tour> GetItemAsync(Expression<Func<Tour, bool>> predicate)
         {
-            if (tour == null || string.IsNullOrWhiteSpace(tour.Id))
-                return null;
-
-            Tour tourToUpdate = tours[tour.Id];
-
-            if (tourToUpdate != null)
-                tourToUpdate = tour;
-
-            return tourToUpdate;
+            throw new NotImplementedException();
         }
 
-        public bool Delete(string id)
+        public Task<Tour> GetItemByIdAsync(string id)
         {
-            bool succeeded = false;
+            throw new NotImplementedException();
+        }
 
-            if (string.IsNullOrWhiteSpace(id))
-                return succeeded;
+        public Task<IEnumerable<Tour>> GetAllItemsAsync()
+        {
+            throw new NotImplementedException();
+        }
 
-            if (tours.ContainsKey(id))
-                succeeded = tours.Remove(id);
+        public Task<IEnumerable<Tour>> GetItemsAsync(Expression<Func<Tour, bool>> predicate)
+        {
+            throw new NotImplementedException();
+        }
 
-            return succeeded;
+        public Task<Tour> CreateItemAsync(Tour item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<Tour>> CreateQueryAsync(string sqlExpression)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Tour> CreateSingleQueryAsync(string sqlExpression)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<Tour> UpdateItemAsync(Tour item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> DeleteItemAsync(string id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

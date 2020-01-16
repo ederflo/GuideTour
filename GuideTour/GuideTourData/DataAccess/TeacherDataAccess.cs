@@ -1,74 +1,66 @@
 ﻿using GuideTourData.Models;
+using GuideTourData.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace GuideTourData.DataAccess
 {
-    public class TeacherDataAccess
+    public class TeacherDataAccess : IDataAccess<Teacher>
     {
-        Dictionary<string, Teacher> teachers = new Dictionary<string, Teacher>
-        {
-            {
-                "edf",
-                new Teacher()
-                {
-                    Id = "edf",
-                    PinCode = 112212
-                }
-            }
-        };
+        private readonly IDocumentDbRepository _ddb;
 
-        public List<Teacher> Get()
+        public TeacherDataAccess(IDocumentDbRepository ddb)
         {
-            return teachers.Values.ToList();
+            _ddb = ddb;
         }
 
-        public Teacher Get(string teacherId)
+        public Task<Teacher> CreateItemAsync(Teacher item)
         {
-            return teachers[teacherId];
+            throw new NotImplementedException();
         }
 
-        public Teacher Add(Teacher teacher)
+        public Task<IEnumerable<Teacher>> CreateQueryAsync(string sqlExpression)
         {
-            if (teacher == null)
-                return null;
-
-            if (string.IsNullOrWhiteSpace(teacher.Id))
-            {
-                return null;
-            }
-
-            teachers.Add(teacher.Id, teacher);
-            return teacher;
+            throw new NotImplementedException();
         }
 
-
-        public Teacher Update(Teacher teacher)
+        public Task<Teacher> CreateSingleQueryAsync(string sqlExpression)
         {
-            if (teacher == null || string.IsNullOrWhiteSpace(teacher.Id))
-                return null;
-
-            Teacher teacherToUpdate = teachers[teacher.Id];
-
-            if (teacherToUpdate != null)
-                teacherToUpdate = teacher;
-
-            return teacherToUpdate;
+            throw new NotImplementedException();
         }
 
-        public bool Delete(string teacherId)
+        public async Task<Teacher> UpdateItemAsync(Teacher item)
         {
-            bool succeeded = false;
+            throw new NotImplementedException();
+        }
 
-            if (string.IsNullOrWhiteSpace(teacherId))
-                return succeeded;
+        public Task<bool> DeleteItemAsync(string id)
+        {
+            throw new NotImplementedException();
+        }
 
-            if (teachers.ContainsKey(teacherId))
-                succeeded = teachers.Remove(teacherId);
+        public Task<IEnumerable<Teacher>> GetAllItemsAsync()
+        {
+            throw new NotImplementedException();
+        }
 
-            return succeeded;
+        public Task<Teacher> GetItemAsync(Expression<Func<Teacher, bool>> predicate)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Teacher> GetItemByIdAsync(string id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<Teacher>> GetItemsAsync(Expression<Func<Teacher, bool>> predicate)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -10,11 +10,11 @@ namespace GuideTourWeb.Models.TourViewModels
 {
     public class IndexTourViewModel
     {
-        public List<Tour> NotStarted { get; set; } = new List<Tour>();
+        public List<TourViewModel> NotStarted { get; set; } = new List<TourViewModel>();
 
-        public List<Tour> Started { get; set; } = new List<Tour>();
+        public List<TourViewModel> Started { get; set; } = new List<TourViewModel>();
 
-        public List<Team> Teams { get; set; } = new List<Team>();
+        public List<Tour> Teams { get; set; } = new List<Tour>();
 
         [JsonProperty("guideName")]
         public string GuideName { get; set; }

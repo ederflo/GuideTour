@@ -1,6 +1,7 @@
 ﻿using GuideTourData;
 using GuideTourData.DataAccess;
 using GuideTourData.Models;
+using GuideTourData.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,32 +12,40 @@ namespace GuideTourLogic.Logics
 {
     public class TourLogic
     {
-        public List<Tour> Get() {
-            TourDataAccess tourDataAccess = new TourDataAccess();
-            return tourDataAccess.Get();
+        private readonly IDocumentDbRepository _ddb;
+
+        public TourLogic(IDocumentDbRepository ddb)
+        {
+            _ddb = ddb;
+        }
+
+        public async Task<List<Tour>> Get() {
+            TourDataAccess tourDataAccess = new TourDataAccess(_ddb);
+            var result = await tourDataAccess.GetAllItemsAsync();
+            return result.ToList();
         }
 
         public Tour Get(string id)
         {
-            TourDataAccess tourDataAccess = new TourDataAccess();
-            return tourDataAccess.Get(id);
+            TourDataAccess tourDataAccess = new TourDataAccess(_ddb);
+            return null;
         }
 
         public Tour Add(Tour tour)
         {
-            TourDataAccess tourDataAccess = new TourDataAccess();
+            TourDataAccess tourDataAccess = new TourDataAccess(_ddb);
             return tourDataAccess.Add(tour);
         }
 
         public Tour Update(Tour tour)
         {
-            TourDataAccess tourDataAccess = new TourDataAccess();
+            TourDataAccess tourDataAccess = new TourDataAccess(_ddb);
             return tourDataAccess.Update(tour);
         }
 
         public bool Delete(string id)
         {
-            TourDataAccess tourDataAccess = new TourDataAccess();
+            TourDataAccess tourDataAccess = new TourDataAccess(_ddb);
             return tourDataAccess.Delete(id);
         }
 

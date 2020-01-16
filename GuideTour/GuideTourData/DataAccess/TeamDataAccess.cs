@@ -1,189 +1,74 @@
 ﻿using GuideTourData.Models;
+using GuideTourData.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace GuideTourData.DataAccess
 {
-    public class TeamDataAccess
+    public class TeamDataAccess : IDataAccess<Team>
     {
-        private static readonly Dictionary<string, Team> teams = new Dictionary<string, Team>
+        private readonly IDocumentDbRepository _ddb;
+
+        public TeamDataAccess (IDocumentDbRepository ddb)
+        {
+            _ddb = ddb;
+        }
+
+
+
+        public static readonly Dictionary<string, Team> teams = new Dictionary<string, Team>
         {
             {
                 "Team A",
                 new Team()
                 {
-                    Name = "Team A",
-                    Guides = new List<Guide>
-                    {
-                        new Guide()
-                        {
-                            Name = "Florian Eder",
-                            Email = "ederf1@edu.htl-villach.at"
-                        },
-                        new Guide()
-                        {
-                            Name = "Daniel Tschlatscher",
-                            Email = "dtschlat@edu.htl-villach.at"
-                        },
-                        new Guide()
-                        {
-                            Name = "Dominic Gradenegger",
-                            Email = "gradened@edu.htl-villach.at"
-                        }
-                    }
+                    Name = "Team A"
                 }
             },
             {
                 "Team B",
                 new Team()
                 {
-                    Name = "Team B",
-                    Guides = new List<Guide>
-                    {
-                        new Guide()
-                        {
-                            Name = "Christian Pringruber",
-                            Email = "pirngc@edu.htl-villach.at"
-                        },
-                        new Guide()
-                        {
-                            Name = "Maximilian Gutschier",
-                            Email = "gutschm@edu.htl-villach.at"
-                        },
-                        new Guide()
-                        {
-                            Name = "Lukas Sterbenz",
-                            Email = "sterbenzl@edu.htl-villach.at"
-                        }
-                    }
+                    Name = "Team B"
                 }
             },
             {
                 "Team C",
                 new Team()
                 {
-                    Name = "Team C",
-                    Guides = new List<Guide>
-                    {
-                        new Guide()
-                        {
-                            Name = "Fabian Koder",
-                            Email = "koderf@edu.htl-villach.at"
-                        },
-                        new Guide()
-                        {
-                            Name = "Lukas Kreuzer",
-                            Email = "kreuzerl@edu.htl-villach.at"
-                        },
-                        new Guide()
-                        {
-                            Name = "Noah Resch",
-                            Email = "reschn@edu.htl-villach.at"
-                        }
-                    }
+                    Name = "Team C"
                 }
             },
             {
                 "Team D",
                 new Team()
                 {
-                    Name = "Team D",
-                    Guides = new List<Guide>
-                    {
-                        new Guide()
-                        {
-                            Name = "Mister X",
-                            Email = "koderf@edu.htl-villach.at"
-                        },
-                        new Guide()
-                        {
-                            Name = "Mister Y",
-                            Email = "kreuzerl@edu.htl-villach.at"
-                        },
-                        new Guide()
-                        {
-                            Name = "Mister Z",
-                            Email = "reschn@edu.htl-villach.at"
-                        }
-                    }
+                    Name = "Team D"
                 }
             },
             {
                 "Team E",
                 new Team()
                 {
-                    Name = "Team E",
-                    Guides = new List<Guide>
-                    {
-                        new Guide()
-                        {
-                            Name = "Lelekt",
-                            Email = "koderf@edu.htl-villach.at"
-                        },
-                        new Guide()
-                        {
-                            Name = "Magnesium Manuel",
-                            Email = "kreuzerl@edu.htl-villach.at"
-                        },
-                        new Guide()
-                        {
-                            Name = "Karsten Stahl",
-                            Email = "reschn@edu.htl-villach.at"
-                        }
-                    }
+                    Name = "Team E"
                 }
             },
             {
                 "Team F",
                 new Team()
                 {
-                    Name = "Team F",
-                    Guides = new List<Guide>
-                    {
-                        new Guide()
-                        {
-                            Name = "Fette Beate",
-                            Email = "koderf@edu.htl-villach.at"
-                        },
-                        new Guide()
-                        {
-                            Name = "Klana Schlumpf",
-                            Email = "kreuzerl@edu.htl-villach.at"
-                        },
-                        new Guide()
-                        {
-                            Name = "Kreta Kliemann",
-                            Email = "reschn@edu.htl-villach.at"
-                        }
-                    }
+                    Name = "Team F"
                 }
             },
             {
                 "Team G",
                 new Team()
                 {
-                    Name = "Team G",
-                    Guides = new List<Guide>
-                    {
-                        new Guide()
-                        {
-                            Name = "Hagen Kreuz",
-                            Email = "koderf@edu.htl-villach.at"
-                        },
-                        new Guide()
-                        {
-                            Name = "Bauchspeichel",
-                            Email = "kreuzerl@edu.htl-villach.at"
-                        },
-                        new Guide()
-                        {
-                            Name = "Manfred Bauer",
-                            Email = "reschn@edu.htl-villach.at"
-                        }
-                    }
+                    Name = "Team G"
                 }
             }
             ,
@@ -191,25 +76,7 @@ namespace GuideTourData.DataAccess
                 "Team H",
                 new Team()
                 {
-                    Name = "Team H",
-                    Guides = new List<Guide>
-                    {
-                        new Guide()
-                        {
-                            Name = "Dick Tator",
-                            Email = "koderf@edu.htl-villach.at"
-                        },
-                        new Guide()
-                        {
-                            Name = "Holda Daraus",
-                            Email = "kreuzerl@edu.htl-villach.at"
-                        },
-                        new Guide()
-                        {
-                            Name = "Meta Bolien",
-                            Email = "reschn@edu.htl-villach.at"
-                        }
-                    }
+                    Name = "Team H"
                 }
             }
             ,
@@ -217,79 +84,54 @@ namespace GuideTourData.DataAccess
                 "Team I",
                 new Team()
                 {
-                    Name = "Team I",
-                    Guides = new List<Guide>
-                    {
-                        new Guide()
-                        {
-                            Name = "Einstein",
-                            Email = "koderf@edu.htl-villach.at"
-                        },
-                        new Guide()
-                        {
-                            Name = "Zweistein",
-                            Email = "kreuzerl@edu.htl-villach.at"
-                        },
-                        new Guide()
-                        {
-                            Name = "Dreistein",
-                            Email = "reschn@edu.htl-villach.at"
-                        }
-                    }
+                    Name = "Team I"
                 }
             }
         };
 
-
-        public List<Team> Get()
+        public Task<Team> GetItemAsync(Expression<Func<Team, bool>> predicate)
         {
-            return teams.Values.ToList();
+            throw new NotImplementedException();
         }
 
-        public Team Get(string teamName)
+        public Task<Team> GetItemByIdAsync(string id)
         {
-            return teams[teamName];
+            throw new NotImplementedException();
         }
 
-        public Team Add(Team team)
+        public Task<IEnumerable<Team>> GetAllItemsAsync()
         {
-            if (team == null)
-                return null;
-
-            if (string.IsNullOrWhiteSpace(team.Name))
-            {
-                return null;
-            }
-
-            teams.Add(team.Name, team);
-            return team;
+            throw new NotImplementedException();
         }
 
-
-        public Team Update(Team team)
+        public Task<IEnumerable<Team>> GetItemsAsync(Expression<Func<Team, bool>> predicate)
         {
-            if (team == null || string.IsNullOrWhiteSpace(team.Name))
-                return null;
-
-            Team teamToUpdate = teams[team.Name];
-
-            if (teamToUpdate != null)
-                teamToUpdate = team;
-
-            return teamToUpdate;
+            throw new NotImplementedException();
         }
 
-        public bool Delete(string teamname)
+        public Task<Team> CreateItemAsync(Team item)
         {
-            bool succeeded = false;
+            throw new NotImplementedException();
+        }
 
-            if (string.IsNullOrWhiteSpace(teamname))
-                return succeeded;
+        public Task<IEnumerable<Team>> CreateQueryAsync(string sqlExpression)
+        {
+            throw new NotImplementedException();
+        }
 
-            if (teams.ContainsKey(teamname))
-                succeeded = teams.Remove(teamname);
+        public Task<Team> CreateSingleQueryAsync(string sqlExpression)
+        {
+            throw new NotImplementedException();
+        }
 
-            return succeeded;
+        public async Task<Team> UpdateItemAsync(Team item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> DeleteItemAsync(string id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

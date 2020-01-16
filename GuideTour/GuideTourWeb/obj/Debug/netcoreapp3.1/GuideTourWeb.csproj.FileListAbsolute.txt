@@ -1198,4 +1198,6 @@ D:\TODT2020\GuideTour\GuideTour\GuideTourWeb\bin\Debug\netcoreapp3.1\MongoDB.Dri
 D:\TODT2020\GuideTour\GuideTour\GuideTourWeb\bin\Debug\netcoreapp3.1\MongoDB.Driver.Core.dll
 D:\TODT2020\GuideTour\GuideTour\GuideTourWeb\bin\Debug\netcoreapp3.1\MongoDB.Libmongocrypt.dll
 D:\TODT2020\GuideTour\GuideTour\GuideTourWeb\bin\Debug\netcoreapp3.1\SharpCompress.dll
-D:\TODT2020\GuideTour\GuideTour\GuideTourWeb\bin\Debug\netcoreapp3.1\M2Mqtt.Net.dll
+D:\TODT2020\GuideTour\GuideTour\GuideTourWeb\obj\Debug\netcoreapp3.1\GuideTourWeb.MvcApplicationPartsAssemblyInfo.cs
+D:\TODT2020\GuideTour\GuideTour\GuideTourWeb\obj\Debug\netcoreapp3.1\GuideTourWeb.MvcApplicationPartsAssemblyInfo.cache
+D:\TODT2020\GuideTour\GuideTour\GuideTourWeb\bin\Debug\netcoreapp3.1\M2Mqtt.dll

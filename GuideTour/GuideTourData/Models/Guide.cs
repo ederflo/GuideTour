@@ -9,17 +9,18 @@ using System.Threading.Tasks;
 
 namespace GuideTourData.Models
 {
-    public class Guide
+    public class Guide : Entity
     {
-        [BsonElement("id")]
-        [BsonId(IdGenerator = typeof(CombGuidGenerator))]
-        public string Id { get; set; }
+        [BsonElement("teamId")]
+        public string TeamId { get; set; }
 
         [BsonElement("name")]
         public string Name { get; set; }
 
         [BsonElement("email")]
         public string Email { get; set; }
+
+        public Guide() : base("Guide") { }
     }
 }
  
