@@ -31,11 +31,7 @@ namespace GuideTourData.DataAccess
 
         public async Task<Tour> GetItemByIdAsync(string id)
         {
-            var result = await _ddb.Tours.FindAsync(Builders<Tour>.Filter.Eq(x => x.Id.ToString(), id));
-            List<Tour> tours = await result.ToListAsync();
-            if (tours.Count > 1)
-                return null;
-            return tours.FirstOrDefault();
+            return await GetItemAsync(x => x.Id.Equals(id));
         }
 
         public async Task<IEnumerable<Tour>> GetAllItemsAsync()
@@ -68,14 +64,13 @@ namespace GuideTourData.DataAccess
 
         public async Task<Tour> UpdateItemAsync(Tour item)
         {
-            ReplaceOneResult updateResult = await _ddb.Tours.ReplaceOneAsync(
-                Builders<Tour>.Filter.Eq(x => x.Id.ToString(), item.Id), item);
-            return updateResult.IsAcknowledged && updateResult.ModifiedCount > 1 ? item : null;
+            ReplaceOneResult updateResult = await _ddb.Tours.ReplaceOneAsync(x => x.Id.Equals(item.Id), item);
+            return updateResult.IsAcknowledged && updateResult.ModifiedCount > 0 ? item : null;
         }
 
         public async Task<bool> DeleteItemAsync(string id)
         {
-            DeleteResult deleteResult = await _ddb.Tours.DeleteOneAsync(Builders<Tour>.Filter.Eq(x => x.Id.ToString(), id));
+            DeleteResult deleteResult = await _ddb.Tours.DeleteOneAsync(x => x.Id.Equals(id));
             return deleteResult.IsAcknowledged && deleteResult.DeletedCount > 0;
         }
     }

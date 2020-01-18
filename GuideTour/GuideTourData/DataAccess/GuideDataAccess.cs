@@ -30,11 +30,7 @@ namespace GuideTourData.DataAccess
 
         public async Task<Guide> GetItemByIdAsync(string id)
         {
-            var result = await _ddb.Guides.FindAsync(Builders<Guide>.Filter.Eq(x => x.Id.ToString(), id));
-            List<Guide> guides = await result.ToListAsync();
-            if (guides.Count > 1)
-                return null;
-            return guides.FirstOrDefault();
+            return await GetItemAsync(x => x.Id.Equals(id));
         }
 
         public async Task<IEnumerable<Guide>> GetAllItemsAsync()
@@ -73,14 +69,13 @@ namespace GuideTourData.DataAccess
 
         public async Task<Guide> UpdateItemAsync(Guide item)
         {
-            ReplaceOneResult updateResult = await _ddb.Guides.ReplaceOneAsync(
-                Builders<Guide>.Filter.Eq(x => x.Id.ToString(), item.Id), item);
-            return updateResult.IsAcknowledged && updateResult.ModifiedCount > 1 ? item : null;
+            ReplaceOneResult updateResult = await _ddb.Guides.ReplaceOneAsync(x => x.Id.Equals(item.Id), item);
+            return updateResult.IsAcknowledged && updateResult.ModifiedCount > 0 ? item : null;
         }
 
         public async Task<bool> DeleteItemAsync(string id)
         {
-            DeleteResult deleteResult = await _ddb.Guides.DeleteOneAsync(Builders<Guide>.Filter.Eq(x => x.Id.ToString(), id));
+            DeleteResult deleteResult = await _ddb.Guides.DeleteOneAsync(x => x.Id.Equals(id));
             return deleteResult.IsAcknowledged && deleteResult.DeletedCount > 0;
         }
     }

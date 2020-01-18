@@ -82,18 +82,21 @@ namespace GuideTourWeb.Controllers
         public async Task<TourViewModel> CancelTourAsync(string id = "")
         {
             TourLogic tourLogic = new TourLogic(_ddb);
-            TourViewModel tour = null;
-            if (await tourLogic.CompleteTour(id) != null)
-            {
-                await _hubcontext.Clients.All.SendAsync("TourCompleted", tour);
-            }
-            return tour;
+            TourHelper tourHelper = new TourHelper(_ddb);
+            TourViewModel result = null;
+            Tour tour = null;
+            if ((tour = await tourLogic.CancelTour(id)) != null)
+                if ((result = await tourHelper.ToViewModel(tour)) != null)
+                    await _hubcontext.Clients.All.SendAsync("TourCompleted", tour);
+            return result;
         }
 
         [HttpPost]
         public async Task<TourViewModel> NewTourAsync (IndexTourViewModel viewModel)
         {
             TourLogic tourLogic = new TourLogic(_ddb);
+            TourHelper tourHelper = new TourHelper(_ddb);
+            TourViewModel result = null;
             Tour tour = new Tour()
             {
                 Id = ObjectId.GenerateNewId().ToString(),
@@ -101,15 +104,12 @@ namespace GuideTourWeb.Controllers
                 StartedTour = null,
                 VisitorName = viewModel.VisitorName,
                 Canceld = false,
-                GuideId = viewModel.
+                GuideId = viewModel.GuideId
             };
-
-            if (await tourLogic.Add(tour) != null)
-            {
-                await _hubcontext.Clients.All.SendAsync("NewRequestedTour", tour);
-            }
-
-            return tour;
+            if ((tour = await tourLogic.Add(tour)) != null)
+                if ((result = await tourHelper.ToViewModel(tour)) != null)
+                    await _hubcontext.Clients.All.SendAsync("NewRequestedTour", result);
+            return result;
         }
     }
 }

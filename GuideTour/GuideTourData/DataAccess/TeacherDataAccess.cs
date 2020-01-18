@@ -31,11 +31,7 @@ namespace GuideTourData.DataAccess
 
         public async Task<Teacher> GetItemByIdAsync(string id)
         {
-            var result = await _ddb.Teachers.FindAsync(Builders<Teacher>.Filter.Eq(x => x.Id.ToString(), id));
-            List<Teacher> teachers = await result.ToListAsync();
-            if (teachers.Count > 1)
-                return null;
-            return teachers.FirstOrDefault();
+            return await GetItemAsync(x => x.Id.Equals(id));
         }
 
         public async Task<IEnumerable<Teacher>> GetAllItemsAsync()
@@ -68,14 +64,13 @@ namespace GuideTourData.DataAccess
 
         public async Task<Teacher> UpdateItemAsync(Teacher item)
         {
-            ReplaceOneResult updateResult = await _ddb.Teachers.ReplaceOneAsync(
-                Builders<Teacher>.Filter.Eq(x => x.Id.ToString(), item.Id), item);
-            return updateResult.IsAcknowledged && updateResult.ModifiedCount > 1 ? item : null;
+            ReplaceOneResult updateResult = await _ddb.Teachers.ReplaceOneAsync(x => x.Id.Equals(item.Id), item);
+            return updateResult.IsAcknowledged && updateResult.ModifiedCount > 0 ? item : null;
         }
 
         public async Task<bool> DeleteItemAsync(string id)
         {
-            DeleteResult deleteResult = await _ddb.Teachers.DeleteOneAsync(Builders<Teacher>.Filter.Eq(x => x.Id.ToString(), id));
+            DeleteResult deleteResult = await _ddb.Teachers.DeleteOneAsync(x => x.Id.Equals(id));
             return deleteResult.IsAcknowledged && deleteResult.DeletedCount > 0;
         }
     }

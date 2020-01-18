@@ -2294,7 +2294,7 @@
       ]
     },
     "Microsoft.AspNetCore.Html.Abstractions/2.2.0": {
-      "sha512": "Z08ZN/kjJ15AQyNY349dpTPJdpdVJ/RYLLJjY9sf6VoHBf3vRBSCBx6orXMspMeRJrhHultPTP0IKVK2g4KZxg==",
+      "sha512": "Y4rs5aMEXY8G7wJo5S3EEt6ltqyOTr/qOeZzfn+hw/fuQj5GppGckMY5psGLETo1U9hcT5MmAhaT5xtusM1b5g==",
       "type": "package",
       "path": "microsoft.aspnetcore.html.abstractions/2.2.0",
       "files": [
@@ -2337,7 +2337,7 @@
       ]
     },
     "Microsoft.AspNetCore.Razor/2.2.0": {
-      "sha512": "aM2aGQQh/kVOdgThej+4+ypFU8jSp2Dq/wZg9+e6/7RVAwlk8lQp8n2iYV9ltsSycE/4EU+LIMHegzaGBLOmsA==",
+      "sha512": "V54PIyDCFl8COnTp9gezNHpUNHk7F9UnerGeZy3UfbnwYvfzbo+ipqQmSgeoESH8e0JvKhRTyQyZquW2EPtCmg==",
       "type": "package",
       "path": "microsoft.aspnetcore.razor/2.2.0",
       "files": [
@@ -2364,7 +2364,7 @@
       ]
     },
     "Microsoft.AspNetCore.Razor.Runtime/2.2.0": {
-      "sha512": "UMBfVgxYVH0/OYNleZGCEsLHK8X5j80dU5hqYYBoTm2TfUoBkXDecuODtDAf5x0KfKZLKHnDT4+5lcIKKthQog==",
+      "sha512": "7YqK+H61lN6yj9RiQUko7oaOhKtRR9Q/kBcoWNRemhJdTIWOh1OmdvJKzZrMWOlff3BAjejkPQm+0V0qXk+B1w==",
       "type": "package",
       "path": "microsoft.aspnetcore.razor.runtime/2.2.0",
       "files": [
@@ -2754,7 +2754,7 @@
       ]
     },
     "Microsoft.NETCore.Platforms/2.1.2": {
-      "sha512": "7J7veIH7Mu6zc4llWnM7YRgTv9+Ew+JWkkDj0K7cEe8wuFA6HRt6STtwux2g+qjpDXeYeWsK0UQ3uIgRiTYHIg==",
+      "sha512": "mOJy3M0UN+LUG21dLGMxaWZEP6xYpQEpLuvuEQBaownaX4YuhH6NmNUlN9si+vNkAS6dwJ//N1O4DmLf2CikVg==",
       "type": "package",
       "path": "microsoft.netcore.platforms/2.1.2",
       "files": [
@@ -3744,7 +3744,7 @@
       ]
     },
     "System.Buffers/4.4.0": {
-      "sha512": "Ii2bedd4HVzddupdU35n3ygohUPlNn7MDimBOYcwWNce2NizQ1fCSaQJY1Tzv80aMqOGpVcU4wZr/Xe50xcTwg==",
+      "sha512": "AwarXzzoDwX6BgrhjoJsk6tUezZEozOT5Y9QKF94Gl4JK91I4PIIBkBco9068Y9/Dra8Dkbie99kXB8+1BaYKw==",
       "type": "package",
       "path": "system.buffers/4.4.0",
       "files": [
@@ -4466,7 +4466,7 @@
       ]
     },
     "System.Diagnostics.TraceSource/4.0.0": {
-      "sha512": "q5bGzzvXVi+dIMiPWRhXZV7r+Os3TEOuRW5LHsAUDGpqJHol8XiLokVpsgAfPqHHNkyx1bbv5lRZqRkRrGZKxQ==",
+      "sha512": "6WVCczFZKXwpWpzd/iJkYnsmWTSFFiU24Xx/YdHXBcu+nFI/ehTgeqdJQFbtRPzbrO3KtRNjvkhtj4t5/WwWsA==",
       "type": "package",
       "path": "system.diagnostics.tracesource/4.0.0",
       "files": [
@@ -7250,27 +7250,20 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ederf\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\ederf\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Programmieren\\TDOT2020\\GuideTour\\GuideTour\\GuideTourWeb\\GuideTourWeb.csproj",
+      "projectUniqueName": "D:\\TODT2020\\GuideTour\\GuideTour\\GuideTourWeb\\GuideTourWeb.csproj",
       "projectName": "GuideTourWeb",
-      "projectPath": "D:\\Programmieren\\TDOT2020\\GuideTour\\GuideTour\\GuideTourWeb\\GuideTourWeb.csproj",
+      "projectPath": "D:\\TODT2020\\GuideTour\\GuideTour\\GuideTourWeb\\GuideTourWeb.csproj",
       "packagesPath": "C:\\Users\\ederf\\.nuget\\packages\\",
-      "outputPath": "D:\\Programmieren\\TDOT2020\\GuideTour\\GuideTour\\GuideTourWeb\\obj\\",
+      "outputPath": "D:\\TODT2020\\GuideTour\\GuideTour\\GuideTourWeb\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\",
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
         "C:\\Users\\ederf\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -7282,11 +7275,11 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "D:\\Programmieren\\TDOT2020\\GuideTour\\GuideTour\\GuideTourData\\GuideTourData.csproj": {
-              "projectPath": "D:\\Programmieren\\TDOT2020\\GuideTour\\GuideTour\\GuideTourData\\GuideTourData.csproj"
+            "D:\\TODT2020\\GuideTour\\GuideTour\\GuideTourData\\GuideTourData.csproj": {
+              "projectPath": "D:\\TODT2020\\GuideTour\\GuideTour\\GuideTourData\\GuideTourData.csproj"
             },
-            "D:\\Programmieren\\TDOT2020\\GuideTour\\GuideTour\\GuideTourLogic\\GuideTourLogic.csproj": {
-              "projectPath": "D:\\Programmieren\\TDOT2020\\GuideTour\\GuideTour\\GuideTourLogic\\GuideTourLogic.csproj"
+            "D:\\TODT2020\\GuideTour\\GuideTour\\GuideTourLogic\\GuideTourLogic.csproj": {
+              "projectPath": "D:\\TODT2020\\GuideTour\\GuideTour\\GuideTourLogic\\GuideTourLogic.csproj"
             }
           }
         }

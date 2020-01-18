@@ -100,7 +100,7 @@
                                                 @while (counter < 3 && currentTeam < cntTeams)
                                                 {
                                                     <label class="btn btn-secondary active w-100">
-                                                        <input type="radio" name="guideTeam" value="@Model.Teams[currentTeam].TeamName" id="@("radio_" + Model.Teams[currentTeam].TeamName)" @(currentTeam == 0 ? "checked" : "")> @Model.Teams[currentTeam].TeamName
+                                                        <input type="radio" name="guideTeamId" value="@Model.Teams[currentTeam].TeamId" id="@("radio_" + Model.Teams[currentTeam].TeamId)" @(currentTeam == 0 ? "checked" : "")> @Model.Teams[currentTeam].TeamName
                                                     </label>
                                                     counter++;
                                                     currentTeam++;
@@ -114,12 +114,12 @@
                         </div>
                         <div class="form-group">
                             <label for="guideName">Name</label>
-                            <select multiple class="form-control bg-ternary-color text-white" asp-for="GuideName" id="guideName" required>
+                            <select multiple class="form-control bg-ternary-color text-white" asp-for="GuideId" id="guideName" required>
                                 @foreach (TeamViewModel t in Model.Teams)
                                 {
                                     @foreach (Guide g in t.Guides)
                                     {
-                                        <option name="@Html.Raw(t.TeamName)">@g.Name</option>
+                                        <option name="@Html.Raw(t.TeamId)" value="@g.Id">@g.Name</option>
                                     }
                                 }
                             </select>
@@ -144,25 +144,25 @@
         $(document).ready(function () {
             $('#guideName').children().hide();
 
-            fillOptionsOfSelect('@Model.Teams.First().TeamName');
+            fillOptionsOfSelect('@Model.Teams.First().TeamId');
         });
 
-        $("#guideTeam").change(function(){
+        $("#guideTeamId").change(function(){
             var newSelectedTeam = $(this).children("option:selected").val();
             fillOptionsOfSelect(newSelectedTeam);
         });
 
-        $('input[type=radio][name=guideTeam]').change(function() {
+        $('input[type=radio][name=guideTeamId]').change(function() {
             fillOptionsOfSelect(this.value);
         });
 
-        function fillOptionsOfSelect(teamname) {
+        function fillOptionsOfSelect(teamId) {
             $('#guideName').children().hide();
-            $('#guideName').children('option[name="' + teamname + '"]').show();
+            $('#guideName').children('option[name="' + teamId + '"]').show();
             $("#guideName").prop("selectedIndex", 0).val(); 
         }
 
-        onNewTourCreatedSuccess = function (data) {
+        onNewTourCreatedSuccess = function () {
             $('#createTourModal').modal('hide');
             $("#newTourForm")[0].reset();
         }
