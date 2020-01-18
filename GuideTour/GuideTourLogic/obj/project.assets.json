@@ -1909,7 +1909,7 @@
       ]
     },
     "Microsoft.NETCore.Platforms/2.1.2": {
-      "sha512": "7J7veIH7Mu6zc4llWnM7YRgTv9+Ew+JWkkDj0K7cEe8wuFA6HRt6STtwux2g+qjpDXeYeWsK0UQ3uIgRiTYHIg==",
+      "sha512": "mOJy3M0UN+LUG21dLGMxaWZEP6xYpQEpLuvuEQBaownaX4YuhH6NmNUlN9si+vNkAS6dwJ//N1O4DmLf2CikVg==",
       "type": "package",
       "path": "microsoft.netcore.platforms/2.1.2",
       "files": [
@@ -2426,7 +2426,7 @@
       ]
     },
     "System.Buffers/4.4.0": {
-      "sha512": "Ii2bedd4HVzddupdU35n3ygohUPlNn7MDimBOYcwWNce2NizQ1fCSaQJY1Tzv80aMqOGpVcU4wZr/Xe50xcTwg==",
+      "sha512": "AwarXzzoDwX6BgrhjoJsk6tUezZEozOT5Y9QKF94Gl4JK91I4PIIBkBco9068Y9/Dra8Dkbie99kXB8+1BaYKw==",
       "type": "package",
       "path": "system.buffers/4.4.0",
       "files": [
@@ -3096,7 +3096,7 @@
       ]
     },
     "System.Diagnostics.TraceSource/4.0.0": {
-      "sha512": "q5bGzzvXVi+dIMiPWRhXZV7r+Os3TEOuRW5LHsAUDGpqJHol8XiLokVpsgAfPqHHNkyx1bbv5lRZqRkRrGZKxQ==",
+      "sha512": "6WVCczFZKXwpWpzd/iJkYnsmWTSFFiU24Xx/YdHXBcu+nFI/ehTgeqdJQFbtRPzbrO3KtRNjvkhtj4t5/WwWsA==",
       "type": "package",
       "path": "system.diagnostics.tracesource/4.0.0",
       "files": [
@@ -6336,27 +6336,20 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ederf\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\ederf\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Programmieren\\TDOT2020\\GuideTour\\GuideTour\\GuideTourLogic\\GuideTourLogic.csproj",
+      "projectUniqueName": "D:\\TODT2020\\GuideTour\\GuideTour\\GuideTourLogic\\GuideTourLogic.csproj",
       "projectName": "GuideTourLogic",
-      "projectPath": "D:\\Programmieren\\TDOT2020\\GuideTour\\GuideTour\\GuideTourLogic\\GuideTourLogic.csproj",
+      "projectPath": "D:\\TODT2020\\GuideTour\\GuideTour\\GuideTourLogic\\GuideTourLogic.csproj",
       "packagesPath": "C:\\Users\\ederf\\.nuget\\packages\\",
-      "outputPath": "D:\\Programmieren\\TDOT2020\\GuideTour\\GuideTour\\GuideTourLogic\\obj\\",
+      "outputPath": "D:\\TODT2020\\GuideTour\\GuideTour\\GuideTourLogic\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\",
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
         "C:\\Users\\ederf\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -6368,8 +6361,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "D:\\Programmieren\\TDOT2020\\GuideTour\\GuideTour\\GuideTourData\\GuideTourData.csproj": {
-              "projectPath": "D:\\Programmieren\\TDOT2020\\GuideTour\\GuideTour\\GuideTourData\\GuideTourData.csproj"
+            "D:\\TODT2020\\GuideTour\\GuideTour\\GuideTourData\\GuideTourData.csproj": {
+              "projectPath": "D:\\TODT2020\\GuideTour\\GuideTour\\GuideTourData\\GuideTourData.csproj"
             }
           }
         }

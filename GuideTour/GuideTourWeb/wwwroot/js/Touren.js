@@ -73,12 +73,12 @@ function completeTourAjax(id, teacherId) {
 }
 
 function addNotStartedTour(data) {
-    var panel = buildNotStartedTourPanel(data.id, data.guideName, data.guideTeam, data.visitorName);
+    var panel = buildNotStartedTourPanel(data.id, data.guideName, data.team, data.visitorName);
     $("#notStartedTours").append(panel);
 }
 
 function addStartedTour(data) {
-    var panel = buildStartedTourPanel(data.id, data.guideName, data.guideTeam, data.visitorName, data.startedTour);
+    var panel = buildStartedTourPanel(data.id, data.guideName, data.team, data.visitorName, data.startedTour);
     $("#startedTours").append(panel);
 }
 
