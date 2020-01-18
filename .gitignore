@@ -2,14 +2,14 @@
 # Diese .gitignore-Datei wurde von Microsoft(R) Visual Studio automatisch erstellt.
 ################################################################################
 
-**/.vs/GuideTour/v16/
-**/.vs/GuideTourData/obj/
-**/.vs/GuideTourLogic/obj/
-**/.vs/GuideTourWeb/obj/
-**/GuideTourData/obj/
-**/GuideTourLogic/obj/
-**/GuideTourWeb/obj/
-**/GuideTourData/bin/
-**/GuideTourLogic/bin/
-**/GuideTourWeb/bin/
+**/.vs/GuideTour/v16
+**/.vs/GuideTourData/obj
+**/.vs/GuideTourLogic/obj
+**/.vs/GuideTourWeb/obj
+**/GuideTourData/obj
+**/GuideTourLogic/obj
+**/GuideTourWeb/obj
+**/GuideTourData/bin
+**/GuideTourLogic/bin
+**/GuideTourWeb/bin
 **/.vs/GuideTour/config/applicationhost.config
