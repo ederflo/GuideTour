@@ -1,26 +1,21 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Programmieren\\TDOT2020\\GuideTour\\GuideTour\\GuideTourData\\GuideTourData.csproj": {}
+    "D:\\TODT2020\\GuideTour\\GuideTour\\GuideTourData\\GuideTourData.csproj": {}
   },
   "projects": {
-    "D:\\Programmieren\\TDOT2020\\GuideTour\\GuideTour\\GuideTourData\\GuideTourData.csproj": {
+    "D:\\TODT2020\\GuideTour\\GuideTour\\GuideTourData\\GuideTourData.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Programmieren\\TDOT2020\\GuideTour\\GuideTour\\GuideTourData\\GuideTourData.csproj",
+        "projectUniqueName": "D:\\TODT2020\\GuideTour\\GuideTour\\GuideTourData\\GuideTourData.csproj",
         "projectName": "GuideTourData",
-        "projectPath": "D:\\Programmieren\\TDOT2020\\GuideTour\\GuideTour\\GuideTourData\\GuideTourData.csproj",
+        "projectPath": "D:\\TODT2020\\GuideTour\\GuideTour\\GuideTourData\\GuideTourData.csproj",
         "packagesPath": "C:\\Users\\ederf\\.nuget\\packages\\",
-        "outputPath": "D:\\Programmieren\\TDOT2020\\GuideTour\\GuideTour\\GuideTourData\\obj\\",
+        "outputPath": "D:\\TODT2020\\GuideTour\\GuideTour\\GuideTourData\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
           "C:\\Users\\ederf\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
