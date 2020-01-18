@@ -134,7 +134,7 @@ function buildStartedTourPanel(id, guideName, guideTeam, visitorName, startTime)
     return '<div id="tourStarted_' + id + '" class="col-12 col-lg-6 mt-3" >' +
         '<div class="card">' +
         '<div class="card-header bg-secondary-color h4">' + guideName +
-        '<a onclick="cancelTourAjax(' + id + ')">' +
+        '<a onclick="cancelTourAjax(\'' + id + '\')">' +
             '<i class="fa fa-1x fa-times fa-pull-right text-dark"></i>'+
         '</a>' +
         '</div>' +
