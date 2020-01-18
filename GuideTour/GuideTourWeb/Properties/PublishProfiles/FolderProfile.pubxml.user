@@ -6,6 +6,6 @@ indem Sie diese MSBuild-Datei bearbeiten. Weitere Informationen hierzu finden Si
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>D:\TODT2020\GuideTour\GuideTour\GuideTourWeb\bin\Release\netcoreapp3.1\publish\</_PublishTargetUrl>
+    <_PublishTargetUrl>D:\Programmieren\TDOT2020\GuideTour\GuideTour\GuideTourWeb\bin\Release\netcoreapp3.1\publish\</_PublishTargetUrl>
   </PropertyGroup>
 </Project>

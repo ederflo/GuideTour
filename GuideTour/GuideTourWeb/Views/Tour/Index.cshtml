@@ -2,13 +2,6 @@
 @{
     ViewData["Title"] = "Übersicht";
 }
-    <div class="container-sm mt-n4 mb-3">
-        <div class="row">
-            <div class="col-12">
-                <input type="text" class="form-control" asp-for="TeacherId" id="teacherId" placeholder="Kürzel des Lehrers...">
-            </div>
-        </div>
-    </div>
     <div class="row">
         <div class="col-12 col-md-6 border-right">
             <div id="notStartedTours" class="row">
@@ -47,7 +40,11 @@
                 {
                 <div id="@("tourStarted_" + item.Id)" class="col-12 col-lg-6 mt-3">
                     <div class="card">
-                        <div class="card-header bg-secondary-color h4">@item.GuideName</div>
+                        <div class="card-header bg-secondary-color h4">@item.GuideName
+                            <a onclick="cancelTourAjax('@item.Id')">
+                                <i class="fa fa-1x fa-times fa-pull-right text-dark"></i>
+                            </a>
+                        </div>
                         <div class="card-body bg-ternary-color text-white">
                             <p>
                                 <strong>Team:</strong> @item.Team<br />

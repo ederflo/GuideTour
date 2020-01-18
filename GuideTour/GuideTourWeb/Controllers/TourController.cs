@@ -58,24 +58,26 @@ namespace GuideTourWeb.Controllers
         public async Task<TourViewModel> StartTourAsync(string id = "")
         {
             TourLogic tourLogic = new TourLogic(_ddb);
-            TourViewModel tour = null;
-            if (await tourLogic.StartTour(id) != null) 
-            {
-                await _hubcontext.Clients.All.SendAsync("TourStarted", tour);
-            }
-            return tour;
+            TourHelper tourHelper = new TourHelper(_ddb);
+            TourViewModel result = null;
+            Tour tour = null;
+            if ((tour = await tourLogic.StartTour(id)) != null)
+                if ((result = await tourHelper.ToViewModel(tour)) != null)
+                    await _hubcontext.Clients.All.SendAsync("TourStarted", result);
+            return result;
         }
 
         [HttpPatch]
         public async Task<TourViewModel> CompleteTour(string id = "")
         {
             TourLogic tourLogic = new TourLogic(_ddb);
-            TourViewModel tour = null;
-            if (await tourLogic.CompleteTour(id) != null)
-            {
-                await _hubcontext.Clients.All.SendAsync("TourCompleted", tour);
-            }
-            return tour;
+            TourHelper tourHelper = new TourHelper(_ddb);
+            TourViewModel result = null;
+            Tour tour = null;
+            if ((tour = await tourLogic.CompleteTour(id)) != null)
+                if ((result = await tourHelper.ToViewModel(tour)) != null)
+                    await _hubcontext.Clients.All.SendAsync("TourCompleted", result);
+            return result;
         }
 
         [HttpPatch]
@@ -84,10 +86,10 @@ namespace GuideTourWeb.Controllers
             TourLogic tourLogic = new TourLogic(_ddb);
             TourHelper tourHelper = new TourHelper(_ddb);
             TourViewModel result = null;
-            Tour tour = null;
+            Tour tour;
             if ((tour = await tourLogic.CancelTour(id)) != null)
                 if ((result = await tourHelper.ToViewModel(tour)) != null)
-                    await _hubcontext.Clients.All.SendAsync("TourCompleted", tour);
+                    await _hubcontext.Clients.All.SendAsync("TourCancelled", result);
             return result;
         }
 

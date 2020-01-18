@@ -9,3 +9,14 @@ D:\TODT2020\GuideTour\GuideTour\GuideTourLogic\obj\Release\netcoreapp3.1\GuideTo
 D:\TODT2020\GuideTour\GuideTour\GuideTourLogic\obj\Release\netcoreapp3.1\GuideTourLogic.csproj.CopyComplete
 D:\TODT2020\GuideTour\GuideTour\GuideTourLogic\obj\Release\netcoreapp3.1\GuideTourLogic.dll
 D:\TODT2020\GuideTour\GuideTour\GuideTourLogic\obj\Release\netcoreapp3.1\GuideTourLogic.pdb
+D:\Programmieren\TDOT2020\GuideTour\GuideTour\GuideTourLogic\bin\Release\netcoreapp3.1\GuideTourLogic.deps.json
+D:\Programmieren\TDOT2020\GuideTour\GuideTour\GuideTourLogic\bin\Release\netcoreapp3.1\GuideTourLogic.dll
+D:\Programmieren\TDOT2020\GuideTour\GuideTour\GuideTourLogic\bin\Release\netcoreapp3.1\GuideTourLogic.pdb
+D:\Programmieren\TDOT2020\GuideTour\GuideTour\GuideTourLogic\bin\Release\netcoreapp3.1\GuideTourData.dll
+D:\Programmieren\TDOT2020\GuideTour\GuideTour\GuideTourLogic\bin\Release\netcoreapp3.1\GuideTourData.pdb
+D:\Programmieren\TDOT2020\GuideTour\GuideTour\GuideTourLogic\obj\Release\netcoreapp3.1\GuideTourLogic.csprojAssemblyReference.cache
+D:\Programmieren\TDOT2020\GuideTour\GuideTour\GuideTourLogic\obj\Release\netcoreapp3.1\GuideTourLogic.AssemblyInfoInputs.cache
+D:\Programmieren\TDOT2020\GuideTour\GuideTour\GuideTourLogic\obj\Release\netcoreapp3.1\GuideTourLogic.AssemblyInfo.cs
+D:\Programmieren\TDOT2020\GuideTour\GuideTour\GuideTourLogic\obj\Release\netcoreapp3.1\GuideTourLogic.csproj.CopyComplete
+D:\Programmieren\TDOT2020\GuideTour\GuideTour\GuideTourLogic\obj\Release\netcoreapp3.1\GuideTourLogic.dll
+D:\Programmieren\TDOT2020\GuideTour\GuideTour\GuideTourLogic\obj\Release\netcoreapp3.1\GuideTourLogic.pdb
