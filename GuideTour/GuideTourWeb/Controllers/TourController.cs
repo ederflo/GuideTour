@@ -104,6 +104,9 @@ namespace GuideTourWeb.Controllers
             TourLogic tourLogic = new TourLogic(_ddb);
             TourHelper tourHelper = new TourHelper(_ddb);
             TourViewModel result = null;
+            if (viewModel == null || string.IsNullOrEmpty(viewModel.GuideId) || string.IsNullOrEmpty(viewModel.GuideTeamId))
+                return null;
+
             Tour tour = new Tour()
             {
                 Id = ObjectId.GenerateNewId().ToString(),
@@ -124,9 +127,6 @@ namespace GuideTourWeb.Controllers
         public async Task<string> CheckPermissions(string teacherId = "", int pinCode = -1)
         {
             TeacherLogic teacherLogic = new TeacherLogic(_ddb);
-            Teacher t = null;
-            bool permissions = false;
-
             if (!string.IsNullOrEmpty(teacherId))
             {
                 teacherId = await teacherLogic.CheckLastAction(teacherId);
@@ -135,8 +135,7 @@ namespace GuideTourWeb.Controllers
             {
                 teacherId = await teacherLogic.CheckPinCode(pinCode);
             }
-
-            return string.IsNullOrEmpty(teacherId) ? null : teacherId;
+            return string.IsNullOrEmpty(teacherId) ? "BigFail" : teacherId;
         }
     }
 }

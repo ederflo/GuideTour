@@ -1,0 +1,12 @@
+﻿.bootbox .modal-content {
+    background-color: #201F21 !important;
+}
+
+.bootbox .modal-header {
+    background-color: #FFF233 !important;
+}
+
+.bootbox-input {
+    background-color: #201F21 !important;
+    color: white;
+}

@@ -9,7 +9,6 @@
                     <a href="#" data-toggle="modal" data-target="#createTourModal">
                         <i class="fa fa-3x fa-plus-circle fa-pull-left text-white"></i>
                     </a>
-                    <input id="teacherId" name="teacherId" asp-for="TeacherId" type="hidden" value="@Model.TeacherId">
                     <h3>Startende Führungen</h3>
                     <h6>Hier finden Sie zu startende Führungen, welche bestätigt werden müssen.</h6>
                 </div>
@@ -31,7 +30,7 @@
                 }
             </div>
         </div>
-        <div class="col-12 col-md-6 border-left">
+        <div class="col-12 col-md-6 mt-5 mt-md-0 border-left">
             <div id="startedTours" class="row">
                 <div class="col-12 text-center text-white mb-4">
                     <h3>Laufende Führungen</h3>
@@ -165,8 +164,7 @@
                                 <button type="submit" class="btn bg-ternary-color text-white w-100 font-weight-bold">Erstellen</button>
                             </div>
                         </div>
-                        <input id="createTourGuideId" type="hidden" value="">
-                        <input id="createTourGuideTeamId" type="hidden" value="">
+                        <input id="teacherId" name="teacherId" asp-for="TeacherId" type="hidden" value="@Model.TeacherId">
                     </form>
                 </div>
             </div>

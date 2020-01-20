@@ -132,28 +132,39 @@ function checkPermissions(callback) {
 function checkPermissionsWithPin(callback) {
     bootbox.prompt({
         title: "Teacher PinCode",
+        buttons: {
+            cancel: {
+                label: 'Abbrechen',
+                className: 'bg-ternary-color text-white'
+            },
+            confirm: {
+                label: 'Bestätigen',
+                className: 'bg-ternary-color text-white'
+            }
+        },
         inputType: 'password',
         callback: function (pinCode) {
-            $.ajax({
-                type: 'POST',
-                url: '/Tour/CheckPermissions',
-                data: {
-                    pinCode: pinCode
-                },
-                success: function (teacherId) {
-                    if (teacherId && teacherId.length > 0) {
-                        setTeacherId(teacherId);
-                        callback();
+            if (pinCode) {
+                $.ajax({
+                    type: 'POST',
+                    url: '/Tour/CheckPermissions',
+                    data: {
+                        pinCode: pinCode
+                    },
+                    success: function (teacherId) {
+                        if (teacherId === 'BigFail') {
+                            alert("Pincode falsch!");
+                        } else if (teacherId && teacherId.length) {
+                            setTeacherId(teacherId);
+                            callback();
+                        }
+
+                    },
+                    error: function () {
+                        console.log('Error! Bitte kontaktieren Sie einen Administrator!');
                     }
-                    else {
-                        alert("Pincode falsch!");
-                    }
-                       
-                },
-                error: function () {
-                    console.log('Error! Bitte kontaktieren Sie einen Administrator!');
-                }
-            });
+                });
+            }
         }
     });
 }
