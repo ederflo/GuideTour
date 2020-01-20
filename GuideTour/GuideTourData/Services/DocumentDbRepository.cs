@@ -25,10 +25,30 @@ namespace GuideTourData.Services
         [Obsolete]
         private void CreateIndex()
         {
-            var options = new CreateIndexOptions() { Unique = true };
-            var field = new StringFieldDefinition<Team>("Name");
-            var indexDefinition = new IndexKeysDefinitionBuilder<Team>().Ascending(field);
-            _ddb.GetCollection<Team>("Teams").Indexes.CreateOne(indexDefinition, options);
+            var optionsUnique = new CreateIndexOptions() { Unique = true };
+            var fieldTeamName = new StringFieldDefinition<Team>("Name");
+            var fieldTeacherPinCode = new StringFieldDefinition<Teacher>("PinCode");
+            var fieldGuideEmail = new StringFieldDefinition<Guide>("Email");
+            var indexDefinitionTeamName = new IndexKeysDefinitionBuilder<Team>().Ascending(fieldTeamName);
+            var indexDefinitionTeacherPinCode = new IndexKeysDefinitionBuilder<Teacher>().Ascending(fieldTeacherPinCode);
+            var indexDefinitionGuideEmail = new IndexKeysDefinitionBuilder<Guide>().Ascending(fieldGuideEmail);
+
+            var fieldTourGuideId = new StringFieldDefinition<Tour>("GuideId");
+            var fieldTourStartedTour = new StringFieldDefinition<Tour>("StartedTour");
+            var fieldTourEndedTour = new StringFieldDefinition<Tour>("EndedTour");
+            var indexDefinitionTourGuideId = new IndexKeysDefinitionBuilder<Tour>().Ascending(fieldTourGuideId);
+            var indexDefinitionTourStartedTour = new IndexKeysDefinitionBuilder<Tour>().Ascending(fieldTourStartedTour);
+            var indexDefinitionTourEnded = new IndexKeysDefinitionBuilder<Tour>().Ascending(fieldTourEndedTour);
+            var combinedIndexDefinitionNotStarted = new IndexKeysDefinitionBuilder<Tour>()
+                .Combine(indexDefinitionTourGuideId, indexDefinitionTourStartedTour);
+            var combinedIndexDefinitionTourEnded = new IndexKeysDefinitionBuilder<Tour>()
+                .Combine(indexDefinitionTourGuideId, indexDefinitionTourEnded);
+
+            _ddb.GetCollection<Team>("Teams").Indexes.CreateOne(indexDefinitionTeamName, optionsUnique);
+            _ddb.GetCollection<Teacher>("Teachers").Indexes.CreateOne(indexDefinitionTeacherPinCode, optionsUnique);
+            //_ddb.GetCollection<Guide>("Guides").Indexes.CreateOne(indexDefinitionGuideEmail, optionsUnique);
+            _ddb.GetCollection<Tour>("Tours").Indexes.CreateOne(combinedIndexDefinitionNotStarted, optionsUnique);
+            _ddb.GetCollection<Tour>("Tours").Indexes.CreateOne(combinedIndexDefinitionTourEnded, optionsUnique);
         }
 
         public IMongoCollection<Team> Teams => _ddb.GetCollection<Team>("Teams");
