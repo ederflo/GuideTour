@@ -18,21 +18,21 @@ namespace GuideTourLogic.Services
             _ddb = ddb;
         }
 
-        public async Task<bool> ImportTeams()
+        public async Task ImportTeams()
         {
             TeamLogic teamLogic = new TeamLogic(_ddb);
             GuideLogic guide = new GuideLogic(_ddb);
             List<ImportTeam> importedTeams = GetImportedTeams();
             List<Team> teams = new List<Team>();
             List<Guide> guides = new List<Guide>();
-            bool success = false;
 
             foreach (ImportTeam t in importedTeams)
             {
-                Team curTeam = toTeam(t);
+                Team curTeam = ToTeam(t);
                 teams.Add(curTeam);
                 foreach (Guide g in t.Guides)
                 {
+                    LastnameFirst(g);
                     g.TeamId = curTeam.Id.ToString();
                     g.Id = ObjectId.GenerateNewId().ToString();
                     guides.Add(g);
@@ -41,22 +41,36 @@ namespace GuideTourLogic.Services
 
             await teamLogic.Add(teams);
             await guide.Add(guides);
-
-            return success;
         }
 
         private List<ImportTeam> GetImportedTeams()
         {
-            return GuideTourData.Services.TeamImporter.LoadJson("./../Teams.json");
+            return JsonReader<ImportTeam>.ReadJson("./../Teams.json");
         }
 
-        private Team toTeam(ImportTeam t)
+        private Team ToTeam(ImportTeam t)
         {
             return new Team()
             {
                 Name = t.Name,
                 Id = ObjectId.GenerateNewId().ToString()
             };
+        }
+
+        private void LastnameFirst(Guide g)
+        {
+            string[] parts = g.Name.Split(" ");
+            int numOfParts = parts.Length;
+            if (numOfParts > 1)
+            {
+                string result = parts[numOfParts - 1];
+                for (int i = 0; i < numOfParts - 1; i++)
+                {
+                    result += (" " + parts[i]);
+                }
+                g.Name = result;
+            }
+           
         }
     }
 }

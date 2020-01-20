@@ -20,33 +20,87 @@ namespace GuideTourLogic.Logics
 
         public async Task<List<Teacher>> Get()
         {
-            TeacherDataAccess tourDataAccess = new TeacherDataAccess(_ddb);
-            var result = await tourDataAccess.GetAllItemsAsync();
+            TeacherDataAccess teacherDataAccess = new TeacherDataAccess(_ddb);
+            var result = await teacherDataAccess.GetAllItemsAsync();
             return result.ToList();
         }
 
-        public async Task<Teacher> Get(string teamname)
+        public async Task<Teacher> Get(string teacherId)
         {
-            TeacherDataAccess tourDataAccess = new TeacherDataAccess(_ddb);
-            return await tourDataAccess.GetItemByIdAsync(teamname);
+            TeacherDataAccess teacherDataAccess = new TeacherDataAccess(_ddb);
+            return await teacherDataAccess.GetItemByIdAsync(teacherId);
+        }
+
+        public async Task<Teacher> GetByPinCode(int pinCode)
+        {
+            TeacherDataAccess teacherDataAccess = new TeacherDataAccess(_ddb);
+            return await teacherDataAccess.GetItemAsync(x => x.PinCode == pinCode);
         }
 
         public async Task<Teacher> Add(Teacher teacher)
         {
-            TeacherDataAccess tourDataAccess = new TeacherDataAccess(_ddb);
-            return await tourDataAccess.CreateItemAsync(teacher);
+            TeacherDataAccess teacherDataAccess = new TeacherDataAccess(_ddb);
+            return await teacherDataAccess.CreateItemAsync(teacher);
+        }
+
+        public async Task<List<Teacher>> Add(List<Teacher> teachers)
+        {
+            TeacherDataAccess teacherDataAccess = new TeacherDataAccess(_ddb);
+            return await teacherDataAccess.CreateItemsAsync(teachers);
         }
 
         public async Task<Teacher> Update(Teacher teacher)
         {
-            TeacherDataAccess tourDataAccess = new TeacherDataAccess(_ddb);
-            return await tourDataAccess.UpdateItemAsync(teacher);
+            TeacherDataAccess teacherDataAccess = new TeacherDataAccess(_ddb);
+            return await teacherDataAccess.UpdateItemAsync(teacher);
         }
 
         public async Task<bool> Delete(string teacherId)
         {
-            TeacherDataAccess tourDataAccess = new TeacherDataAccess(_ddb);
-            return await tourDataAccess.DeleteItemAsync(teacherId);
+            TeacherDataAccess teacherDataAccess = new TeacherDataAccess(_ddb);
+            return await teacherDataAccess.DeleteItemAsync(teacherId);
+        }
+
+        public async Task<string> CheckLastAction(string teacherId)
+        {
+            bool permissions = false;
+            Teacher t = await Get(teacherId);
+            permissions = CheckLastAction(t);
+            if (permissions)
+            {
+                t.LastAction = DateTime.Now;
+                await Update(t);
+            }
+            else
+                teacherId = null;
+
+            return teacherId;
+        }
+
+        public async Task<string> CheckPinCode(int pinCode)
+        {
+            string teacherId = null;
+            Teacher t = await GetByPinCode(pinCode);
+            if (t != null)
+            {
+                t.LastAction = DateTime.Now;
+                await Update(t);
+                teacherId = t.Id;
+            }
+                
+            return teacherId;
+        }
+
+        private static bool CheckLastAction(Teacher t)
+        {
+            bool result = false;
+            if (t != null && t.LastAction != null)
+            {
+                DateTime currentTime = DateTime.Now;
+                TimeSpan timeSpan = currentTime - (DateTime) t.LastAction;
+                result = timeSpan.TotalSeconds <= 120;
+            }
+            return result;
         }
     }
 }

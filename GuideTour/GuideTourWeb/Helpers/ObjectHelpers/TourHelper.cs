@@ -39,12 +39,12 @@ namespace GuideTourWeb.Helpers.ObjectHelpers
             {
                 Id = tour.Id,
                 GuideId = tour.GuideId,
-                GuideName = g.Name,
+                GuideName = StringHelper.Slice(g.Name, 14, true),
                 EndedTour = tour.EndedTour,
                 StartedTour = tour.StartedTour,
-                Team = team.Name,
+                Team = StringHelper.Slice(team.Name, 14, true),
                 TeamId = team.Id,
-                VisitorName = tour.VisitorName
+                VisitorName = tour.VisitorName != null ? StringHelper.Slice(tour.VisitorName, 25, true) : tour.VisitorName
             };
         }
 
@@ -66,7 +66,6 @@ namespace GuideTourWeb.Helpers.ObjectHelpers
                     }
                 }
             }
-
             return result;
         }
     }

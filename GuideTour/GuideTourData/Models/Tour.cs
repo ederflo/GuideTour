@@ -14,10 +14,15 @@ namespace GuideTourData.Models
         [BsonElement("guideId")]
         public string GuideId { get; set; }
 
+        [BsonElement("teacherId")]
+        public string TeacherId { get; set; }
+
         [BsonElement("startedTour")]
+        [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
         public DateTime? StartedTour { get; set; }
 
         [BsonElement("endedTour")]
+        [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
         public DateTime? EndedTour { get; set; }
 
         [BsonElement("visitorName")]

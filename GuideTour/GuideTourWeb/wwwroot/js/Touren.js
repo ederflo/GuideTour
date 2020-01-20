@@ -40,51 +40,10 @@ function startTourAjax(id) {
     if (!id)
         alert('Tour konnte nicht gestartet werden! Bitte wenden Sie sich an einen Administrator!');
 
-    $.ajax({
-        type: 'PATCH',
-        url: '/Tour/StartTour',
-        data: {
-            id: id
-        },
-        success: function (data) {
-            if (!data)
-                console.log('Error! Bitte kontaktieren Sie einen Administrator!');
-        },
-        error: function () {
-            console.log('Error! Bitte kontaktieren Sie einen Administrator!');
-        }
-    });
-}
-
-function completeTourAjax(id) {
-    if (!id)
-        alert('Tour konnte nicht beendet werden! Bitte wenden Sie sich an einen Administrator!');
-
-    $.ajax({
-        type: 'PATCH',
-        url: '/Tour/CompleteTour',
-        data: {
-            id: id
-        },
-        success: function (data) {
-            if (!data)
-                console.log('Error! Bitte kontaktieren Sie einen Administrator!');
-        },
-        error: function () {
-            console.log('Error! Bitte kontaktieren Sie einen Administrator!');
-        }
-    });
-}
-
-function cancelTourAjax(id) {
-    var doDelete = confirm("Wollen Sie diese Tour wirklich abbrechen? Diese kann nicht zurückgesetzt werden!");
-    if (doDelete === true) {
-        if (!id)
-            alert('Tour konnte nicht abgebrochen werden! Bitte wenden Sie sich an einen Administrator!');
-
+    checkPermissions(function () {
         $.ajax({
             type: 'PATCH',
-            url: '/Tour/CancelTour',
+            url: '/Tour/StartTour',
             data: {
                 id: id
             },
@@ -96,7 +55,107 @@ function cancelTourAjax(id) {
                 console.log('Error! Bitte kontaktieren Sie einen Administrator!');
             }
         });
+    });
+}
+
+function completeTourAjax(id) {
+    if (!id)
+        alert('Tour konnte nicht beendet werden! Bitte wenden Sie sich an einen Administrator!');
+
+    checkPermissions(function () {
+        $.ajax({
+            type: 'PATCH',
+            url: '/Tour/CompleteTour',
+            data: {
+                id: id
+            },
+            success: function (data) {
+                if (!data)
+                    console.log('Error! Bitte kontaktieren Sie einen Administrator!');
+            },
+            error: function () {
+                console.log('Error! Bitte kontaktieren Sie einen Administrator!');
+            }
+        });
+    });
+}
+
+function cancelTourAjax(id) {
+    checkPermissions(function () {
+        var doDelete = confirm("Wollen Sie diese Tour wirklich abbrechen? Diese kann nicht zurückgesetzt werden!");
+        if (doDelete === true) {
+            if (!id)
+                alert('Tour konnte nicht abgebrochen werden! Bitte wenden Sie sich an einen Administrator!');
+
+            $.ajax({
+                type: 'PATCH',
+                url: '/Tour/CancelTour',
+                data: {
+                    id: id
+                },
+                success: function (data) {
+                    if (!data)
+                        console.log('Error! Bitte kontaktieren Sie einen Administrator!');
+                },
+                error: function () {
+                    console.log('Error! Bitte kontaktieren Sie einen Administrator!');
+                }
+            });
+        }
+    });
+}
+
+function checkPermissions(callback) {
+    var teacherId = getTeacherId();
+    if (teacherId) {
+        $.ajax({
+            type: 'POST',
+            url: '/Tour/CheckPermissions',
+            data: {
+                teacherId: teacherId
+            },
+            success: function (permissions) {
+                if (permissions)
+                    callback();
+                else
+                    checkPermissionsWithPin(callback);
+            },
+            error: function () {
+                console.log('Error! Bitte kontaktieren Sie einen Administrator!');
+            }
+        });
+    } else {
+        checkPermissionsWithPin(callback);
     }
+}
+
+function checkPermissionsWithPin(callback) {
+    bootbox.prompt({
+        title: "Teacher PinCode",
+        inputType: 'password',
+        callback: function (pinCode) {
+            $.ajax({
+                type: 'POST',
+                url: '/Tour/CheckPermissions',
+                data: {
+                    pinCode: pinCode
+                },
+                success: function (teacherId) {
+                    if (teacherId && teacherId.length > 0) {
+                        setTeacherId(teacherId);
+                        callback();
+                    }
+                    else {
+                        alert("Pincode falsch!");
+                    }
+                       
+                },
+                error: function () {
+                    console.log('Error! Bitte kontaktieren Sie einen Administrator!');
+                }
+            });
+        }
+    });
 }
 
 function addNotStartedTour(data) {
@@ -131,6 +190,8 @@ function buildStartedTourPanel(id, guideName, guideTeam, visitorName, startTime)
     if (!visitorName)
         visitorName = '--';
     var date = new Date(startTime);
+    var hour = ("0" + date.getHours()).slice(-2);
+    var minute = ("0" + date.getMinutes()).slice(-2);
     return '<div id="tourStarted_' + id + '" class="col-12 col-lg-6 mt-3" >' +
         '<div class="card">' +
         '<div class="card-header bg-secondary-color h4">' + guideName +
@@ -141,7 +202,7 @@ function buildStartedTourPanel(id, guideName, guideTeam, visitorName, startTime)
         '<div class="card-body bg-ternary-color text-white">' +
         '<p>' +
         '<strong>Team:</strong> ' + guideTeam + '<br />' +
-        '<strong>Führungsstart:</strong> ' + date.getHours() + ':' + date.getMinutes() + '<br />' +
+        '<strong>Führungsstart:</strong> ' + hour + ':' + minute + '<br />' +
         '<strong>Gast:</strong> ' + visitorName +
         '</p>' +
         '<button type="button" class="btn bg-primary-color text-white w-100 font-weight-bold"' +

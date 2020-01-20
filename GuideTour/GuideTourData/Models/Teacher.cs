@@ -8,12 +8,17 @@ namespace GuideTourData.Models
 {
     public class Teacher : Entity
     {
+
+        public Teacher() : base("Teacher") { }
+
+        [BsonElement("name")]
+        public string Name { get; set; }
+
         [BsonElement("pinCode")]
         public int PinCode { get; set; }
 
+        [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
         [BsonElement("lastAction")]
         public DateTime? LastAction { get; set; }
-    
-        public Teacher () : base("Teacher") { }
     }
 }

@@ -8,6 +8,7 @@ using GuideTourData.DataAccess;
 using GuideTourData.Models;
 using GuideTourData.Services;
 using GuideTourLogic.Logics;
+using GuideTourLogic.Services;
 using GuideTourWeb.Helpers.ObjectHelpers;
 using GuideTourWeb.Hubs;
 using GuideTourWeb.Models.TourViewModels;
@@ -35,8 +36,10 @@ namespace GuideTourWeb.Controllers
             GuideLogic guideLogic = new GuideLogic(_ddb);
 
 
-            //GuideTourLogic.Services.TeamImporter teamImporter = new GuideTourLogic.Services.TeamImporter(_ddb);
-            //bool success = await teamImporter.ImportTeams();
+            TeamImporter teamImporter = new TeamImporter(_ddb);
+            TeacherImporter teacherImporter = new TeacherImporter(_ddb);
+            //await teamImporter.ImportTeams();
+            //await teacherImporter.ImportTeachers();
 
             List<Team> teams = await teamLogic.Get();
             List<Guide> guides = await guideLogic.Get();
@@ -48,6 +51,8 @@ namespace GuideTourWeb.Controllers
                 List<TourViewModel> tourVMs = TourHelper.ToViewModel(tours, guides, teams); 
                 viewModel.NotStarted = tourVMs.FindAll(x => x.StartedTour == null && x.EndedTour == null);
                 viewModel.Started = tourVMs.FindAll(x => x.StartedTour != null && x.EndedTour == null);
+                GuideHelper.SliceNames(guides, 14);
+                TeamHelper.SliceNames(teams, 14);
                 viewModel.Teams = TeamHelper.AssignGuidesToTeam(teams, guides);
             }
             viewModel.Started = viewModel.Started.OrderBy(x => x.StartedTour).ToList();
@@ -55,7 +60,7 @@ namespace GuideTourWeb.Controllers
         }
 
         [HttpPatch]
-        public async Task<TourViewModel> StartTourAsync(string id = "")
+        public async Task<TourViewModel> StartTour(string id = "")
         {
             TourLogic tourLogic = new TourLogic(_ddb);
             TourHelper tourHelper = new TourHelper(_ddb);
@@ -81,7 +86,7 @@ namespace GuideTourWeb.Controllers
         }
 
         [HttpPatch]
-        public async Task<TourViewModel> CancelTourAsync(string id = "")
+        public async Task<TourViewModel> CancelTour(string id = "")
         {
             TourLogic tourLogic = new TourLogic(_ddb);
             TourHelper tourHelper = new TourHelper(_ddb);
@@ -94,7 +99,7 @@ namespace GuideTourWeb.Controllers
         }
 
         [HttpPost]
-        public async Task<TourViewModel> NewTourAsync (IndexTourViewModel viewModel)
+        public async Task<TourViewModel> NewTour(IndexTourViewModel viewModel)
         {
             TourLogic tourLogic = new TourLogic(_ddb);
             TourHelper tourHelper = new TourHelper(_ddb);
@@ -106,12 +111,32 @@ namespace GuideTourWeb.Controllers
                 StartedTour = null,
                 VisitorName = viewModel.VisitorName,
                 Canceld = false,
-                GuideId = viewModel.GuideId
+                GuideId = viewModel.GuideId,
+                TeacherId = viewModel.TeacherId
             };
             if ((tour = await tourLogic.Add(tour)) != null)
                 if ((result = await tourHelper.ToViewModel(tour)) != null)
                     await _hubcontext.Clients.All.SendAsync("NewRequestedTour", result);
             return result;
+        }
+
+        [HttpPost]
+        public async Task<string> CheckPermissions(string teacherId = "", int pinCode = -1)
+        {
+            TeacherLogic teacherLogic = new TeacherLogic(_ddb);
+            Teacher t = null;
+            bool permissions = false;
+
+            if (!string.IsNullOrEmpty(teacherId))
+            {
+                teacherId = await teacherLogic.CheckLastAction(teacherId);
+            } 
+            else if (pinCode > 0)
+            {
+                teacherId = await teacherLogic.CheckPinCode(pinCode);
+            }
+
+            return string.IsNullOrEmpty(teacherId) ? null : teacherId;
         }
     }
 }
