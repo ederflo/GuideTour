@@ -17,7 +17,7 @@ namespace GuideTourWeb.Mqtt
         public static readonly string EndedAckUrl = "/tdot/tours/endedACK";
 
         private static readonly string[] topics = { "/tdot/tours/startedACK" };
-        private static readonly string brokerUrl = "10.0.0.100";
+        private static readonly string brokerUrl = "guide.informatik.app";
         private static readonly string clientId = "GuideTour";
         private static MqttService instance = null;
         private static readonly object padlock = new object();
@@ -58,7 +58,7 @@ namespace GuideTourWeb.Mqtt
         {
             if (instance == null)
                 instance = new MqttService();
-            Instance.client.Subscribe(topics, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE,  });
+            Instance.client.Subscribe(topics, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE });
         }
 
         public void MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
