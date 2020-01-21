@@ -54,6 +54,6 @@ namespace GuideTourData.Services
         public IMongoCollection<Team> Teams => _ddb.GetCollection<Team>("Teams");
         public IMongoCollection<Guide> Guides => _ddb.GetCollection<Guide>("Guides");
         public IMongoCollection<Tour> Tours => _ddb.GetCollection<Tour>("Tours");
-        public IMongoCollection<Teacher> Teachers => _ddb.GetCollection<Teacher>("Teacher");
+        public IMongoCollection<Teacher> Teachers => _ddb.GetCollection<Teacher>("Teachers");
     }
 }
