@@ -11,6 +11,9 @@ namespace GuideTourData.Models
 {
     public class Tour : Entity
     {
+        [BsonElement("ifGuideAppId")]
+        public string IfGuideAppId { get; set; }
+
         [BsonElement("guideId")]
         public string GuideId { get; set; }
 

@@ -36,7 +36,7 @@ namespace GuideTourWeb.Helpers.ObjectHelpers
             return result;
         }
 
-        public async Task<TourMqttModel> ToMqttModel(Tour tour, string atStation, TourMqttState state)
+        public async Task<TourMqttModel> ToMqttModel(Tour tour)
         {
             TourMqttModel result = null;
             GuideLogic guideLogic = new GuideLogic(_ddb);
@@ -47,7 +47,7 @@ namespace GuideTourWeb.Helpers.ObjectHelpers
                 (g, t) = await guideLogic.GetGuideAndTeam(tour.GuideId);
                 if (g != null && t != null)
                 {
-                    result = ToMqttModel(tour, g, t, atStation, state);
+                    result = ToMqttModel(tour.Id, tour.VisitorName, g.Name, t.Name, tour.IfGuideAppId);
                 }
             }
             return result;
@@ -83,30 +83,23 @@ namespace GuideTourWeb.Helpers.ObjectHelpers
             };
         }
 
-        public static TourMqttModel ToMqttModel(Tour tour, Guide g, Team t, string atStation, TourMqttState state)
+        public static TourMqttModel ToMqttModel(TourViewModel tVm, string ifGuideAppId)
+        {
+            return ToMqttModel(tVm.Id, tVm.VisitorName, tVm.GuideName, tVm.Team, ifGuideAppId);
+        }
+
+        public static TourMqttModel ToMqttModel(string tourId, string visitorName, string guideName, string teamName, string ifGuideAppId)
         {
             return new TourMqttModel()
             {
-                Id = tour.Id,
-                Team = t.Name,
-                Guide = g.Name,
-                NameOfGuests = tour.VisitorName,
-                AtStation = atStation,
-                State = state
+                Id = tourId,
+                Team = teamName,
+                GuideName = guideName,
+                GuestName = visitorName,
+                IfGuideAppId = ifGuideAppId
             };
         }
 
-        public static TourMqttModel ToMqttModel(TourViewModel tour, string atStation, TourMqttState state)
-        {
-            return new TourMqttModel()
-            {
-                Id = tour.Id,
-                Team = tour.Team,
-                Guide = tour.GuideName,
-                NameOfGuests = tour.VisitorName,
-                AtStation = atStation,
-                State = state
-            };
-        }
+            
     }
 }

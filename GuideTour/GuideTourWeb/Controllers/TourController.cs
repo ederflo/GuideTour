@@ -73,8 +73,8 @@ namespace GuideTourWeb.Controllers
                 if ((result = await tourHelper.ToViewModel(tour)) != null)
                 {
                     await _hubcontext.Clients.All.SendAsync("TourStarted", result);
-                    TourMqttModel tourMqtt = TourHelper.ToMqttModel(result, "Portal", TourMqttState.StartedAck);
-                    MqttService.Instance.client.Publish(MqttService.StartUrl, 
+                    TourMqttModel tourMqtt = TourHelper.ToMqttModel(result, tour.IfGuideAppId);
+                    MqttService.Instance.client.Publish(MqttService.StartAckUrl, 
                         Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(tourMqtt)));
                 }
             return result;
@@ -91,9 +91,9 @@ namespace GuideTourWeb.Controllers
                 if ((result = await tourHelper.ToViewModel(tour)) != null)
                 {
                     await _hubcontext.Clients.All.SendAsync("TourCompleted", result);
-                    TourMqttModel tourMqtt = TourHelper.ToMqttModel(result, "Portal", TourMqttState.EndedAck);
-                    MqttService.Instance.client.Publish(MqttService.StartUrl,
-                        Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(tourMqtt)));
+                    //TourMqttModel tourMqtt = TourHelper.ToMqttModel(result);
+                    //MqttService.Instance.client.Publish(MqttService.StartUrl,
+                    //    Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(tourMqtt)));
                 }
             return result;
         }
@@ -109,9 +109,9 @@ namespace GuideTourWeb.Controllers
                 if ((result = await tourHelper.ToViewModel(tour)) != null)
                 {
                     await _hubcontext.Clients.All.SendAsync("TourCancelled", result);
-                    TourMqttModel tourMqtt = TourHelper.ToMqttModel(result, "Portal", TourMqttState.EndedAck);
-                    MqttService.Instance.client.Publish(MqttService.StartUrl,
-                        Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(tourMqtt)));
+                    /*TourMqttModel tourMqtt = TourHelper.ToMqttModel(result);
+                    MqttService.Instance.client.Publish(MqttService.EndedAckUrl,
+                        Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(tourMqtt)));*/
                 }
                     
             return result;
@@ -126,23 +126,11 @@ namespace GuideTourWeb.Controllers
             if (viewModel == null || string.IsNullOrEmpty(viewModel.GuideId) || string.IsNullOrEmpty(viewModel.GuideTeamId))
                 return null;
 
-            Tour tour = new Tour()
-            {
-                Id = ObjectId.GenerateNewId().ToString(),
-                EndedTour = null,
-                StartedTour = null,
-                VisitorName = viewModel.VisitorName,
-                Canceld = false,
-                GuideId = viewModel.GuideId,
-                TeacherId = viewModel.TeacherId
-            };
+            Tour tour = TourLogic.NewTour(viewModel.GuideId, viewModel.TeacherId, viewModel.VisitorName);
             if ((tour = await tourLogic.Add(tour)) != null)
                 if ((result = await tourHelper.ToViewModel(tour)) != null)
                 {
                     await _hubcontext.Clients.All.SendAsync("NewRequestedTour", result);
-                    TourMqttModel tourMqtt = TourHelper.ToMqttModel(result, "Portal", TourMqttState.Started);
-                    MqttService.Instance.client.Publish(MqttService.StartUrl,
-                        Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(tourMqtt)));
                 }
             return result;
         }

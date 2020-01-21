@@ -2,6 +2,7 @@
 using GuideTourData.DataAccess;
 using GuideTourData.Models;
 using GuideTourData.Services;
+using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -91,6 +92,21 @@ namespace GuideTourLogic.Logics
             tourToCancel.Canceld = true;
 
             return await Update(tourToCancel);
+        }
+
+        public static Tour NewTour(string guideId, string teacherId, string visitorName = null, string guideAppTour = null)
+        {
+            return new Tour()
+            {
+                Id = ObjectId.GenerateNewId().ToString(),
+                IfGuideAppId = null,
+                EndedTour = null,
+                StartedTour = null,
+                VisitorName = visitorName,
+                Canceld = false,
+                GuideId = guideId,
+                TeacherId = teacherId
+            };
         }
     }
 }

@@ -11,14 +11,14 @@ namespace GuideTourWeb.Mqtt
 {
     public class MqttService
     {
-        public static readonly string StartUrl = "/TDOT/tours/started";
-        public static readonly string StartAckUrl = "/TDOT/tours/startedAck";
-        public static readonly string EndedUrl = "/TDOT/tours/ended";
-        public static readonly string EndedAckUrl = "/TDOT/tours/endedAck";
+        public static readonly string StartUrl = "/tdot/tours/started";
+        public static readonly string StartAckUrl = "/tdot/tours/startedACK";
+        public static readonly string EndedUrl = "/tdot/tours/ended";
+        public static readonly string EndedAckUrl = "/tdot/tours/endedACK";
 
-        private static readonly string[] topics = { "/TDOT/tours/started" };
-        private static readonly string brokerUrl = "broker.hivemq.com";
-        private static readonly string clientId = "guideTour";
+        private static readonly string[] topics = { "/tdot/tours/startedACK" };
+        private static readonly string brokerUrl = "10.0.0.100";
+        private static readonly string clientId = "GuideTour";
         private static MqttService instance = null;
         private static readonly object padlock = new object();
 
@@ -58,7 +58,7 @@ namespace GuideTourWeb.Mqtt
         {
             if (instance == null)
                 instance = new MqttService();
-            Instance.client.Subscribe(topics, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
+            Instance.client.Subscribe(topics, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE,  });
         }
 
         public void MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
