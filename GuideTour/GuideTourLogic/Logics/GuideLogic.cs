@@ -31,6 +31,19 @@ namespace GuideTourLogic.Logics
             return await guidDataAccess.GetItemByIdAsync(id);
         }
 
+        public async Task<(Guide, Team)> GetGuideAndTeam(string guideId)
+        {
+            TeamLogic teamLogic = new TeamLogic(_ddb);
+            Team t = null;
+            Guide g;
+            if ((g = await Get(guideId)) != null)
+            {
+                t = await teamLogic.Get(g.TeamId);
+            }
+
+            return (g, t);
+        }
+
         public async Task<Guide> Add(Guide guide)
         {
             GuideDataAccess guidDataAccess = new GuideDataAccess(_ddb);

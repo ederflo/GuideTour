@@ -1,6 +1,7 @@
 ﻿using GuideTourData.Models;
 using GuideTourData.Services;
 using GuideTourLogic.Logics;
+using GuideTourWeb.Models.MqttModels;
 using GuideTourWeb.Models.TourViewModels;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,41 @@ namespace GuideTourWeb.Helpers.ObjectHelpers
         {
             _ddb = ddb;
         }
-    
+
+        public async Task<TourViewModel> ToViewModel(Tour tour)
+        {
+            TourViewModel result = null;
+            GuideLogic guideLogic = new GuideLogic(_ddb);
+            Guide g;
+            Team t;
+            if (tour != null)
+            {
+                (g, t) = await guideLogic.GetGuideAndTeam(tour.GuideId);
+                if (g != null && t != null )
+                {
+                    result = ToViewModel(tour, g, t);
+                }
+            }
+            return result;
+        }
+
+        public async Task<TourMqttModel> ToMqttModel(Tour tour, string atStation, TourMqttState state)
+        {
+            TourMqttModel result = null;
+            GuideLogic guideLogic = new GuideLogic(_ddb);
+            Guide g;
+            Team t;
+            if (tour != null)
+            {
+                (g, t) = await guideLogic.GetGuideAndTeam(tour.GuideId);
+                if (g != null && t != null)
+                {
+                    result = ToMqttModel(tour, g, t, atStation, state);
+                }
+            }
+            return result;
+        }
+
         public static List<TourViewModel> ToViewModel(List<Tour> tours, List<Guide> guides, List<Team> teams)
         {
             List<TourViewModel> result = new List<TourViewModel>();
@@ -48,25 +83,30 @@ namespace GuideTourWeb.Helpers.ObjectHelpers
             };
         }
 
-        public async Task<TourViewModel> ToViewModel(Tour tour)
+        public static TourMqttModel ToMqttModel(Tour tour, Guide g, Team t, string atStation, TourMqttState state)
         {
-            TourViewModel result = null;
-            GuideLogic guideLogic = new GuideLogic(_ddb);
-            TeamLogic teamLogic = new TeamLogic(_ddb);
-
-            if (tour != null)
+            return new TourMqttModel()
             {
-                Guide g = await guideLogic.Get(tour.GuideId);
-                if (g != null)
-                {
-                    Team t = await teamLogic.Get(g.TeamId);
-                    if (t != null)
-                    {
-                        result = ToViewModel(tour, g, t);
-                    }
-                }
-            }
-            return result;
+                Id = tour.Id,
+                Team = t.Name,
+                Guide = g.Name,
+                NameOfGuests = tour.VisitorName,
+                AtStation = atStation,
+                State = state
+            };
+        }
+
+        public static TourMqttModel ToMqttModel(TourViewModel tour, string atStation, TourMqttState state)
+        {
+            return new TourMqttModel()
+            {
+                Id = tour.Id,
+                Team = tour.Team,
+                Guide = tour.GuideName,
+                NameOfGuests = tour.VisitorName,
+                AtStation = atStation,
+                State = state
+            };
         }
     }
 }

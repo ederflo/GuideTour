@@ -11,7 +11,7 @@ namespace GuideTourData.Services
 {
     public class DocumentDbRepository : IDocumentDbRepository
     {
-        IMongoDatabase _ddb;
+        private readonly IMongoDatabase _ddb;
 
         [Obsolete]
         public DocumentDbRepository(IOptions<DbProperties> settings)

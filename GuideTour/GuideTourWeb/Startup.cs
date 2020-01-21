@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using GuideTourData.Services;
 using GuideTourWeb.Hubs;
+using GuideTourWeb.Mqtt;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -36,6 +37,8 @@ namespace GuideTourWeb
                 });
 
             services.AddTransient<IDocumentDbRepository, DocumentDbRepository>();
+
+            MqttService.Init();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
