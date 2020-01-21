@@ -11,12 +11,12 @@ namespace GuideTourWeb.Mqtt
 {
     public class MqttService
     {
-        public static readonly string StartUrl = "/tdot/tours/started";
-        public static readonly string StartAckUrl = "/tdot/tours/startedACK";
-        public static readonly string EndedUrl = "/tdot/tours/ended";
-        public static readonly string EndedAckUrl = "/tdot/tours/endedACK";
+        public static readonly string StartUrl = "tdot/tours/started";
+        public static readonly string StartAckUrl = "tdot/tours/startedACK";
+        public static readonly string EndedUrl = "tdot/tours/ended";
+        public static readonly string EndedAckUrl = "tdot/tours/endedACK";
 
-        private static readonly string[] topics = { "/tdot/tours/startedACK" };
+        private static readonly string[] topics = { "tdot/tours/startedACK" };
         private static readonly string brokerUrl = "guide.informatik.app";
         private static readonly string clientId = "GuideTour";
         private static MqttService instance = null;
