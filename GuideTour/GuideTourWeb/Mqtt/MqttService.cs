@@ -16,7 +16,7 @@ namespace GuideTourWeb.Mqtt
         public static readonly string EndedUrl = "tdot/tours/ended";
         public static readonly string EndedAckUrl = "tdot/tours/endedACK";
 
-        private static readonly string[] topics = { "tdot/tours/startedACK" };
+        private static readonly string[] topics = { "tdot/tours/started" };
         private static readonly string brokerUrl = "guide.informatik.app";
         private static readonly string clientId = "GuideTour";
         private static MqttService instance = null;

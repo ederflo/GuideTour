@@ -11,16 +11,16 @@ namespace GuideTourWeb.Models.MqttModels
         [JsonProperty("id")]
         public string Id { get; set; }
 
-        [JsonProperty("ifGuideAppId")]
+        [JsonProperty("ifguideappid")]
         public string IfGuideAppId { get; set; }
 
         [JsonProperty("team")]
         public string Team { get; set; }
 
-        [JsonProperty("guideName")]
+        [JsonProperty("guidename")]
         public string GuideName { get; set; }
 
-        [JsonProperty("guestName")]
+        [JsonProperty("guestname")]
         public string GuestName { get; set; }
     }
 }
