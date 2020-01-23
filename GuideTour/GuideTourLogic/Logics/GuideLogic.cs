@@ -31,6 +31,12 @@ namespace GuideTourLogic.Logics
             return await guidDataAccess.GetItemByIdAsync(id);
         }
 
+        public async Task<Guide> GetByEmail(string email)
+        {
+            GuideDataAccess guidDataAccess = new GuideDataAccess(_ddb);
+            return await guidDataAccess.GetItemAsync(x => x.Email.Equals(email));
+        }
+
         public async Task<(Guide, Team)> GetGuideAndTeam(string guideId)
         {
             TeamLogic teamLogic = new TeamLogic(_ddb);

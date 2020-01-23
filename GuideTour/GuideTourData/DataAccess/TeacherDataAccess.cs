@@ -36,7 +36,7 @@ namespace GuideTourData.DataAccess
 
         public async Task<IEnumerable<Teacher>> GetAllItemsAsync()
         {
-            var result = await _ddb.Teachers.FindAsync(_ => true);
+            var result = await _ddb.Teachers.FindAsync(x => x.Type.Equals(typeof(Teacher).Name));
             return await result.ToListAsync();
         }
 

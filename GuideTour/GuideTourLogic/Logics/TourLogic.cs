@@ -32,6 +32,12 @@ namespace GuideTourLogic.Logics
             return await tourDataAccess.GetItemByIdAsync(id);
         }
 
+        public async Task<Tour> GetByIfGuideAppId(string ifGuideAppId)
+        {
+            TourDataAccess tourDataAccess = new TourDataAccess(_ddb);
+            return await tourDataAccess.GetItemAsync(x => x.IfGuideAppId == ifGuideAppId);
+        }
+
         public async Task<Tour> Add(Tour tour)
         {
             TourDataAccess tourDataAccess = new TourDataAccess(_ddb);
@@ -99,7 +105,7 @@ namespace GuideTourLogic.Logics
             return new Tour()
             {
                 Id = ObjectId.GenerateNewId().ToString(),
-                IfGuideAppId = null,
+                IfGuideAppId = guideAppTour,
                 EndedTour = null,
                 StartedTour = null,
                 VisitorName = visitorName,

@@ -8,6 +8,7 @@ using GuideTourWeb.Mqtt;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -37,13 +38,12 @@ namespace GuideTourWeb
                 });
 
             services.AddTransient<IDocumentDbRepository, DocumentDbRepository>();
-
-            MqttService.Init();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IDocumentDbRepository ddb, IHubContext<TourHub> hubcontext)
         {
+            MqttService.Init(ddb, hubcontext);
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

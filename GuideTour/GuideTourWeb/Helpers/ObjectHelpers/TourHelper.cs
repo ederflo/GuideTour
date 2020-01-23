@@ -99,7 +99,6 @@ namespace GuideTourWeb.Helpers.ObjectHelpers
                 IfGuideAppId = ifGuideAppId
             };
         }
-
-            
     }
 }
+

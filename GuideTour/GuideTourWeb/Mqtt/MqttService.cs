@@ -1,4 +1,13 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using GuideTourData.Models;
+using GuideTourData.Services;
+using GuideTourLogic.Logics;
+using GuideTourWeb.Helpers.ObjectHelpers;
+using GuideTourWeb.Hubs;
+using GuideTourWeb.Models.MqttModels;
+using GuideTourWeb.Models.TourViewModels;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.SignalR;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,14 +31,15 @@ namespace GuideTourWeb.Mqtt
         private static MqttService instance = null;
         private static readonly object padlock = new object();
 
+        private readonly IDocumentDbRepository _ddb;
+        private readonly IHubContext<TourHub> _hubcontext;
+
         public readonly MqttClient client;
 
         public static MqttService Instance {
             get {
                 lock(padlock)
                 {
-                    if (instance == null)
-                        Init();
                     return instance;
                 }
             }
@@ -39,14 +49,15 @@ namespace GuideTourWeb.Mqtt
             }
         }
 
-        public MqttService()
+        public MqttService(IDocumentDbRepository ddb, IHubContext<TourHub> hubcontext)
         {
             try
             {
                 client = new MqttClient(brokerUrl);
-                client.MqttMsgPublishReceived += MqttMsgPublishReceived;
+                client.MqttMsgPublishReceived += MqttMsgPublishReceivedAsync;
                 client.Connect(clientId);
-                Console.WriteLine(client.ToString());
+                _ddb = ddb;
+                _hubcontext = hubcontext;
             }
             catch (Exception e)
             {
@@ -54,16 +65,40 @@ namespace GuideTourWeb.Mqtt
             }
         }
 
-        public static void Init()
+        public static void Init(IDocumentDbRepository ddb, IHubContext<TourHub> hubcontext)
         {
             if (instance == null)
-                instance = new MqttService();
+                instance = new MqttService(ddb, hubcontext);
             Instance.client.Subscribe(topics, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
         }
 
-        public void MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
+        public async void MqttMsgPublishReceivedAsync(object sender, MqttMsgPublishEventArgs e)
         {
-            Console.WriteLine(e.Topic);
+            TourLogic tourLogic = new TourLogic(_ddb);
+            GuideLogic guideLogic = new GuideLogic(_ddb);
+            TeamLogic teamLogic = new TeamLogic(_ddb);
+            if (e.Topic.Equals(StartUrl))
+            {
+                string jsonString = Encoding.UTF8.GetString(e.Message);
+                TourIfGuideAppModel tourApp = JsonConvert.DeserializeObject<TourIfGuideAppModel>(jsonString);
+
+                Guide g = await guideLogic.GetByEmail(tourApp.GuideMail);
+                if (g != null)
+                {
+                    Team t = await teamLogic.Get(g.TeamId);
+                    if (t != null)
+                    {
+                        await tourLogic.Add(TourLogic.NewTour(g.Id, null, null, tourApp.IfGuideAppId));
+                        Tour tour = await tourLogic.GetByIfGuideAppId(tourApp.IfGuideAppId);
+                        if (tour != null && tour.StartedTour == null && tour.GuideId == g.Id)
+                        {
+                            TourViewModel tourVM = TourHelper.ToViewModel(tour, g, t);
+                            await _hubcontext.Clients.All.SendAsync("NewRequestedTour", tourVM);
+                        }
+                    }
+                    
+                }
+            }
         }
     }
 }

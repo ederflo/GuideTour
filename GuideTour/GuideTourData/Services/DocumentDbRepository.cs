@@ -29,9 +29,11 @@ namespace GuideTourData.Services
             var fieldTeamName = new StringFieldDefinition<Team>("Name");
             var fieldTeacherPinCode = new StringFieldDefinition<Teacher>("PinCode");
             var fieldGuideEmail = new StringFieldDefinition<Guide>("Email");
+            var fieldTourIfGuideAppId = new StringFieldDefinition<Tour>("IfGuideAppId");
             var indexDefinitionTeamName = new IndexKeysDefinitionBuilder<Team>().Ascending(fieldTeamName);
             var indexDefinitionTeacherPinCode = new IndexKeysDefinitionBuilder<Teacher>().Ascending(fieldTeacherPinCode);
             var indexDefinitionGuideEmail = new IndexKeysDefinitionBuilder<Guide>().Ascending(fieldGuideEmail);
+            var indexDefinitionTourIfGuideAppId = new IndexKeysDefinitionBuilder<Tour>().Ascending(fieldTourIfGuideAppId);
 
             var fieldTourGuideId = new StringFieldDefinition<Tour>("GuideId");
             var fieldTourStartedTour = new StringFieldDefinition<Tour>("StartedTour");
@@ -46,6 +48,7 @@ namespace GuideTourData.Services
 
             _ddb.GetCollection<Team>("Teams").Indexes.CreateOne(indexDefinitionTeamName, optionsUnique);
             _ddb.GetCollection<Teacher>("Teachers").Indexes.CreateOne(indexDefinitionTeacherPinCode, optionsUnique);
+            _ddb.GetCollection<Tour>("Tours").Indexes.CreateOne(indexDefinitionTourIfGuideAppId, optionsUnique);
             //_ddb.GetCollection<Guide>("Guides").Indexes.CreateOne(indexDefinitionGuideEmail, optionsUnique);
             _ddb.GetCollection<Tour>("Tours").Indexes.CreateOne(combinedIndexDefinitionNotStarted, optionsUnique);
             _ddb.GetCollection<Tour>("Tours").Indexes.CreateOne(combinedIndexDefinitionTourEnded, optionsUnique);

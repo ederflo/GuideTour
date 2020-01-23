@@ -181,11 +181,6 @@
             fillOptionsOfSelect('@Model.Teams.First().TeamId');
         });
 
-        $("#guideTeamId").change(function(){
-            var newSelectedTeam = $(this).children("option:selected").val();
-            fillOptionsOfSelect(newSelectedTeam);
-        });
-
         $('input[type=radio][name=guideTeamId]').change(function() {
             fillOptionsOfSelect(this.value);
         });
@@ -193,7 +188,7 @@
         function fillOptionsOfSelect(teamId) {
             $('#guidesButtonGroups').children().hide();
             $('#guidesButtonGroups').children('div[name="' + teamId + '"]').show();
-            $("#guidesButtonGroups").prop("selectedIndex", 0).val(); 
+            var cols = $('div[name="' + teamId + '"]').children().first().children().first().children().first().trigger('click');
         }
 
         $("#newTourForm").submit(function(e) {
@@ -209,10 +204,17 @@
                    data: form.serialize(), // serializes the form's elements.
                     success: function (data) {
                         $('#createTourModal').modal('hide');
-                        $("#newTourForm")[0].reset();
                     }
                 });
             });
+        });
+
+        $('#createTourModal').on('hidden.bs.modal', function () {
+           $("#newTourForm")[0].reset();
+            $("input:radio[name=guideTeamId][disabled=false]:first").attr('checked', true);
+            var id = $('input:radio[name=guideTeamId]:checked').val();
+            $('#radio_' + id).trigger('click');
+            fillOptionsOfSelect(id);
         });
 
 

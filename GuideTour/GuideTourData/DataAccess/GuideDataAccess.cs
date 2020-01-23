@@ -35,7 +35,7 @@ namespace GuideTourData.DataAccess
 
         public async Task<IEnumerable<Guide>> GetAllItemsAsync()
         {
-            var result = await _ddb.Guides.FindAsync(_ => true);
+            var result = await _ddb.Guides.FindAsync(x => x.Type.Equals(typeof(Guide).Name));
             return await result.ToListAsync();
         }
 
@@ -57,13 +57,27 @@ namespace GuideTourData.DataAccess
 
         public async Task<Guide> CreateItemAsync(Guide item)
         {
-            await _ddb.Guides.InsertOneAsync(item);
+            try
+            {
+                await _ddb.Guides.InsertOneAsync(item);
+            }
+            catch
+            {
+                item = null;
+            }
             return item;
         }
 
         public async Task<List<Guide>> CreateItemsAsync(List<Guide> items)
         {
-            await _ddb.Guides.InsertManyAsync(items);
+            try
+            {
+                await _ddb.Guides.InsertManyAsync(items);
+            }
+            catch
+            {
+                items = null;
+            }
             return items;
         }
 
