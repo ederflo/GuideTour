@@ -58,7 +58,7 @@ namespace GuideTourWeb.Mqtt
         {
             if (instance == null)
                 instance = new MqttService();
-            Instance.client.Subscribe(topics, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE });
+            Instance.client.Subscribe(topics, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
         }
 
         public void MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
