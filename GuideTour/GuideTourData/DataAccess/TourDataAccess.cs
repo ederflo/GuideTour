@@ -51,7 +51,7 @@ namespace GuideTourData.DataAccess
             try
             {
                 await _ddb.Tours.InsertOneAsync(item);
-            } catch 
+            } catch (Exception e)
             {
                 item = null;
             }

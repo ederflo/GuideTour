@@ -48,7 +48,7 @@ namespace GuideTourData.Services
 
             _ddb.GetCollection<Team>("Teams").Indexes.CreateOne(indexDefinitionTeamName, optionsUnique);
             _ddb.GetCollection<Teacher>("Teachers").Indexes.CreateOne(indexDefinitionTeacherPinCode, optionsUnique);
-            _ddb.GetCollection<Tour>("Tours").Indexes.CreateOne(indexDefinitionTourIfGuideAppId, optionsUnique);
+            //_ddb.GetCollection<Tour>("Tours").Indexes.CreateOne(indexDefinitionTourIfGuideAppId, optionsUnique);
             //_ddb.GetCollection<Guide>("Guides").Indexes.CreateOne(indexDefinitionGuideEmail, optionsUnique);
             _ddb.GetCollection<Tour>("Tours").Indexes.CreateOne(combinedIndexDefinitionNotStarted, optionsUnique);
             _ddb.GetCollection<Tour>("Tours").Indexes.CreateOne(combinedIndexDefinitionTourEnded, optionsUnique);
