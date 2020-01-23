@@ -115,7 +115,7 @@ function checkPermissions(callback) {
                 teacherId: teacherId
             },
             success: function (permissions) {
-                if (permissions)
+                if (permissions !== 'BigFail')
                     callback();
                 else
                     checkPermissionsWithPin(callback);

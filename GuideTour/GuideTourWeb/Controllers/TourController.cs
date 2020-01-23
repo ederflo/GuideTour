@@ -91,9 +91,9 @@ namespace GuideTourWeb.Controllers
                 if ((result = await tourHelper.ToViewModel(tour)) != null)
                 {
                     await _hubcontext.Clients.All.SendAsync("TourCompleted", result);
-                    //TourMqttModel tourMqtt = TourHelper.ToMqttModel(result);
-                    //MqttService.Instance.client.Publish(MqttService.StartUrl,
-                    //    Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(tourMqtt)));
+                    TourMqttModel tourMqtt = TourHelper.ToMqttModel(result, tour.IfGuideAppId);
+                    MqttService.Instance.client.Publish(MqttService.EndedAckUrl,
+                        Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(tourMqtt)));
                 }
             return result;
         }
