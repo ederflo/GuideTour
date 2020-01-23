@@ -114,11 +114,13 @@ function checkPermissions(callback) {
             data: {
                 teacherId: teacherId
             },
-            success: function (permissions) {
-                if (permissions !== 'BigFail')
-                    callback();
-                else
+            success: function (teacherId) {
+                if (teacherId === 'BigFail') {
                     checkPermissionsWithPin(callback);
+                } else if (teacherId && teacherId.length === 3) {
+                    callback();
+                }
+                    
             },
             error: function () {
                 console.log('Error! Bitte kontaktieren Sie einen Administrator!');
@@ -154,7 +156,7 @@ function checkPermissionsWithPin(callback) {
                     success: function (teacherId) {
                         if (teacherId === 'BigFail') {
                             alert("Pincode falsch!");
-                        } else if (teacherId && teacherId.length) {
+                        } else if (teacherId && teacherId.length === 3) {
                             setTeacherId(teacherId);
                             callback();
                         }
