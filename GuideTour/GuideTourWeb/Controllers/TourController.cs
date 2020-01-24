@@ -37,28 +37,36 @@ namespace GuideTourWeb.Controllers
             TourLogic tourLogic = new TourLogic(_ddb);
             TeamLogic teamLogic = new TeamLogic(_ddb);
             GuideLogic guideLogic = new GuideLogic(_ddb);
-
+            IndexTourViewModel viewModel = null;
 
             TeamImporter teamImporter = new TeamImporter(_ddb);
             TeacherImporter teacherImporter = new TeacherImporter(_ddb);
-            //await teamImporter.ImportTeams();
-            //await teacherImporter.ImportTeachers();
-
-            List<Team> teams = await teamLogic.Get();
-            List<Guide> guides = await guideLogic.Get();
-            List<Tour> tours = await tourLogic.Get();
-            IndexTourViewModel viewModel = new IndexTourViewModel();
-
-            if (tours != null && teams != null && guides != null)
+            try
             {
-                List<TourViewModel> tourVMs = TourHelper.ToViewModel(tours, guides, teams); 
-                viewModel.NotStarted = tourVMs.FindAll(x => x.StartedTour == null && x.EndedTour == null);
-                viewModel.Started = tourVMs.FindAll(x => x.StartedTour != null && x.EndedTour == null);
-                GuideHelper.SliceNames(guides, 14);
-                TeamHelper.SliceNames(teams, 14);
-                viewModel.Teams = TeamHelper.AssignGuidesToTeam(teams, guides);
+                //await teamImporter.ImportTeams();
+                //await teacherImporter.ImportTeachers();
+                List<Team> teams = await teamLogic.Get();
+                List<Guide> guides = await guideLogic.Get();
+                List<Tour> tours = await tourLogic.Get();
+
+                viewModel = new IndexTourViewModel();
+
+                if (tours != null && teams != null && guides != null)
+                {
+                    List<TourViewModel> tourVMs = TourHelper.ToViewModel(tours, guides, teams);
+                    viewModel.NotStarted = tourVMs.FindAll(x => x.StartedTour == null && x.EndedTour == null);
+                    viewModel.Started = tourVMs.FindAll(x => x.StartedTour != null && x.EndedTour == null);
+                    GuideHelper.SliceNames(guides, 14);
+                    TeamHelper.SliceNames(teams, 14);
+                    viewModel.Teams = TeamHelper.AssignGuidesToTeam(teams, guides);
+                }
+                viewModel.Started = viewModel.Started.OrderBy(x => x.StartedTour).ToList();
             }
-            viewModel.Started = viewModel.Started.OrderBy(x => x.StartedTour).ToList();
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+            }
             return View(viewModel);
         }
 
@@ -69,14 +77,22 @@ namespace GuideTourWeb.Controllers
             TourHelper tourHelper = new TourHelper(_ddb);
             TourViewModel result = null;
             Tour tour;
-            if ((tour = await tourLogic.StartTour(id)) != null)
-                if ((result = await tourHelper.ToViewModel(tour)) != null)
-                {
-                    await _hubcontext.Clients.All.SendAsync("TourStarted", result);
-                    TourMqttModel tourMqtt = TourHelper.ToMqttModel(result, tour.IfGuideAppId);
-                    MqttService.Instance.client.Publish(MqttService.StartAckUrl, 
-                        Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(tourMqtt)));
-                }
+            try
+            {
+                if ((tour = await tourLogic.StartTour(id)) != null)
+                    if ((result = await tourHelper.ToViewModel(tour)) != null)
+                    {
+                        await _hubcontext.Clients.All.SendAsync("TourStarted", result);
+                        TourMqttModel tourMqtt = TourHelper.ToMqttModel(result, tour.IfGuideAppId);
+                        MqttService.Instance.client.Publish(MqttService.StartAckUrl,
+                            Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(tourMqtt)));
+                    }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+            }
             return result;
         }
 
@@ -87,14 +103,22 @@ namespace GuideTourWeb.Controllers
             TourHelper tourHelper = new TourHelper(_ddb);
             TourViewModel result = null;
             Tour tour = null;
-            if ((tour = await tourLogic.CompleteTour(id)) != null)
-                if ((result = await tourHelper.ToViewModel(tour)) != null)
-                {
-                    await _hubcontext.Clients.All.SendAsync("TourCompleted", result);
-                    TourMqttModel tourMqtt = TourHelper.ToMqttModel(result, tour.IfGuideAppId);
-                    MqttService.Instance.client.Publish(MqttService.EndedAckUrl,
-                        Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(tourMqtt)));
-                }
+            try
+            {
+                if ((tour = await tourLogic.CompleteTour(id)) != null)
+                    if ((result = await tourHelper.ToViewModel(tour)) != null)
+                    {
+                        await _hubcontext.Clients.All.SendAsync("TourCompleted", result);
+                        TourMqttModel tourMqtt = TourHelper.ToMqttModel(result, tour.IfGuideAppId);
+                        MqttService.Instance.client.Publish(MqttService.EndedAckUrl,
+                            Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(tourMqtt)));
+                    }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+            }
             return result;
         }
 
@@ -105,15 +129,22 @@ namespace GuideTourWeb.Controllers
             TourHelper tourHelper = new TourHelper(_ddb);
             TourViewModel result = null;
             Tour tour;
-            if ((tour = await tourLogic.CancelTour(id)) != null)
-                if ((result = await tourHelper.ToViewModel(tour)) != null)
-                {
-                    await _hubcontext.Clients.All.SendAsync("TourCancelled", result);
-                    /*TourMqttModel tourMqtt = TourHelper.ToMqttModel(result);
-                    MqttService.Instance.client.Publish(MqttService.EndedAckUrl,
-                        Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(tourMqtt)));*/
-                }
-                    
+            try
+            {
+                if ((tour = await tourLogic.CancelTour(id)) != null)
+                    if ((result = await tourHelper.ToViewModel(tour)) != null)
+                    {
+                        await _hubcontext.Clients.All.SendAsync("TourCancelled", result);
+                        TourMqttModel tourMqtt = TourHelper.ToMqttModel(result, tour.IfGuideAppId);
+                        MqttService.Instance.client.Publish(MqttService.CanceldAck,
+                            Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(tourMqtt)));
+                    }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+            }       
             return result;
         }
 
@@ -125,13 +156,21 @@ namespace GuideTourWeb.Controllers
             TourViewModel result = null;
             if (viewModel == null || string.IsNullOrEmpty(viewModel.GuideId) || string.IsNullOrEmpty(viewModel.GuideTeamId))
                 return null;
-
-            Tour tour = TourLogic.NewTour(viewModel.GuideId, viewModel.TeacherId, viewModel.VisitorName);
-            if ((tour = await tourLogic.Add(tour)) != null)
-                if ((result = await tourHelper.ToViewModel(tour)) != null)
-                {
-                    await _hubcontext.Clients.All.SendAsync("NewRequestedTour", result);
-                }
+            Tour tour;
+            try
+            {
+                tour = TourLogic.NewTour(viewModel.GuideId, viewModel.TeacherId, viewModel.VisitorName);
+                if ((tour = await tourLogic.Add(tour)) != null)
+                    if ((result = await tourHelper.ToViewModel(tour)) != null)
+                    {
+                        await _hubcontext.Clients.All.SendAsync("NewRequestedTour", result);
+                    }
+            } 
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+            }
             return result;
         }
 
@@ -139,13 +178,21 @@ namespace GuideTourWeb.Controllers
         public async Task<string> CheckPermissions(string teacherId = "", int pinCode = -1)
         {
             TeacherLogic teacherLogic = new TeacherLogic(_ddb);
-            if (!string.IsNullOrEmpty(teacherId))
+            try
             {
-                teacherId = await teacherLogic.CheckLastAction(teacherId);
-            } 
-            else if (pinCode > 0)
+                if (!string.IsNullOrEmpty(teacherId))
+                {
+                    teacherId = await teacherLogic.CheckLastAction(teacherId);
+                }
+                else if (pinCode > 0)
+                {
+                    teacherId = await teacherLogic.CheckPinCode(pinCode);
+                }
+            }
+            catch (Exception ex)
             {
-                teacherId = await teacherLogic.CheckPinCode(pinCode);
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
             }
             return string.IsNullOrEmpty(teacherId) ? "BigFail" : teacherId;
         }

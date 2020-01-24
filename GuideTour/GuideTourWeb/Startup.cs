@@ -43,7 +43,15 @@ namespace GuideTourWeb
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IDocumentDbRepository ddb, IHubContext<TourHub> hubcontext)
         {
-            MqttService.Init(ddb, hubcontext);
+            try
+            {
+                MqttService.Init(ddb, hubcontext);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+            }
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

@@ -22,10 +22,10 @@ namespace GuideTourWeb.Mqtt
     {
         public static readonly string StartUrl = "tdot/tours/started";
         public static readonly string StartAckUrl = "tdot/tours/startedACK";
-        public static readonly string EndedUrl = "tdot/tours/ended";
         public static readonly string EndedAckUrl = "tdot/tours/endedACK";
+        public static readonly string CanceldAck = "tdot/tours/canceldACK";
 
-        private static readonly string[] topics = { "tdot/tours/started" };
+        private static readonly string[] topics = { StartUrl };
         private static readonly string brokerUrl = "guide.informatik.app";
         private static readonly string clientId = "GuideTour";
         private static MqttService instance = null;
@@ -61,6 +61,7 @@ namespace GuideTourWeb.Mqtt
             }
             catch (Exception e)
             {
+                Console.WriteLine(e.Message);
                 Console.WriteLine(e.StackTrace);
             }
         }
@@ -77,27 +78,35 @@ namespace GuideTourWeb.Mqtt
             TourLogic tourLogic = new TourLogic(_ddb);
             GuideLogic guideLogic = new GuideLogic(_ddb);
             TeamLogic teamLogic = new TeamLogic(_ddb);
-            if (e.Topic.Equals(StartUrl))
+            try
             {
-                string jsonString = Encoding.UTF8.GetString(e.Message);
-                TourIfGuideAppModel tourApp = JsonConvert.DeserializeObject<TourIfGuideAppModel>(jsonString);
-
-                Guide g = await guideLogic.GetByEmail(tourApp.GuideMail);
-                if (g != null)
+                if (e.Topic.Equals(StartUrl))
                 {
-                    Team t = await teamLogic.Get(g.TeamId);
-                    if (t != null)
+                    string jsonString = Encoding.UTF8.GetString(e.Message);
+                    TourIfGuideAppModel tourApp = JsonConvert.DeserializeObject<TourIfGuideAppModel>(jsonString);
+
+                    Guide g = await guideLogic.GetByEmail(tourApp.GuideMail);
+                    if (g != null)
                     {
-                        await tourLogic.Add(TourLogic.NewTour(g.Id, null, null, tourApp.IfGuideAppId));
-                        Tour tour = await tourLogic.GetByIfGuideAppId(tourApp.IfGuideAppId);
-                        if (tour != null && tour.StartedTour == null && tour.GuideId == g.Id)
+                        Team t = await teamLogic.Get(g.TeamId);
+                        if (t != null)
                         {
-                            TourViewModel tourVM = TourHelper.ToViewModel(tour, g, t);
-                            await _hubcontext.Clients.All.SendAsync("NewRequestedTour", tourVM);
+                            await tourLogic.Add(TourLogic.NewTour(g.Id, null, null, tourApp.IfGuideAppId));
+                            Tour tour = await tourLogic.GetByIfGuideAppId(tourApp.IfGuideAppId);
+                            if (tour != null && tour.StartedTour == null && tour.GuideId == g.Id)
+                            {
+                                TourViewModel tourVM = TourHelper.ToViewModel(tour, g, t);
+                                await _hubcontext.Clients.All.SendAsync("NewRequestedTour", tourVM);
+                            }
                         }
+
                     }
-                    
                 }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
             }
         }
     }
