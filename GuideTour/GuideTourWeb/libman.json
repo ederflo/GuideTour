@@ -33,5 +33,61 @@
       "library": "bootbox.js@5.4.0",
       "destination": "wwwroot/lib/bootbox/"
     }
+  ,
+{
+  "library": "admin-lte@2.4.18",
+  "destination": "wwwroot/lib/admin-lte/",
+  "files": [
+    "js/adminlte.min.js",
+    "js/adminlte.js",
+    "css/AdminLTE.css",
+    "css/AdminLTE.min.css",
+    "css/skins/skin-black-light.css",
+    "css/skins/skin-black-light.min.css",
+    "css/skins/skin-black.css",
+    "css/skins/skin-black.min.css",
+    "css/skins/skin-blue-light.css",
+    "css/skins/skin-blue-light.min.css",
+    "css/skins/skin-blue.css",
+    "css/skins/skin-blue.min.css",
+    "css/skins/skin-green-light.css",
+    "css/skins/skin-green-light.min.css",
+    "css/skins/skin-green.css",
+    "css/skins/skin-green.min.css",
+    "css/skins/skin-purple-light.css",
+    "css/skins/skin-purple-light.min.css",
+    "css/skins/skin-purple.css",
+    "css/skins/skin-purple.min.css",
+    "css/skins/skin-red-light.css",
+    "css/skins/skin-red-light.min.css",
+    "css/skins/skin-red.css",
+    "css/skins/skin-red.min.css",
+    "css/skins/skin-yellow-light.css",
+    "css/skins/skin-yellow-light.min.css",
+    "css/skins/skin-yellow.css",
+    "css/skins/skin-yellow.min.css",
+    "css/skins/_all-skins.css",
+    "css/skins/_all-skins.min.css"
   ]
+}
+,
+{
+  "library": "ionicons@4.5.6",
+  "destination": "wwwroot/lib/ionicons/",
+  "files": [
+    "css/ionicons.min.css",
+    "css/ionicons.css"
+  ]
+}
+,
+{
+  "library": "morris.js@0.5.1",
+  "destination": "wwwroot/lib/morris.js/"
+}
+,
+{
+  "library": "jvectormap@2.0.5",
+  "destination": "wwwroot/lib/jvectormap/"
+}
+]
 }
