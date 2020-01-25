@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html lang="de-at">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Dashboard</title>
+    <link rel="stylesheet" href="~/css/GuideTour.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/lib/font-awesome/css/all.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/dashboard.css" />
+    <link rel="stylesheet" href="~/css/dashboard-skin.css" />
+    <link rel="stylesheet" href="~/css/MyBootbox.css" />
+    <link rel="stylesheet" href="~/lib/admin-lte/css/AdminLTE.css" />
+    <link rel="stylesheet" href="~/lib/admin-lte/css/skins/_all-skins.css" />
+    <link rel="stylesheet" href="~/lib/ionicons/css/ionicons.css" />
+    <link rel="stylesheet" href="~/lib/morris.js/morris.css" />
+    <link rel="stylesheet" href="~/lib/jvectormap/jquery-jvectormap.css" />
+</head>
+<body class="hold-transition skin-htl">
+    <div class="wrapper">
+
+        <header class="main-header">
+            <!-- Logo -->
+            <a asp-controller="Tour" asp-action="Index" class="logo">
+                <!-- mini logo for sidebar mini 50x50 pixels -->
+                <span class="logo-mini"><b>G</b>T</span>
+                <!-- logo for regular state and mobile devices -->
+                <span class="logo-lg"><b>Guide</b>Tour</span>
+            </a>
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="sidebar-toggle w-100" data-toggle="push-menu" role="button">
+                    <i class="fas fa-list"></i>
+                </a>
+                @*<a asp-controller="Touren" asp-action="Index" class="sidebar-toggle w-50 text-center" role="button">
+                     <span class="w-100"><i class="fas fa-eye"></i> Touren</span>
+                </a>*@
+            </nav>
+        </header>
+        <!-- Left side column. contains the logo and sidebar -->
+        <aside class="main-sidebar">
+            <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar">
+                <!-- /.search form -->
+                <!-- sidebar menu: : style can be found in sidebar.less -->
+                <ul class="sidebar-menu" data-widget="tree">
+                    <li class="header"><i class="fas fa-chart-line"></i> Übersicht</li>
+                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")">
+                        <a asp-controller="Dashboard" asp-action="Index">
+                            <i class="fas fa-chart-area"></i> <span> Allgemein</span>
+                        </a>
+                    </li>
+                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "OverviewTours" ? "active" : "")">
+                        <a asp-controller="Dashboard" asp-action="OverviewTours">
+                            <i class="fas fa-road"></i> <span> Führungen</span>
+                        </a>
+                    </li>
+                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "OverviewTeams" ? "active" : "")">
+                        <a asp-controller="Dashboard" asp-action="OverviewTeams">
+                            <i class="fas fa-users"></i> <span> Teams</span>
+                        </a>
+                    </li>
+                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "OverviewGuides" ? "active" : "")">
+                        <a asp-controller="Dashboard" asp-action="OverviewGuides">
+                            <i class="fas fa-user"></i> <span> Guides</span>
+                        </a>
+                    </li>
+                    <li class="header"><i class="fas fa-database"></i> Daten</li>
+                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "DataTours" ? "active" : "")">
+                        <a asp-controller="Dashboard" asp-action="DataTours">
+                            <i class="fas fa-road"></i> <span> Führungen</span>
+                        </a>
+                    </li>
+                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "DataTeams" ? "active" : "")">
+                        <a asp-controller="Dashboard" asp-action="DataTeams">
+                            <i class="fas fa-users"></i> <span> Teams</span>
+                        </a>
+                    </li>
+                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "DataGuides" ? "active" : "")">
+                        <a asp-controller="Dashboard" asp-action="DataGuides">
+                            <i class="fas fa-user"></i> <span> Guides</span>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+            <!-- /.sidebar -->
+        </aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            @RenderBody()
+        </div>
+    </div>
+    <script src="~/lib/jquery/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script src="~/lib/font-awesome/js/all.js"></script>
+    <script src="~/lib/bootbox/bootbox.js"></script>
+    <script src="~/lib/jquery-ajax-unobtrusive/dist/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/dashboard.js" asp-append-version="true"></script>
+    <script src="~/lib/admin-lte/js/adminlte.js" asp-append-version="true"></script>
+    <script src="~/lib/raphael/raphael.js" asp-append-version="true"></script>
+    <script src="~/lib/morris.js/morris.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery-sparklines/jquery.sparkline.js" asp-append-version="true"></script>
+    <script src="~/lib/jvectormap/jquery-jvectormap.js" asp-append-version="true"></script>
+    <script src="~/lib/jQuery-Knob/jquery.knob.min.js" asp-append-version="true"></script>
+    <script src="~/lib/moment.js/moment.js" asp-append-version="true"></script>
+    <script src="~/lib/jQuery-slimScroll/jquery.slimscroll.js" asp-append-version="true"></script>
+    <script src="~/lib/fastclick/fastclick.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

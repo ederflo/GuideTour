@@ -1,4 +1,5 @@
 ﻿using GuideTourData.Models;
+using GuideTourWeb.Models;
 using GuideTourWeb.Models.TourViewModels;
 using System;
 using System.Collections.Generic;
