@@ -1,7 +1,6 @@
 ﻿using GuideTourData.Models;
 using GuideTourData.Services;
 using GuideTourLogic.Logics;
-using GuideTourWeb.Models;
 using GuideTourWeb.Models.MqttModels;
 using GuideTourWeb.Models.TourViewModels;
 using System;

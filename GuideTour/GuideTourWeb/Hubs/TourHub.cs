@@ -1,5 +1,4 @@
 ﻿using GuideTourData.Models;
-using GuideTourWeb.Models;
 using GuideTourWeb.Models.TourViewModels;
 using Microsoft.AspNetCore.SignalR;
 using System;

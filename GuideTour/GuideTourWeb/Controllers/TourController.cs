@@ -11,7 +11,6 @@ using GuideTourLogic.Logics;
 using GuideTourLogic.Services;
 using GuideTourWeb.Helpers.ObjectHelpers;
 using GuideTourWeb.Hubs;
-using GuideTourWeb.Models;
 using GuideTourWeb.Models.MqttModels;
 using GuideTourWeb.Models.TourViewModels;
 using GuideTourWeb.Mqtt;

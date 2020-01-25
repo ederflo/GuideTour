@@ -3,7 +3,6 @@ using GuideTourData.Services;
 using GuideTourLogic.Logics;
 using GuideTourWeb.Helpers.ObjectHelpers;
 using GuideTourWeb.Hubs;
-using GuideTourWeb.Models;
 using GuideTourWeb.Models.MqttModels;
 using GuideTourWeb.Models.TourViewModels;
 using Microsoft.AspNetCore.Components;
@@ -59,11 +58,9 @@ namespace GuideTourWeb.Mqtt
                 client.Connect(clientId);
                 _ddb = ddb;
                 _hubcontext = hubcontext;
-                Console.WriteLine("Setted up and initialised MQTT");
             }
             catch (Exception e)
             {
-                Console.WriteLine("Fail to connect with MQTT!");
                 Console.WriteLine(e.Message);
                 Console.WriteLine(e.StackTrace);
             }
@@ -74,7 +71,6 @@ namespace GuideTourWeb.Mqtt
             if (instance == null)
                 instance = new MqttService(ddb, hubcontext);
             Instance.client.Subscribe(topics, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
-            Console.WriteLine("Successfully subscribed: " + topics.ToString());
         }
 
         public async void MqttMsgPublishReceivedAsync(object sender, MqttMsgPublishEventArgs e)
