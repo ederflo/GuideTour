@@ -23,10 +23,10 @@ namespace GuideTourWeb.Mqtt
         public static readonly string StartUrl = "tdot/tours/started";
         public static readonly string StartAckUrl = "tdot/tours/startedACK";
         public static readonly string EndedAckUrl = "tdot/tours/endedACK";
-        public static readonly string CanceldAck = "tdot/tours/canceldACK";
+        public static readonly string CanceledAck = "tdot/tours/canceledACK";
 
         private static readonly string[] topics = { StartUrl };
-        private static readonly string brokerUrl = "guide.informatik.app";
+        private static readonly string brokerUrl = "guidebroker";
         private static readonly string clientId = "GuideTour";
         private static MqttService instance = null;
         private static readonly object padlock = new object();

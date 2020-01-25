@@ -136,7 +136,7 @@ namespace GuideTourWeb.Controllers
                     {
                         await _hubcontext.Clients.All.SendAsync("TourCancelled", result);
                         TourMqttModel tourMqtt = TourHelper.ToMqttModel(result, tour.IfGuideAppId);
-                        MqttService.Instance.client.Publish(MqttService.CanceldAck,
+                        MqttService.Instance.client.Publish(MqttService.CanceledAck,
                             Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(tourMqtt)));
                     }
             }
