@@ -16,22 +16,44 @@ namespace GuideTourWeb.Controllers
             _ddb = ddb;
         }
 
+        [Route("Dashboard/Overview")]
         public IActionResult Index()
         {
             return View();
         }
 
-        public IActionResult Teams()
+        [Route("Dashboard/Overview/Tours")]
+        public IActionResult OverviewTours()
         {
             return View();
         }
 
-        public IActionResult Guides()
+        [Route("Dashboard/Overview/Teams")]
+        public IActionResult OverviewTeams()
         {
             return View();
         }
 
-        public IActionResult Tours()
+        [Route("Dashboard/Overview/Guides")]
+        public IActionResult OverviewGuides()
+        {
+            return View();
+        }
+
+        [Route("Dashboard/Data/Tours")]
+        public IActionResult DataTours()
+        {
+            return View();
+        }
+
+        [Route("Dashboard/Data/Teams")]
+        public IActionResult DataTeams()
+        {
+            return View();
+        }
+
+        [Route("Dashboard/Data/Guides")]
+        public IActionResult DataGuides()
         {
             return View();
         }

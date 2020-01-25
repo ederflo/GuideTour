@@ -1,2 +1,30 @@
 ﻿body {
+    margin-bottom: 0px;
+}
+
+.main-header .sidebar-toggle:before {
+    content: "" !important;
+}
+
+.navbar {
+    padding: 0px !important;
+    height: 50px;
+    max-height: 50px;
+}
+
+.navbar:hover {
+    padding: 0px !important;
+    height: 50px;
+}
+
+.sidebar-menu li > a > .fa-angle-left, .sidebar-menu li > a > .pull-right-container > .fa-angle-left {
+    height: 16px !important;
+}
+
+.sidebar-menu li.header {
+    font-size: 20px !important; 
+}
+
+.main-header .navbar .sidebar-toggle:hover {
+    height: 50px !important;
 }
