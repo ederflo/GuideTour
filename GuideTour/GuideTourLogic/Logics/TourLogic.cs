@@ -95,7 +95,7 @@ namespace GuideTourLogic.Logics
                 return null;
 
             tourToCancel.EndedTour = DateTime.Now;
-            tourToCancel.Canceld = true;
+            tourToCancel.Canceled = true;
 
             return await Update(tourToCancel);
         }
@@ -109,7 +109,7 @@ namespace GuideTourLogic.Logics
                 EndedTour = null,
                 StartedTour = null,
                 VisitorName = visitorName,
-                Canceld = false,
+                Canceled = false,
                 GuideId = guideId,
                 TeacherId = teacherId
             };

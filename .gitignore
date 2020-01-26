@@ -9,7 +9,9 @@
 **/GuideTourData/obj
 **/GuideTourLogic/obj
 **/GuideTourWeb/obj
+**/GuideTourTestData/obj
 **/GuideTourData/bin
 **/GuideTourLogic/bin
 **/GuideTourWeb/bin
+**/GuideTourTestData/bin
 **/.vs/GuideTour/config/applicationhost.config

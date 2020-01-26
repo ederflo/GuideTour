@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GuideTourData.Models;
 using GuideTourData.Services;
+using GuideTourLogic.Logics;
+using GuideTourTestData.DataProvider;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GuideTourWeb.Controllers
@@ -17,8 +20,13 @@ namespace GuideTourWeb.Controllers
         }
 
         [Route("Dashboard/Overview")]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            GuideLogic guideLogic = new GuideLogic(_ddb);
+            List<Guide> guides = await guideLogic.Get();
+
+            List<Tour> tours = TourGenerator.Generate(guides);
+
             return View();
         }
 

@@ -19,6 +19,7 @@
   <ItemGroup>
     <ProjectReference Include="..\GuideTourData\GuideTourData.csproj" />
     <ProjectReference Include="..\GuideTourLogic\GuideTourLogic.csproj" />
+    <ProjectReference Include="..\GuideTourTestData\GuideTourTestData.csproj" />
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>

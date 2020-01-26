@@ -31,9 +31,9 @@ namespace GuideTourData.Models
         [BsonElement("visitorName")]
         public string VisitorName { get; set; }
 
-        [BsonElement("canceld")]
+        [BsonElement("canceled")]
         [BsonDefaultValue("false")]
-        public bool Canceld { get; set; } = false;
+        public bool Canceled { get; set; } = false;
 
         public Tour () : base("Tour") { }
     }
