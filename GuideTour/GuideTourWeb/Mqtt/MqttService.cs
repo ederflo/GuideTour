@@ -95,6 +95,7 @@ namespace GuideTourWeb.Mqtt
                         Team t = await teamLogic.Get(g.TeamId);
                         if (t != null)
                         {
+                            
                             await tourLogic.Add(TourLogic.NewTour(g.Id, null, null, tourApp.IfGuideAppId));
                             Tour tour = await tourLogic.GetByIfGuideAppId(tourApp.IfGuideAppId);
                             if (tour != null && tour.StartedTour == null && tour.GuideId == g.Id)

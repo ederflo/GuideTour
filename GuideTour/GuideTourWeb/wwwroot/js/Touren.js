@@ -40,6 +40,8 @@ function startTourAjax(id) {
     if (!id)
         alert('Tour konnte nicht gestartet werden! Bitte wenden Sie sich an einen Administrator!');
 
+    $('#btnStart_' + id).attr('disabled', true);
+
     checkPermissions(function () {
         $.ajax({
             type: 'PATCH',
@@ -50,9 +52,11 @@ function startTourAjax(id) {
             success: function (data) {
                 if (!data)
                     console.log('Error! Bitte kontaktieren Sie einen Administrator!');
+                $('#btnStart_' + id).attr('disabled', false);
             },
             error: function () {
                 console.log('Error! Bitte kontaktieren Sie einen Administrator!');
+                $('#btnStart_' + id).attr('disabled', false);
             }
         });
     });
@@ -61,6 +65,8 @@ function startTourAjax(id) {
 function completeTourAjax(id) {
     if (!id)
         alert('Tour konnte nicht beendet werden! Bitte wenden Sie sich an einen Administrator!');
+
+    $('#btnEnd_' + id).attr('disabled', true);
 
     checkPermissions(function () {
         $.ajax({
@@ -72,9 +78,11 @@ function completeTourAjax(id) {
             success: function (data) {
                 if (!data)
                     console.log('Error! Bitte kontaktieren Sie einen Administrator!');
+                $('#btnEnd_' + id).attr('disabled', false);
             },
             error: function () {
                 console.log('Error! Bitte kontaktieren Sie einen Administrator!');
+                $('#btnEnd_' + id).attr('disabled', false);
             }
         });
     });
@@ -192,7 +200,7 @@ function buildNotStartedTourPanel(id, guideName, guideTeam, visitorName) {
         '<strong>Team:</strong> ' + guideTeam + '<br />' +
         '<strong>Gast:</strong> ' + visitorName +
         '</p>' +
-        '<button type="button" class="btn bg-primary-color text-white w-100 font-weight-bold"' +
+        '<button id="btnStart_' + id + '" type="button" class="btn bg-primary-color text-white w-100 font-weight-bold"' +
         'onclick="startTourAjax(\'' + id + '\');">Bestätigen</button>' +
         '</div>' +
         '</div>' +
@@ -218,7 +226,7 @@ function buildStartedTourPanel(id, guideName, guideTeam, visitorName, startTime)
         '<strong>Führungsstart:</strong> ' + hour + ':' + minute + '<br />' +
         '<strong>Gast:</strong> ' + visitorName +
         '</p>' +
-        '<button type="button" class="btn bg-primary-color text-white w-100 font-weight-bold"' +
+        '<button id="btnEnd_' + id + '" type="button" class="btn bg-primary-color text-white w-100 font-weight-bold"' +
         'onclick="completeTourAjax(\'' + id + '\');">Beenden</button>' +
         '</div>' +
         '</div>' +

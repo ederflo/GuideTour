@@ -75,10 +75,10 @@ namespace GuideTourWeb.Helpers.ObjectHelpers
             {
                 Id = tour.Id,
                 GuideId = tour.GuideId,
-                GuideName = StringHelper.Slice(g.Name, 14, true),
+                GuideName = StringHelper.Slice(g.Name, 13, true),
                 EndedTour = tour.EndedTour,
                 StartedTour = tour.StartedTour,
-                Team = StringHelper.Slice(team.Name, 14, true),
+                Team = StringHelper.Slice(team.Name, 13, true),
                 TeamId = team.Id,
                 VisitorName = tour.VisitorName != null ? StringHelper.Slice(tour.VisitorName, 25, true) : tour.VisitorName
             };

@@ -22,7 +22,7 @@
                                 <strong>Team:</strong> @item.Team<br />
                                 <strong>Gast:</strong> @(string.IsNullOrWhiteSpace(item.VisitorName) ? "--" : item.VisitorName)
                             </p>
-                            <button type="button" class="btn bg-primary-color text-white w-100 font-weight-bold" 
+                            <button id="@("btnStart_" + item.Id)" type="button" class="btn bg-primary-color text-white w-100 font-weight-bold" 
                                     onclick="startTourAjax('@item.Id');">Bestätigen</button>
                         </div>
                     </div>
@@ -54,7 +54,7 @@
                                 <strong>Führungsstart:</strong> @item.StartedTour.Value.ToString("HH:mm")<br />
                                 <strong>Gast:</strong> @(string.IsNullOrWhiteSpace(item.VisitorName) ? "--" : item.VisitorName)
                             </p>
-                            <button type="button" class="btn bg-primary-color text-white w-100 font-weight-bold"
+                            <button id="@("btnEnd_" + item.Id)" type="button" class="btn bg-primary-color text-white w-100 font-weight-bold"
                                     onclick="completeTourAjax('@item.Id');">Beenden</button>
                         </div>
                     </div>
@@ -164,7 +164,7 @@
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <button type="submit" class="btn bg-ternary-color text-white w-100 font-weight-bold">Erstellen</button>
+                                <button id="btnSubmitForm" type="submit" class="btn bg-ternary-color text-white w-100 font-weight-bold">Erstellen</button>
                             </div>
                         </div>
                         <input id="teacherId" name="teacherId" asp-for="TeacherId" type="hidden" value="@Model.TeacherId">
@@ -196,6 +196,7 @@
 
         $("#newTourForm").submit(function(e) {
             e.preventDefault(); // avoid to execute the actual submit of the form.
+            $('#btnSubmitForm').attr('disabled', true);
 
             var form = $(this);
             var url = '/Tour/NewTour';
@@ -207,13 +208,18 @@
                    data: form.serialize(), // serializes the form's elements.
                     success: function (data) {
                         $('#createTourModal').modal('hide');
+                        $('#btnSubmitForm').attr('disabled', false);
+                    },
+                    error: function () {
+                        $('#btnSubmitForm').attr('disabled', false);
                     }
                 });
             });
         });
 
         $('#createTourModal').on('hidden.bs.modal', function () {
-           $("#newTourForm")[0].reset();
+            $('#btnSubmitForm').attr('disabled', false);
+            $("#newTourForm")[0].reset();
             $("input:radio[name=guideTeamId][disabled=false]:first").attr('checked', true);
             var id = $('input:radio[name=guideTeamId]:checked').val();
             $('#radio_' + id).trigger('click');
