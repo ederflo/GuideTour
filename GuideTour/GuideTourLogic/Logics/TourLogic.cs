@@ -43,6 +43,12 @@ namespace GuideTourLogic.Logics
             TourDataAccess tourDataAccess = new TourDataAccess(_ddb);
             return await tourDataAccess.CreateItemAsync(tour);
         }
+        public async Task<List<Tour>> Add(List<Tour> tours)
+        {
+            TourDataAccess tourDataAccess = new TourDataAccess(_ddb);
+            return await tourDataAccess.CreateItemsAsync(tours);
+        }
+
 
         public async Task<Tour> Update(Tour tour)
         {

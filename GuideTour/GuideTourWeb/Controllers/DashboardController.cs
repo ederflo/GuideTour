@@ -6,6 +6,7 @@ using GuideTourData.Models;
 using GuideTourData.Services;
 using GuideTourLogic.Logics;
 using GuideTourTestData.DataProvider;
+using GuideTourWeb.Models.DashboardViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GuideTourWeb.Controllers
@@ -23,11 +24,40 @@ namespace GuideTourWeb.Controllers
         public async Task<IActionResult> Index()
         {
             GuideLogic guideLogic = new GuideLogic(_ddb);
+            TourLogic tourLogic = new TourLogic(_ddb);
             List<Guide> guides = await guideLogic.Get();
+            List<Tour> tours = await tourLogic.Get();
 
-            List<Tour> tours = TourGenerator.Generate(guides);
+            IndexDashboardViewModel viewModel = new IndexDashboardViewModel();
+            List<Tour> finishedTours = new List<Tour>();
+            List<Tour> ongoingTours = new List<Tour>();
+            List<Tour> canceldTours = new List<Tour>();
+            List<Tour> fromIfGuideApp = new List<Tour>();
 
-            return View();
+            if (tours == null || tours.Count <= 0)
+            {
+                tours = TourGenerator.Generate(guides);
+                await tourLogic.Add(tours);
+            }
+
+            foreach (Tour t in tours)
+            {
+                if (t.Canceled)
+                    canceldTours.Add(t);
+                if (t.StartedTour != null && t.EndedTour == null)
+                    ongoingTours.Add(t);
+                if (t.StartedTour != null && t.EndedTour != null)
+                    finishedTours.Add(t);
+                if (!string.IsNullOrEmpty(t.IfGuideAppId))
+                    fromIfGuideApp.Add(t);
+            }
+
+            viewModel.CntFinishedTours = finishedTours.Count;
+            viewModel.CntCanceledTours = canceldTours.Count;
+            viewModel.CntOngoingTours = ongoingTours.Count;
+            viewModel.CntIfGuideAppTours = fromIfGuideApp.Count;
+
+            return View(viewModel);
         }
 
         [Route("Dashboard/Overview/Tours")]

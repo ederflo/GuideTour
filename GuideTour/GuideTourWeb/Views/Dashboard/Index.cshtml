@@ -5,3 +5,63 @@
 }
 
 
+    <section class="content">
+        <div class="row">
+            <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-ternary-color">
+                    <div class="inner">
+                        <h3>@Model.CntFinishedTours</h3>
+
+                        <p>Beendete Führungen</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-flag-checkered float-right h-100"></i>
+                    </div>  
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-ternary-color">
+                    <div class="inner">
+                        <h3>@Model.CntOngoingTours</h3>
+
+                        <p>Laufende Führungen</p>
+                    </div>
+                    <div class="icon w-50">
+                        <i class="fas fa-retweet float-right h-100"></i>
+                    </div>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-ternary-color">
+                    <div class="inner">
+                        <h3>@Model.CntCanceledTours</h3>
+
+                        <p>Abgebrochene Führungen</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-times float-right h-100"></i>
+                    </div>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-ternary-color">
+                    <div class="inner">
+                        <h3>@Model.CntIfGuideAppTours</h3>
+
+                        <p>Führungen von IfGuideApp</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-mobile-alt float-right h-100"></i>
+                    </div>
+                </div>
+            </div>
+            <!-- ./col -->
+        </div>
+    </section>

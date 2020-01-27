@@ -28,3 +28,14 @@
 .main-header .navbar .sidebar-toggle:hover {
     height: 50px !important;
 }
+
+.small-box .inner {
+    width: 50%;
+}
+
+.icon {
+    color: white !important;
+    margin: 10px;
+    height: 100%;
+    width: 50%;
+}

@@ -59,6 +59,20 @@ namespace GuideTourData.DataAccess
             return item;
         }
 
+        public async Task<List<Tour>> CreateItemsAsync(List<Tour> items)
+        {
+            try
+            {
+                await _ddb.Tours.InsertManyAsync(items);
+            }
+            catch (Exception e)
+            {
+                items = null;
+            }
+
+            return items;
+        }
+
         public Task<IEnumerable<Tour>> CreateQueryAsync(string sqlExpression)
         {
             throw new NotImplementedException();
