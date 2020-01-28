@@ -17,7 +17,7 @@
                     </div>
                     <div class="icon">
                         <i class="fas fa-flag-checkered float-right h-100"></i>
-                    </div>  
+                    </div>
                 </div>
             </div>
             <!-- ./col -->
@@ -64,4 +64,124 @@
             </div>
             <!-- ./col -->
         </div>
+        <div class="row">
+            <div class="col-12 col-lg-6">
+                <canvas id="averageToursPerHour" class="bg-ternary-color"></canvas>
+            </div>
+            <div class="col-12 col-lg-6">
+                <canvas id="toursPerTeam" class="bg-ternary-color"></canvas>
+            </div>
+        </div>
     </section>
+
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $.ajax({
+                    type: "GET",
+                    url: '/Dashboard/GetChartDataForOverview',
+                    success: function (data) {
+                        new Chart(document.getElementById("averageToursPerHour"), {
+                            type: 'line',
+                            data: {
+                                datasets: [{
+                                    data: data[0],
+                                    label: "",
+                                    borderWidth: 2,
+                                    borderColor: "#FFF233",
+                                    fill: true,
+                                    pointRadius: 0
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    xAxes: [{
+                                        type: 'time',
+                                        time: {
+                                            parser: 'HH:mm',
+                                            unit: 'min',
+                                            displayFormats: {
+                                                min: 'HH:mm'
+                                            },
+                                            min: '08',
+                                            max: '18'
+                                        },
+                                        ticks: {
+                                            source: 'data'
+                                        }
+                                    }]
+                                },
+                                legend: {
+                                    display: false
+                                },
+                                animation: {
+                                    duration: 3,
+                                },
+                                hover: {
+                                    animationDuration: 3,
+                                },
+                                responsiveAnimationDuration: 2,
+                                title: {
+                                    display: true,
+                                    text: 'Durschnittliche Führungen',
+                                    fontColor: '#FFF',
+                                    fontSize: 22
+                                },
+                            },
+                            plugins: [{
+                                beforeInit: function (chart) {
+                                    var time = chart.options.scales.xAxes[0].time, // 'time' object reference
+                                        timeDiff = moment(time.max, 'HH').diff(moment(time.min, 'HH'), 'hours'); 
+                                    timeDiff *= 2;
+                                    // populate 'labels' array
+                                    // (create a date string for each date between min and max, inclusive)
+                                    for (i = 0; i <= timeDiff; i++) {
+                                        var _label = moment(time.min, 'HH').add(i * 30, 'minutes').format('HH:mm');
+                                        chart.data.labels.push(_label);
+                                    }
+                                }
+                            }]
+                        });
+
+
+
+                        new Chart(document.getElementById("toursPerTeam"), {
+                            type: 'bar',
+                            data: {
+                                labels: data[1].teamnames,
+                                datasets: [{
+                                    data: data[1].numOfTours,
+                                    borderWidth: 2,
+                                    borderColor: "#FFF233",
+                                    fill: true,
+                                    pointRadius: 0
+                                }]
+                            },
+                            options: {
+                                legend: {
+                                    display: false
+                                },
+                                animation: {
+                                    duration: 3,
+                                },
+                                hover: {
+                                    animationDuration: 3,
+                                },
+                                responsiveAnimationDuration: 2,
+                                title: {
+                                    display: true,
+                                    text: 'Führungen pro Team',
+                                    fontColor: '#FFF',
+                                    fontSize: 22
+                                },
+                            }
+                        });
+                    },
+                    error: function () {
+                        console.log('No data for charts');
+                    }
+                });
+        });
+    </script>
+}
