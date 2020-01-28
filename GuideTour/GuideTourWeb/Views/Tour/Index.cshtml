@@ -3,7 +3,7 @@
     ViewData["Title"] = "Übersicht";
 }
     <div class="row">
-        <div class="col-12 col-md-6 border-right">
+        <div class="col-12 col-md-3 border-right">
             <div id="notStartedTours" class="row">
                 <div class="col-12 text-center text-white mb-4">
                     <a href="#" data-toggle="modal" data-target="#createTourModal">
@@ -14,7 +14,7 @@
                 </div>
                 @foreach (TourViewModel item in Model.NotStarted)
                 {
-                <div id="@("tourNotStarted_" + item.Id)" class="col-12 col-lg-6 mt-3">
+                <div id="@("tourNotStarted_" + item.Id)" class="col-12 col-sm-6 col-md-12 col-lg-6 mt-3">
                     <div class="card">
                         <div class="card-header bg-secondary-color h4">@item.GuideName</div>
                         <div class="card-body bg-ternary-color text-white">
@@ -30,7 +30,7 @@
                 }
             </div>
         </div>
-        <div class="col-12 col-md-6 mt-5 mt-md-0 border-left">
+        <div class="col-12 col-md-9 mt-5 mt-md-0 border-left">
             <div id="startedTours" class="row">
                 <div class="col-12 text-center text-white mb-4">
                     <a asp-controller="Dashboard" asp-action="Index">
@@ -41,7 +41,7 @@
                 </div>
                 @foreach (TourViewModel item in Model.Started)
                 {
-                <div id="@("tourStarted_" + item.Id)" class="col-12 col-lg-6 mt-3">
+                <div id="@("tourStarted_" + item.Id)" class="col-12 col-lg-3 col-md-4 mt-3">
                     <div class="card">
                         <div class="card-header bg-secondary-color h4">@item.GuideName
                             <a onclick="cancelTourAjax('@item.Id')">
