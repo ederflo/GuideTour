@@ -11,14 +11,10 @@ namespace GuideTourWeb.Models.DashboardViewModels
 
         public int CntOngoingTours { get; set; }
 
-        public int CntCanceledTours { get; set; }
-
-        public int CntIfGuideAppTours { get; set; }
-
-        public int AverageToursPerGuide { get; set; }
-
-        public List<TourViewModel> FinishedTours { get; set; }
+        public double AverageToursPerGuide { get; set; }
 
         public TimeSpan AverageTourDuration { get; set; }
+
+        public List<TourViewModel> FinishedTours { get; set; }
     }
 }

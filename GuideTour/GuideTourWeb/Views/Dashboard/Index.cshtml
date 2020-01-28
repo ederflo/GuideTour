@@ -39,9 +39,9 @@
                 <!-- small box -->
                 <div class="small-box bg-ternary-color">
                     <div class="inner">
-                        <h3>@Model.CntCanceledTours</h3>
+                        <h3>@Model.AverageToursPerGuide.ToString()</h3>
 
-                        <p>Abgebrochene Führungen</p>
+                        <p>Durchschn. Führungen pro Guide</p>
                     </div>
                     <div class="icon">
                         <i class="fas fa-times float-right h-100"></i>
@@ -53,9 +53,9 @@
                 <!-- small box -->
                 <div class="small-box bg-ternary-color">
                     <div class="inner">
-                        <h3>@Model.CntIfGuideAppTours</h3>
+                        <h3>@Model.AverageTourDuration.ToString("h'h 'm'm 's's'")</h3>
 
-                        <p>Führungen von IfGuideApp</p>
+                        <p>Durchschn. Führungsdauer</p>
                     </div>
                     <div class="icon">
                         <i class="fas fa-mobile-alt float-right h-100"></i>

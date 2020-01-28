@@ -27,6 +27,7 @@ namespace GuideTourWeb.Controllers
             TourLogic tourLogic = new TourLogic(_ddb);
             List<Guide> guides = await guideLogic.Get();
             List<Tour> tours = await tourLogic.Get();
+            TimeSpan entireTourDuration = new TimeSpan();
 
             IndexDashboardViewModel viewModel = new IndexDashboardViewModel();
             List<Tour> finishedTours = new List<Tour>();
@@ -36,8 +37,7 @@ namespace GuideTourWeb.Controllers
 
             if (tours == null || tours.Count <= 0)
             {
-                tours = TourGenerator.Generate(guides);
-                await tourLogic.Add(tours);
+                await tourLogic.Add(TourGenerator.Generate(guides));
             }
 
             foreach (Tour t in tours)
@@ -50,12 +50,17 @@ namespace GuideTourWeb.Controllers
                     finishedTours.Add(t);
                 if (!string.IsNullOrEmpty(t.IfGuideAppId))
                     fromIfGuideApp.Add(t);
+                if (t.EndedTour != null)
+                {
+                    TimeSpan tsOfTour = new TimeSpan(t.EndedTour.Value.Ticks - t.StartedTour.Value.Ticks);
+                    entireTourDuration = entireTourDuration.Add(tsOfTour);
+                }
             }
 
             viewModel.CntFinishedTours = finishedTours.Count;
-            viewModel.CntCanceledTours = canceldTours.Count;
             viewModel.CntOngoingTours = ongoingTours.Count;
-            viewModel.CntIfGuideAppTours = fromIfGuideApp.Count;
+            viewModel.AverageToursPerGuide = Math.Round((double)tours.Count / guides.Count, 2);
+            viewModel.AverageTourDuration = entireTourDuration.Divide(tours.Count);
 
             return View(viewModel);
         }
