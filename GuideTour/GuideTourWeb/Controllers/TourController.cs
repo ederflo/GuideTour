@@ -46,7 +46,7 @@ namespace GuideTourWeb.Controllers
             {
                 List<Team> teams = await teamLogic.Get();
                 List<Guide> guides = await guideLogic.Get();
-                if (guides == null && teams == null)
+                if ((guides == null && teams == null) || (guides.Count() <= 0 && teams.Count() <= 0))
                 {
                     await teamImporter.ImportTeams();
                     await teacherImporter.ImportTeachers();

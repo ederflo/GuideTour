@@ -14,4 +14,4 @@
 **/GuideTourLogic/bin
 **/GuideTourWeb/bin
 **/GuideTourTestData/bin
-!**/.vs/GuideTour/config/applicationhost.config
+**/.vs/GuideTour/config/applicationhost.config
