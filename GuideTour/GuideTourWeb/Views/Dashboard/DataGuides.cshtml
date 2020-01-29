@@ -1,8 +1,57 @@
-﻿
+﻿@model GuideTourWeb.Models.DashboardViewModels.DataGuidesDashboardViewModel
 @{
-    ViewData["Title"] = "DataGuides";
+    ViewData["Title"] = "Guides Daten";
     Layout = "~/Views/Shared/_Layout_dashboard.cshtml";
 }
 
-<h1>DataGuides</h1>
+    <section class="content">
+        <div class="row">
+            <div class="col-12">
+                <h1>Daten von Guides</h1>
+            </div>
+        </div>
+        <hr />
+        <div class="row text-white">
+            <div class="col-12">
+                <table id="guideDataTable" class="display bg-ternary-color">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Team Id</th>
+                            <th>Teamname</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
 
+
+
+
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#guideDataTable').DataTable({
+                data: @Model.Rows,
+                columns: [
+                    { data: 'guideId' },
+                    { data: 'name' },
+                    { data: 'email' },
+                    { data: 'teamname' },
+                    { data: 'teamId' }
+                ],
+                'paging': true,
+                'lengthChange': true,
+                'searching': true,
+                'ordering': true,
+                'info': true,
+                'autoWidth': true
+            });
+        });
+    </script>
+}

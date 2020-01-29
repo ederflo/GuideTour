@@ -100,7 +100,31 @@ namespace GuideTourWeb.Controllers
         [Route("Dashboard/Data/Guides")]
         public IActionResult DataGuides()
         {
-            return View();
+            GuideLogic guideLogic = new GuideLogic(_ddb);
+            TeamLogic teamLogic = new TeamLogic(_ddb);
+            List<Guide> guides = new List<Guide>();
+            List<Team> teams = new List<Team>();
+            List<TeamViewModel> teamVMs = new List<TeamViewModel>();
+            teamVMs = TeamHelper.AssignGuidesToTeam(teams, guides);
+            DataGuidesDashboardViewModel viewModel = new DataGuidesDashboardViewModel();
+            foreach (var t in teamVMs)
+            {
+                foreach (Guide g in guides)
+                {
+                    GuideDataTableRow row = new GuideDataTableRow()
+                    {
+                        GuideId = g.Id,
+                        Name = g.Name,
+                        Email = g.Email,
+                        TeamId = g.TeamId,
+                        Teamname = t.TeamName
+                    };
+                    viewModel.Rows.Add(row);
+                }
+                
+                
+            }
+            return View(viewModel);
         }
 
         [HttpGet]
