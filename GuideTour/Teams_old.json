@@ -1,0 +1,627 @@
+[
+   {
+      "Name":"Team A",
+      "Guides":[
+         {
+            "TeamId":null,
+            "Name":"Einstein",
+            "Email":"koderf123@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Zweistein",
+            "Email":"kreuzerl@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Dreistein",
+            "Email":"reschn@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Hubert",
+            "Email":"koderf123@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Günter",
+            "Email":"kreuzerl@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Michelle",
+            "Email":"reschn@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Anna",
+            "Email":"koderf123@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Joel",
+            "Email":"kreuzerl@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         }
+      ]
+   },
+   {
+      "Name":"Team B",
+      "Guides":[
+         {
+            "TeamId":null,
+            "Name":"Hagen Kreuz",
+            "Email":"koderf123@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Bauchspeichel",
+            "Email":"kreuzerl@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Manfred Bauer",
+            "Email":"reschn@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Hanna",
+            "Email":"koderf123@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Tabak",
+            "Email":"kreuzerl@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"MedPlus",
+            "Email":"reschn@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Blistex",
+            "Email":"koderf123@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Lukas Podolski",
+            "Email":"kreuzerl@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Marco Krueger",
+            "Email":"reschn@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         }
+      ]
+   },
+   {
+      "Name":"Team C",
+      "Guides":[
+         {
+            "TeamId":null,
+            "Name":"Dick Tator",
+            "Email":"koderf123@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Holda Daraus",
+            "Email":"kreuzerl@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Meta Bolien",
+            "Email":"reschn@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Philipp Baumgaertner",
+            "Email":"koderf123@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Maria Kunzinger",
+            "Email":"kreuzerl@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Patrick Schweitzer",
+            "Email":"reschn@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Donald Trump",
+            "Email":"koderf123@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Elon Musk",
+            "Email":"kreuzerl@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         }
+      ]
+   },
+   {
+      "Name":"Team D",
+      "Guides":[
+         {
+            "TeamId":null,
+            "Name":"Florian Eder",
+            "Email":"florian.eder@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Daniel Tschlatscher",
+            "Email":"dtschlat@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Dominic Gradenegger",
+            "Email":"dominic.gradenegger@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Matthias Mayer",
+            "Email":"ederf123@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Dominic Wieser",
+            "Email":"dtschlat@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Michelle Kromp",
+            "Email":"gradened@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Gustav Adolfson",
+            "Email":"ederf123@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Anton Hold",
+            "Email":"dtschlat@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Franz Ferdinant",
+            "Email":"gradened@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         }
+      ]
+   },
+   {
+      "Name":"Team E",
+      "Guides":[
+         {
+            "TeamId":null,
+            "Name":"Christian Pringruber",
+            "Email":"pirngc@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Maximilian Gutschier",
+            "Email":"gutschm@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Lukas Sterbenz",
+            "Email":"sterbenzl@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Heinz Scherer",
+            "Email":"pirngc@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Nina Kromp",
+            "Email":"gutschm@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Anita Priker",
+            "Email":"sterbenzl@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Master OfDesaster",
+            "Email":"pirngc@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Kristian Kohl",
+            "Email":"gutschm@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Katrin Dreher",
+            "Email":"sterbenzl@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         }
+      ]
+   },
+   {
+      "Name":"Team F",
+      "Guides":[
+         {
+            "TeamId":null,
+            "Name":"Fabian Koder",
+            "Email":"koderf@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Lukas Kreuzer",
+            "Email":"kreuzerl@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Noah Resch",
+            "Email":"reschn@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Michelle Konig",
+            "Email":"koderf123@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Robert Schmid",
+            "Email":"kreuzerl@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Sophia Furst",
+            "Email":"reschn@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Christina Jäger",
+            "Email":"koderf123@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Jens Schwab",
+            "Email":"kreuzerl@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Angelina Frank",
+            "Email":"reschn@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Leah Grunwald",
+            "Email":"koderf123@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Swen Nagel",
+            "Email":"kreuzerl@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Alexander Gallob",
+            "Email":"reschn@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         }
+      ]
+   },
+   {
+      "Name":"Team G",
+      "Guides":[
+         {
+            "TeamId":null,
+            "Name":"Mister X",
+            "Email":"koderf123@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Mister Y",
+            "Email":"kreuzerl@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Mister Z",
+            "Email":"reschn@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"LEna Meister",
+            "Email":"koderf123@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Philipp Hirsch",
+            "Email":"kreuzerl@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Sohpie Dresdner",
+            "Email":"reschn@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Christian Winkel",
+            "Email":"koderf123@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Jonas Beyer",
+            "Email":"kreuzerl@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Anke Hofmann",
+            "Email":"reschn@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },{
+            "TeamId":null,
+            "Name":"Lena Dächer",
+            "Email":"koderf123@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         }
+      ]
+   },
+   {
+      "Name":"Team H",
+      "Guides":[
+         {
+            "TeamId":null,
+            "Name":"Lelekt",
+            "Email":"koderf123@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Magnesium Manuel",
+            "Email":"kreuzerl@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Karsten Stahl",
+            "Email":"reschn@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Sandra Ebersbacher",
+            "Email":"koderf123@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Dieter Gottschalk",
+            "Email":"kreuzerl@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Larin Vogt",
+            "Email":"reschn@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Sven Traugott",
+            "Email":"koderf123@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Thorsten Schultheiss",
+            "Email":"kreuzerl@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Andreas Hoffmann",
+            "Email":"reschn@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         }
+      ]
+   },
+   {
+      "Name":"Team I",
+      "Guides":[
+         {
+            "TeamId":null,
+            "Name":"Fette Beate",
+            "Email":"koderf123@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Klana Schlumpf",
+            "Email":"kreuzerl@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Kreta Kliemann",
+            "Email":"reschn@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Sebastian Beike",
+            "Email":"koderf123@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Philipp Zimmermann",
+            "Email":"kreuzerl@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Lance Janssen",
+            "Email":"lance.janssen@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Anja Beike",
+            "Email":"koderf123@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Lukas Herrmann",
+            "Email":"kreuzerl@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         },
+         {
+            "TeamId":null,
+            "Name":"Annett Fink",
+            "Email":"reschn@edu.htl-villach.at",
+            "Id":null,
+            "Type":"Guide"
+         }
+      ]
+   }
+]

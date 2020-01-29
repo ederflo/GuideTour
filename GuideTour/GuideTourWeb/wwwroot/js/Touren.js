@@ -192,7 +192,7 @@ function addStartedTour(data) {
 function buildNotStartedTourPanel(id, guideName, guideTeam, visitorName) {
     if (!visitorName)
         visitorName = '--';
-    return '<div id="tourNotStarted_' + id + '" class="col-12 col-lg-6 mt-3" >' +
+    return '<div id="tourNotStarted_' + id + '" class="col-12 col-sm-6 col-md-12 mt-3" >' +
         '<div class="card">' +
         '<div class="card-header bg-secondary-color h4">' + guideName + '</div>' +
         '<div class="card-body bg-ternary-color text-white">' +
@@ -213,7 +213,7 @@ function buildStartedTourPanel(id, guideName, guideTeam, visitorName, startTime)
     var date = new Date(startTime);
     var hour = ("0" + date.getHours()).slice(-2);
     var minute = ("0" + date.getMinutes()).slice(-2);
-    return '<div id="tourStarted_' + id + '" class="col-12 col-lg-6 mt-3" >' +
+    return '<div id="tourStarted_' + id + '" class="col-12 col-lg-3 col-md-4 mt-3" >' +
         '<div class="card">' +
         '<div class="card-header bg-secondary-color h4">' + guideName +
         '<a onclick="cancelTourAjax(\'' + id + '\')">' +
