@@ -120,5 +120,48 @@ namespace GuideTourLogic.Logics
                 TeacherId = teacherId
             };
         }
+
+        public static List<Tour> Clone(List<Tour> tours)
+        {
+            List<Tour> result = new List<Tour>();
+            foreach (Tour t in tours)
+            {
+                result.Add(Clone(t));
+            }
+            return result;
+        }
+
+        public static Tour Clone(Tour t) {
+            return new Tour()
+            {
+                Canceled = t.Canceled,
+                TeacherId = t.TeacherId,
+                EndedTour = t.EndedTour,
+                StartedTour = t.StartedTour,
+                GuideId = t.GuideId,
+                Id = t.Id,
+                IfGuideAppId = t.IfGuideAppId,
+                VisitorName = t.VisitorName
+            };
+        }
+
+        public static Dictionary<DateTime, int> GetToursPerHalfHour(List<Tour> tours)
+        {
+            List<Tour> clonedTours = Clone(tours);
+            clonedTours = clonedTours.OrderBy(x => x.StartedTour).ToList();
+            DateTime now = DateTime.Now;
+            DateTime startOfTDOT = new DateTime(now.Year, now.Month, now.Day, 8, 0, 0);
+            DateTime endOfTDOT = new DateTime(now.Year, now.Month, now.Day, 18, 0, 0);
+            TimeSpan wholeTDOT = endOfTDOT - startOfTDOT;
+            int numOfUnits = (wholeTDOT.Hours * 2) + 1;
+            Dictionary<DateTime, int> result = new Dictionary<DateTime, int>();
+            for (int i = 0; i < numOfUnits; i++)
+            {
+                int cntOfTours = clonedTours.RemoveAll(x => x.StartedTour >= startOfTDOT && x.StartedTour < startOfTDOT.AddMinutes(30));
+                result.Add(startOfTDOT, cntOfTours);
+                startOfTDOT = startOfTDOT.AddMinutes(30);
+            }
+            return result;
+        }
     }
 }

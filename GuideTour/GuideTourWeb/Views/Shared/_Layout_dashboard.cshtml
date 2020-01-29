@@ -35,8 +35,8 @@
                     <i class="fas fa-list"></i>
                 </a>
                 @*<a asp-controller="Touren" asp-action="Index" class="sidebar-toggle w-50 text-center" role="button">
-                     <span class="w-100"><i class="fas fa-eye"></i> Touren</span>
-                </a>*@
+                         <span class="w-100"><i class="fas fa-eye"></i> Touren</span>
+                    </a>*@
             </nav>
         </header>
         <!-- Left side column. contains the logo and sidebar -->
@@ -93,6 +93,7 @@
             @RenderBody()
         </div>
     </div>
+    <script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
     <script src="~/lib/jquery/jquery.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
     <script src="~/lib/font-awesome/js/all.js"></script>
@@ -108,6 +109,7 @@
     <script src="~/lib/jvectormap/jquery-jvectormap.js" asp-append-version="true"></script>
     <script src="~/lib/jQuery-Knob/jquery.knob.min.js" asp-append-version="true"></script>
     <script src="~/lib/moment.js/moment.js" asp-append-version="true"></script>
+    <script src="~/lib/Chart.js/Chart.js" asp-append-version="true"></script>
     <script src="~/lib/jQuery-slimScroll/jquery.slimscroll.js" asp-append-version="true"></script>
     <script src="~/lib/fastclick/fastclick.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)

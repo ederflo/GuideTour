@@ -115,6 +115,10 @@
     {
       "library": "fastclick@1.0.6",
       "destination": "wwwroot/lib/fastclick/"
+    },
+    {
+      "library": "Chart.js@2.9.3",
+      "destination": "wwwroot/lib/Chart.js/"
     }
   ]
 }

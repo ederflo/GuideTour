@@ -6,6 +6,8 @@ using GuideTourData.Models;
 using GuideTourData.Services;
 using GuideTourLogic.Logics;
 using GuideTourTestData.DataProvider;
+using GuideTourWeb.Helpers.ObjectHelpers;
+using GuideTourWeb.Models;
 using GuideTourWeb.Models.DashboardViewModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -99,6 +101,34 @@ namespace GuideTourWeb.Controllers
         public IActionResult DataGuides()
         {
             return View();
+        }
+
+        [HttpGet]
+        public async Task<List<object>> GetChartDataForOverview()
+        {
+            TourLogic tourLogic = new TourLogic(_ddb);
+            GuideLogic guideLogic = new GuideLogic(_ddb);
+            TeamLogic teamLogic = new TeamLogic(_ddb);
+            List<Tour> tours = await tourLogic.Get();
+            List<Guide> guides = await guideLogic.Get();
+            List<Team> teams = await teamLogic.Get();
+            List<TourViewModel> tourVMs = TourHelper.ToViewModel(tours, guides, teams);
+            Dictionary<string, int> tempToursPerTeam = new Dictionary<string, int>();
+            List<object> result = new List<object>();
+            List<int> cntOfToursPerHalfHour = new List<int>();
+            TeamWithToursViewModel toursPerTeamViewModel = new TeamWithToursViewModel();
+            if (tours != null)
+                cntOfToursPerHalfHour = TourLogic.GetToursPerHalfHour(tours).Values.ToList();
+            teams.ForEach(x => tempToursPerTeam.Add(x.Name, 0));
+            foreach (TourViewModel tVM in tourVMs)
+            {
+                tempToursPerTeam[tVM.Team] += 1;
+            }
+            toursPerTeamViewModel.Teamnames = tempToursPerTeam.Keys.ToList();
+            toursPerTeamViewModel.NumOfTours = tempToursPerTeam.Values.ToList();
+            result.Add(cntOfToursPerHalfHour);
+            result.Add(toursPerTeamViewModel);
+            return result;
         }
     }
 }
