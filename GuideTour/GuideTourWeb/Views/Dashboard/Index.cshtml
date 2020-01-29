@@ -88,14 +88,23 @@
                                 datasets: [{
                                     data: data[0],
                                     label: "",
-                                    borderWidth: 2,
+                                    borderWidth: 3,
                                     borderColor: "#FFF233",
                                     fill: true,
+                                    backgroundColor: "rgba(255, 242, 51, 0.3)",
                                     pointRadius: 0
                                 }]
                             },
                             options: {
                                 scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            fontColor: "white",
+                                            fontSize: 14,
+                                            stepSize: 1,
+                                            beginAtZero: true
+                                        }
+                                    }],
                                     xAxes: [{
                                         type: 'time',
                                         time: {
@@ -108,12 +117,19 @@
                                             max: '18'
                                         },
                                         ticks: {
-                                            source: 'data'
+                                            source: "data",
+                                            fontColor: "white",
+                                            fontSize: 14,
+                                            stepSize: 1,
+                                            beginAtZero: true
                                         }
                                     }]
                                 },
                                 legend: {
-                                    display: false
+                                    display: false,
+                                    labels: {
+                                        fontColor: "white"
+                                    }
                                 },
                                 animation: {
                                     duration: 3,
@@ -152,15 +168,37 @@
                                 labels: data[1].teamnames,
                                 datasets: [{
                                     data: data[1].numOfTours,
-                                    borderWidth: 2,
+                                    borderWidth: 3,
                                     borderColor: "#FFF233",
                                     fill: true,
+                                    backgroundColor: "rgba(255, 242, 51, 0.3)",
                                     pointRadius: 0
                                 }]
                             },
                             options: {
                                 legend: {
-                                    display: false
+                                    display: false,
+                                    labels: {
+                                        fontColor: "white"
+                                    }
+                                },
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            fontColor: "white",
+                                            fontSize: 14,
+                                            stepSize: 1,
+                                            beginAtZero: true
+                                        }
+                                    }],
+                                    xAxes: [{
+                                        ticks: {
+                                            fontColor: "white",
+                                            fontSize: 16,
+                                            stepSize: 1,
+                                            beginAtZero: true
+                                        }
+                                    }]
                                 },
                                 animation: {
                                     duration: 3,
