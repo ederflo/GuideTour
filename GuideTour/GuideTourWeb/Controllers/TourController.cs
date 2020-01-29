@@ -58,8 +58,8 @@ namespace GuideTourWeb.Controllers
                     List<TourViewModel> tourVMs = TourHelper.ToViewModel(tours, guides, teams);
                     viewModel.NotStarted = tourVMs.FindAll(x => x.StartedTour == null && x.EndedTour == null);
                     viewModel.Started = tourVMs.FindAll(x => x.StartedTour != null && x.EndedTour == null);
-                    GuideHelper.SliceNames(guides, 13);
-                    TeamHelper.SliceNames(teams, 13);
+                    GuideHelper.SliceNames(guides, 17);
+                    TeamHelper.SliceNames(teams, 17);
                     viewModel.Teams = TeamHelper.AssignGuidesToTeam(teams, guides);
                 }
                 viewModel.Started = viewModel.Started.OrderBy(x => x.StartedTour).ToList();

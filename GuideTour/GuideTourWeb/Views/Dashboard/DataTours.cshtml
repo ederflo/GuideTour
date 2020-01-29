@@ -1,8 +1,58 @@
-﻿
+﻿@model List<GuideTourWeb.Models.TourViewModel>
 @{
     ViewData["Title"] = "DataTours";
     Layout = "~/Views/Shared/_Layout_dashboard.cshtml";
 }
 
-<h1>DataTours</h1>
+<section class="content">
+    <div class="row">
+        <div class="col-12">
+            <h1>Daten von Touren</h1>
+        </div>
+    </div>
+    <hr />
+    <div class="row text-white">
+        <div class="col-12">
+            <table id="tourDataTable" class="display bg-ternary-color">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Guidename</th>
+                        <th>Teamname</th>
+                        <th>Startzeit</th>
+                        <th>Endzeit</th>
+                        <th>GuideId</th>
+                        <th>TeamId</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var row in Model)
+                    {
+                    <tr>
+                        <td>@row.Id</td>
+                        <td>@row.GuideName</td>
+                        <td>@row.Team</td>
+                        <td>@row.StartedTour.Value.ToString("HH:mm")</td>
+                        <td>
+                            @(row.EndedTour != null ? row.EndedTour.Value.ToString("HH:mm") : Html.Raw("--").ToString())
+                        </td>
+                        <td>@row.GuideId</td>
+                        <td>@row.TeamId</td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
 
+
+
+
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#tourDataTable').DataTable();
+        });
+    </script>
+}

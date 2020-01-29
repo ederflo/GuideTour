@@ -86,30 +86,53 @@ namespace GuideTourWeb.Controllers
         }
 
         [Route("Dashboard/Data/Tours")]
-        public IActionResult DataTours()
+        public async Task<IActionResult> DataTours()
         {
-            return View();
+            TourLogic tourLogic = new TourLogic(_ddb);
+            TeamLogic teamLogic = new TeamLogic(_ddb);
+            GuideLogic guideLogic = new GuideLogic(_ddb);
+            List<TourViewModel> viewModels = new List<TourViewModel>();
+            try
+            {
+                List<Team> teams = await teamLogic.Get();
+                List<Guide> guides = await guideLogic.Get();
+                List<Tour> tours = await tourLogic.Get();
+                if (tours != null && teams != null && guides != null)
+                {
+                    viewModels = TourHelper.ToViewModel(tours, guides, teams);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+            }
+            return View(viewModels);
         }
 
         [Route("Dashboard/Data/Teams")]
-        public IActionResult DataTeams()
+        public async Task<IActionResult> DataTeams()
         {
-            return View();
+            TeamLogic teamLogic = new TeamLogic(_ddb);
+            List<Team> teams = await teamLogic.Get();
+            DataTeamsDashboardViewModel viewModel = new DataTeamsDashboardViewModel();
+            viewModel.Teams = teams;
+            return View(viewModel);
         }
 
         [Route("Dashboard/Data/Guides")]
-        public IActionResult DataGuides()
+        public async Task<IActionResult> DataGuides()
         {
             GuideLogic guideLogic = new GuideLogic(_ddb);
             TeamLogic teamLogic = new TeamLogic(_ddb);
-            List<Guide> guides = new List<Guide>();
-            List<Team> teams = new List<Team>();
+            List<Guide> guides = await guideLogic.Get();
+            List<Team> teams = await teamLogic.Get();
             List<TeamViewModel> teamVMs = new List<TeamViewModel>();
             teamVMs = TeamHelper.AssignGuidesToTeam(teams, guides);
             DataGuidesDashboardViewModel viewModel = new DataGuidesDashboardViewModel();
             foreach (var t in teamVMs)
             {
-                foreach (Guide g in guides)
+                foreach (Guide g in t.Guides)
                 {
                     GuideDataTableRow row = new GuideDataTableRow()
                     {

@@ -1,34 +1,45 @@
 ﻿@model GuideTourWeb.Models.DashboardViewModels.DataGuidesDashboardViewModel
+@using  GuideTourWeb.Models.DashboardViewModels
 @{
     ViewData["Title"] = "Guides Daten";
     Layout = "~/Views/Shared/_Layout_dashboard.cshtml";
 }
 
-    <section class="content">
-        <div class="row">
-            <div class="col-12">
-                <h1>Daten von Guides</h1>
-            </div>
+<section class="content">
+    <div class="row">
+        <div class="col-12">
+            <h1>Daten von Guides</h1>
         </div>
-        <hr />
-        <div class="row text-white">
-            <div class="col-12">
-                <table id="guideDataTable" class="display bg-ternary-color">
-                    <thead>
+    </div>
+    <hr />
+    <div class="row text-white">
+        <div class="col-12">
+            <table id="guideDataTable" class="display bg-ternary-color">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Teamname</th>
+                        <th>Team Id</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (GuideDataTableRow row in Model.Rows)
+                    {
                         <tr>
-                            <th>Id</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Team Id</th>
-                            <th>Teamname</th>
+                            <td>@row.GuideId</td>
+                            <td>@row.Name</td>
+                            <td>@row.Email</td>
+                            <td>@row.Teamname</td>
+                            <td>@row.TeamId</td>
                         </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
-            </div>
+                    }
+                </tbody>
+            </table>
         </div>
-    </section>
+    </div>
+</section>
 
 
 
@@ -36,22 +47,7 @@
 @section Scripts {
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#guideDataTable').DataTable({
-                data: @Model.Rows,
-                columns: [
-                    { data: 'guideId' },
-                    { data: 'name' },
-                    { data: 'email' },
-                    { data: 'teamname' },
-                    { data: 'teamId' }
-                ],
-                'paging': true,
-                'lengthChange': true,
-                'searching': true,
-                'ordering': true,
-                'info': true,
-                'autoWidth': true
-            });
+            $('#guideDataTable').DataTable();
         });
     </script>
 }

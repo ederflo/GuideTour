@@ -16,7 +16,7 @@
                 {
                 <div id="@("tourNotStarted_" + item.Id)" class="col-12 col-sm-6 col-md-12 mt-3">
                     <div class="card">
-                        <div class="card-header bg-secondary-color h4">@item.GuideName</div>
+                        <div class="card-header bg-secondary-color h5">@item.GuideName</div>
                         <div class="card-body bg-ternary-color text-white">
                             <p>
                                 <strong>Team:</strong> @item.Team<br />
@@ -43,7 +43,7 @@
                 {
                 <div id="@("tourStarted_" + item.Id)" class="col-12 col-lg-3 col-md-4 mt-3">
                     <div class="card">
-                        <div class="card-header bg-secondary-color h4">@item.GuideName
+                        <div class="card-header bg-secondary-color h5">@item.GuideName
                             <a onclick="cancelTourAjax('@item.Id')">
                                 <i class="fa fa-1x fa-times fa-pull-right text-dark"></i>
                             </a>
@@ -66,7 +66,7 @@
 
 
     <div id="createTourModal" class="modal fade" role="dialog">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-secondary-color text-dark">
                     <h5 class="modal-title">Neue Führung erfassen</h5>
