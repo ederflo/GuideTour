@@ -11,10 +11,20 @@ namespace GuideTourWeb.Models.DashboardViewModels
 
         public int CntOngoingTours { get; set; }
 
-        public double AverageToursPerGuide { get; set; }
+        public TimeSpan WholeToursDuration { get; set; }
 
         public TimeSpan AverageTourDuration { get; set; }
 
-        public List<TourViewModel> FinishedTours { get; set; }
+        public double AverageToursPerGuide { get; set; }
+
+        public double AverageToursPerTeam { get; set; }
+
+        public int CntCanceledTours { get; set; }
+
+        public int CntGuides { get; set; }
+
+        public DateTime? FirstTour { get; set; }
+
+        public DateTime? LastTour  { get; set; }
     }
 }
