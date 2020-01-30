@@ -2,7 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GuideTourData.Models;
 using GuideTourData.Services;
+using GuideTourLogic.Logics;
+using GuideTourLogic.Services;
 using GuideTourWeb.Hubs;
 using GuideTourWeb.Mqtt;
 using Microsoft.AspNetCore.Builder;
@@ -46,6 +49,19 @@ namespace GuideTourWeb
             try
             {
                 MqttService.Init(ddb, hubcontext);
+
+                TeamLogic teamLogic = new TeamLogic(ddb);
+                GuideLogic guideLogic = new GuideLogic(ddb);
+                TeacherLogic teacherLogic = new TeacherLogic(ddb);
+                TeamImporter teamImporter = new TeamImporter(ddb);
+                TeacherImporter teacherImporter = new TeacherImporter(ddb);
+                List<Team> teams = teamLogic.Get().GetAwaiter().GetResult();
+                List<Guide> guides = guideLogic.Get().GetAwaiter().GetResult();
+                List<Teacher> teachers = teacherLogic.Get().GetAwaiter().GetResult();
+                if ((guides == null && teams == null) || (guides.Count() <= 0 && teams.Count() <= 0))
+                    teamImporter.ImportTeams().GetAwaiter().GetResult();
+                if (teachers == null || teachers.Count <= 0)
+                    teacherImporter.ImportTeachers().GetAwaiter().GetResult();
             }
             catch (Exception ex)
             {

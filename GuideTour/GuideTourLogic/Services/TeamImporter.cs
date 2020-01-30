@@ -32,7 +32,7 @@ namespace GuideTourLogic.Services
                 teams.Add(curTeam);
                 foreach (Guide g in t.Guides)
                 {
-                    LastnameFirst(g);
+                    //LastnameFirst(g);
                     g.TeamId = curTeam.Id.ToString();
                     g.Id = ObjectId.GenerateNewId().ToString();
                     guides.Add(g);

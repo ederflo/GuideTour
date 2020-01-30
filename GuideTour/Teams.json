@@ -78,6 +78,43 @@
         ]
     },
     {
+        "Name": "Team C",
+        "Guides": [
+            {
+                "Name": "Glantschnig Christoph",
+                "Email": "glantscc@edu.htl-villach.at"
+            },
+            {
+                "Name": "Kaiser Simon",
+                "Email": "kaisers1@edu.htl-villach.at"
+            },
+            {
+                "Name": "Hueber Leon",
+                "Email": "hueberl@edu.htl-villach.at"
+            },
+            {
+                "Name": "Karlaš Goran",
+                "Email": "karlasg@edu.htl-villach.at"
+            },
+            {
+                "Name": "Kerin Sebastian",
+                "Email": "kerins@edu.htl-villach.at"
+            },
+            {
+                "Name": "Hinteregger Julian",
+                "Email": "hinterej@edu.htl-villach.at"
+            },
+            {
+                "Name": "Fasching Stefanie",
+                "Email": "faschins@edu.htl-villach.at"
+            },
+            {
+                "Name": "Nadolph Philipp",
+                "Email": "nadolphp@edu.htl-villach.at"
+            }
+        ]
+    },
+    {
         "Name": "Team D",
         "Guides": [
             {
@@ -95,6 +132,14 @@
             {
                 "Name": "Zerza Philip",
                 "Email": "zerzap@edu.htl-villach.at"
+            },
+            {
+                "Name": "Hu Andy",
+                "Email": "hua@edu.htl-villach.at"
+            },
+            {
+                "Name": "Kupper Moritz",
+                "Email": "kupperm@edu.htl-villach.at"
             },
             {
                 "Name": "Strasser Joel",
@@ -175,8 +220,7 @@
                 "Email": "omeradzk@edu.htl-villach.at"
             }
         ]
-    }
-    ,
+    },
     {
         "Name": "Team G",
         "Guides": [
@@ -326,7 +370,44 @@
         ]
     },
     {
-        "Name": "Administratoren",
+        "Name": "Team L",
+        "Guides": [
+            {
+                "Name": "Artl Raphael",
+                "Email": "artlr@edu.htl-villach.at"
+            },
+            {
+                "Name": "Skumac Lukas",
+                "Email": "skumacl@edu.htl-villach.at"
+            },
+            {
+                "Name": "Guggenbichler Jakob",
+                "Email": "guggenb2@edu.htl-villach.at"
+            },
+            {
+                "Name": "Miličević Stefan",
+                "Email": "milicevs@edu.htl-villach.at"
+            },
+            {
+                "Name": "Berger Riccardo Mario",
+                "Email": "bergerr1@edu.htl-villach.at"
+            },
+            {
+                "Name": "Fabbro Samuel",
+                "Email": "fabbros1@edu.htl-villach.at"
+            },
+            {
+                "Name": "Veratschnig Sebastian",
+                "Email": "veratscs@edu.htl-villach.at"
+            },
+            {
+                "Name": "Cuder Maximilian",
+                "Email": "cuderm@edu.htl-villach.at"
+            }
+        ]
+    },
+    {
+        "Name": "Admins",
         "Guides": [
             {
                 "Name": "Koder Fabian",

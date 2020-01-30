@@ -39,7 +39,7 @@ namespace GuideTourWeb.Controllers
 
             if (tours == null || tours.Count <= 0)
             {
-                await tourLogic.Add(TourGenerator.Generate(guides));
+                //await tourLogic.Add(TourGenerator.Generate(guides));
             }
 
             foreach (Tour t in tours)
@@ -62,7 +62,8 @@ namespace GuideTourWeb.Controllers
             viewModel.CntFinishedTours = finishedTours.Count;
             viewModel.CntOngoingTours = ongoingTours.Count;
             viewModel.AverageToursPerGuide = Math.Round((double)tours.Count / guides.Count, 2);
-            viewModel.AverageTourDuration = entireTourDuration.Divide(tours.Count);
+            if (entireTourDuration.TotalSeconds > 0)
+                viewModel.AverageTourDuration = entireTourDuration.Divide(tours.Count);
 
             return View(viewModel);
         }

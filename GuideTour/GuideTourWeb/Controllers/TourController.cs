@@ -38,19 +38,13 @@ namespace GuideTourWeb.Controllers
             TourLogic tourLogic = new TourLogic(_ddb);
             TeamLogic teamLogic = new TeamLogic(_ddb);
             GuideLogic guideLogic = new GuideLogic(_ddb);
+            TeacherLogic teacherLogic = new TeacherLogic(_ddb);
             IndexTourViewModel viewModel = null;
-
-            TeamImporter teamImporter = new TeamImporter(_ddb);
-            TeacherImporter teacherImporter = new TeacherImporter(_ddb);
             try
             {
                 List<Team> teams = await teamLogic.Get();
                 List<Guide> guides = await guideLogic.Get();
-                if ((guides == null && teams == null) || (guides.Count() <= 0 && teams.Count() <= 0))
-                {
-                    await teamImporter.ImportTeams();
-                    await teacherImporter.ImportTeachers();
-                }
+                List<Teacher> teachers = await teacherLogic.Get();
                 List<Tour> tours = await tourLogic.Get();
                 viewModel = new IndexTourViewModel();
                 if (tours != null && teams != null && guides != null)
