@@ -36,6 +36,10 @@ hubConnection.on("TourCancelled", function (data) {
     $('#tourStarted_' + data.id).remove();
 });
 
+hubConnection.on("RemoveNotStartedTour", function (data) {
+    $('#tourNotStarted_' + data).remove();
+});
+
 function startTourAjax(id) {
     if (!id)
         alert('Tour konnte nicht gestartet werden! Bitte wenden Sie sich an einen Administrator!');
@@ -98,6 +102,31 @@ function cancelTourAjax(id) {
             $.ajax({
                 type: 'PATCH',
                 url: '/Tour/CancelTour',
+                data: {
+                    id: id
+                },
+                success: function (data) {
+                    if (!data)
+                        console.log('Error! Bitte kontaktieren Sie einen Administrator!');
+                },
+                error: function () {
+                    console.log('Error! Bitte kontaktieren Sie einen Administrator!');
+                }
+            });
+        }
+    });
+}
+
+function removeNotStartedTourAjax(id) {
+    checkPermissions(function () {
+        var doDelete = confirm("Wollen Sie diese Tour wirklich abbrechen? Diese kann nicht zurückgesetzt werden!");
+        if (doDelete === true) {
+            if (!id)
+                alert('Tour konnte nicht abgebrochen werden! Bitte wenden Sie sich an einen Administrator!');
+
+            $.ajax({
+                type: 'DELETE',
+                url: '/Tour/RemoveNotStartedTour',
                 data: {
                     id: id
                 },
@@ -194,7 +223,11 @@ function buildNotStartedTourPanel(id, guideName, guideTeam, visitorName) {
         visitorName = '--';
     return '<div id="tourNotStarted_' + id + '" class="col-12 col-sm-6 col-md-12 mt-3" >' +
         '<div class="card">' +
-        '<div class="card-header bg-secondary-color h5">' + guideName + '</div>' +
+        '<div class="card-header bg-secondary-color h5">' + guideName +
+        '<a onclick="removeNotStartedTourAjax(\'' + id + '\')">' +
+        '<i class="fa fa-1x fa-times fa-pull-right text-dark"></i>' +
+        '</a>' +
+        '</div>' +
         '<div class="card-body bg-ternary-color text-white">' +
         '<p>' +
         '<strong>Team:</strong> ' + guideTeam + '<br />' +

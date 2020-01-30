@@ -170,6 +170,29 @@ namespace GuideTourWeb.Controllers
             return result;
         }
 
+        [HttpDelete]
+        public async Task<bool> RemoveNotStartedTour(string id)
+        {
+            TourLogic tourLogic = new TourLogic(_ddb);
+            bool succeeded = false;
+            try
+            {
+                if (!string.IsNullOrEmpty(id))
+                {
+                    if (succeeded = await tourLogic.Delete(id))
+                    {
+                        await _hubcontext.Clients.All.SendAsync("RemoveNotStartedTour", id);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+            }
+            return succeeded;
+        }
+
         [HttpPost]
         public async Task<string> CheckPermissions(string teacherId = "", int pinCode = -1)
         {

@@ -16,7 +16,11 @@
                 {
                 <div id="@("tourNotStarted_" + item.Id)" class="col-12 col-sm-6 col-md-12 mt-3">
                     <div class="card">
-                        <div class="card-header bg-secondary-color h5">@item.GuideName</div>
+                        <div class="card-header bg-secondary-color h5">@item.GuideName
+                            <a onclick="removeNotStartedTourAjax('@item.Id')">
+                                <i class="fa fa-1x fa-times fa-pull-right text-dark"></i>
+                            </a>
+                        </div>
                         <div class="card-body bg-ternary-color text-white">
                             <p>
                                 <strong>Team:</strong> @item.Team<br />
